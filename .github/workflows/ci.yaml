@@ -11,10 +11,14 @@ jobs:
     name: Build outputs (${{ matrix.system }})
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - system: x86_64-linux
             os: ubuntu-latest
+
+          - system: aarch64-linux
+            os: ubuntu-24.04-arm
 
     runs-on: ${{ matrix.os }}
 
