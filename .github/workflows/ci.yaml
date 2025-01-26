@@ -18,6 +18,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    env:
+      SYSTEM: ${{ matrix.system }}
+
     steps:
         # https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
       - name: Clear disk space
@@ -42,16 +45,13 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
       - name: Run build
-        env:
-          SYSTEM: ${{ matrix.system }}
         run: |
-          nix run \
+          nix run --inputs-from . \
             github:Mic92/nix-fast-build -- \
             --no-nom \
             --skip-cached \
-            --systems "$SYSTEM" \
             --option allow-import-from-derivation false \
-            --flake '.#hydraJobs'
+            --flake ".#hydraJobs.$SYSTEM"
 
   build-gate:
     name: Build gate
