@@ -28,7 +28,6 @@
     arm-builder.enable = true;
     mac-builder.enable = true;
     resolved.enable = false;
-    tailscale.enable = true;
   };
 
   wsl = {
