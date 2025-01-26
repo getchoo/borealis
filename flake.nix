@@ -58,7 +58,6 @@
         nixpkgs.follows = "nixpkgs";
         darwin.follows = "";
         home-manager.follows = "";
-        systems.follows = "nixos-wsl/flake-utils/systems";
       };
     };
 
@@ -68,7 +67,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
         pre-commit.follows = "";
-        flake-utils.follows = "nixos-wsl/flake-utils";
+        flake-utils.follows = "firefox-addons/flake-utils";
       };
     };
 
@@ -76,12 +75,6 @@
       url = "github:catppuccin/nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "";
-        home-manager.follows = "";
-        home-manager-stable.follows = "";
-        nuscht-search.follows = "";
-        catppuccin-v1_1.follows = "";
-        catppuccin-v1_2.follows = "";
       };
     };
 
@@ -89,7 +82,6 @@
       url = "sourcehut:~rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "nixos-wsl/flake-utils";
       };
     };
 
@@ -155,7 +147,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        systems.follows = "nixos-wsl/flake-utils/systems";
+        systems.follows = "agenix/systems";
       };
     };
 
@@ -169,7 +161,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        systems.follows = "nixos-wsl/flake-utils/systems";
+        systems.follows = "agenix/systems";
         terranix-examples.follows = "";
         bats-support.follows = "";
         bats-assert.follows = "";
