@@ -78,6 +78,14 @@
       };
     };
 
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nix.follows = "";
+      };
+    };
+
     firefox-addons = {
       url = "sourcehut:~rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs = {

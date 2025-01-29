@@ -3,6 +3,7 @@
     ./arm-builder.nix
     ./auto-upgrade.nix
     ./containers.nix
+    ./determinate.nix
     ./home-manager.nix
     ./locale.nix
     ./mac-builder.nix
