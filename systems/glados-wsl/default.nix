@@ -8,7 +8,7 @@
   profiles.personal.enable = true;
 
   environment.systemPackages = with pkgs; [
-    wget # For VSCode
+    wget
     wslu
   ];
 
@@ -17,10 +17,6 @@
   nix.package = pkgs.nixVersions.latest;
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  programs = {
-    nix-ld.enable = true;
-  };
 
   # Something, something `resolv.conf` error
   # (nixos-wsl probably doesn't set it)
