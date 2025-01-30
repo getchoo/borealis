@@ -86,7 +86,7 @@
     };
 
     getchpkgs = {
-      url = "github:getchoo/nix-exprs";
+      url = "github:getchoo/getchpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -113,11 +113,6 @@
         flake-compat.follows = "";
         pre-commit-hooks-nix.follows = "";
       };
-    };
-
-    nix-exprs = {
-      url = "github:getchoo/nix-exprs";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {

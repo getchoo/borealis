@@ -192,13 +192,13 @@
         "lastModified": 1738244694,
         "narHash": "sha256-Whby1065h8T3VGaaK4r5WEt0uow7ilOV9NHQewVGQnI=",
         "owner": "getchoo",
-        "repo": "nix-exprs",
+        "repo": "getchpkgs",
         "rev": "83a7516b7f38b20265709e77daf387b62b488a88",
         "type": "github"
       },
       "original": {
         "owner": "getchoo",
-        "repo": "nix-exprs",
+        "repo": "getchpkgs",
         "type": "github"
       }
     },
@@ -307,26 +307,6 @@
       "original": {
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
-    "nix-exprs": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737773962,
-        "narHash": "sha256-9SFHBauH0bi9lX5DlienIOPfmYpwyWaPRP91rzKoP3U=",
-        "owner": "getchoo",
-        "repo": "nix-exprs",
-        "rev": "baa8923dc7ecf5777be406ee4ce1de60e826d6e3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "getchoo",
-        "repo": "nix-exprs",
         "type": "github"
       }
     },
@@ -483,7 +463,6 @@
         "krunner-nix": "krunner-nix",
         "lanzaboote": "lanzaboote",
         "nix-darwin": "nix-darwin",
-        "nix-exprs": "nix-exprs",
         "nix-index-database": "nix-index-database",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
