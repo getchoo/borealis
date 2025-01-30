@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   flake-parts-lib,
   inputs,
   ...
@@ -20,7 +19,6 @@ in
       type = lib.types.functionTo lib.types.package;
       default = pkgs: pkgs.opentofu;
       defaultText = lib.literalExpression "pkgs: pkgs.opentofu";
-      apply = fn: fn pkgs;
       description = "The Terraform-compatible implementation to use.";
       example = lib.literalExpression "pkgs: pkgs.terraform";
     };
@@ -41,6 +39,8 @@ in
       }:
 
       let
+        package = cfg.package pkgs;
+
         terranixConfiguration = inputs.terranix.lib.terranixConfiguration {
           inherit system;
           inherit (cfg) modules;
@@ -51,7 +51,7 @@ in
         apps.tf = {
           program = pkgs.writeShellScriptBin "tf" ''
             ln -sf ${terranixConfiguration} config.tf.json
-            exec ${lib.getExe cfg.package} "$@"
+            exec ${lib.getExe package} "$@"
           '';
         };
       };
