@@ -67,7 +67,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
         pre-commit.follows = "";
-        flake-utils.follows = "firefox-addons/flake-utils";
       };
     };
 
@@ -83,13 +82,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nix.follows = "";
-      };
-    };
-
-    firefox-addons = {
-      url = "sourcehut:~rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
       };
     };
 

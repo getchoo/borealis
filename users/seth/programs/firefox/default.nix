@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  inputs',
+  inputs,
   ...
 }:
 let
@@ -15,7 +15,10 @@ in
     };
   };
 
-  imports = [ ./arkenfox.nix ];
+  imports = [
+    inputs.getchpkgs.nixosModules.firefox-addons
+    ./arkenfox.nix
+  ];
 
   config = lib.mkIf cfg.enable {
     home.sessionVariables = {
@@ -24,13 +27,17 @@ in
 
     programs.firefox = {
       enable = true;
-      profiles.arkenfox = {
-        extensions = with inputs'.firefox-addons.packages; [
-          bitwarden
-          floccus
-          ublock-origin
-        ];
 
+      addons = [
+        # uBlock Origin
+        "uBlock0@raymondhill.net"
+        # Bitwarden
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}"
+        # Floccus
+        "floccus@handmadeideas.org"
+      ];
+
+      profiles.arkenfox = {
         isDefault = true;
 
         settings = {

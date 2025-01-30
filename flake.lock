@@ -26,10 +26,7 @@
     "arkenfox": {
       "inputs": {
         "flake-compat": [],
-        "flake-utils": [
-          "firefox-addons",
-          "flake-utils"
-        ],
+        "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -147,29 +144,6 @@
         "url": "https://install.determinate.systems/determinate-nixd/tag/v0.3.0/x86_64-linux"
       }
     },
-    "firefox-addons": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "pkgs/firefox-addons",
-        "lastModified": 1729491205,
-        "narHash": "sha256-luvUK8ZTRTdsVao7VqnxvGEvA3rjEmfiwakDyHxQhx8=",
-        "owner": "~rycee",
-        "repo": "nur-expressions",
-        "rev": "9764579885c84ba5d4bcd9d3061409a527ff805c",
-        "type": "sourcehut"
-      },
-      "original": {
-        "dir": "pkgs/firefox-addons",
-        "owner": "~rycee",
-        "repo": "nur-expressions",
-        "type": "sourcehut"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -191,12 +165,15 @@
       }
     },
     "flake-utils": {
+      "inputs": {
+        "systems": "systems_2"
+      },
       "locked": {
-        "lastModified": 1629284811,
-        "narHash": "sha256-JHgasjPR0/J1J3DRm4KxM4zTyAj4IOJY8vIl75v/kPI=",
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "c5d161cc0af116a2e17f54316f0bf43f0819785c",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       },
       "original": {
@@ -212,11 +189,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737773962,
-        "narHash": "sha256-9SFHBauH0bi9lX5DlienIOPfmYpwyWaPRP91rzKoP3U=",
+        "lastModified": 1738244694,
+        "narHash": "sha256-Whby1065h8T3VGaaK4r5WEt0uow7ilOV9NHQewVGQnI=",
         "owner": "getchoo",
         "repo": "nix-exprs",
-        "rev": "baa8923dc7ecf5777be406ee4ce1de60e826d6e3",
+        "rev": "83a7516b7f38b20265709e77daf387b62b488a88",
         "type": "github"
       },
       "original": {
@@ -499,7 +476,6 @@
         "arkenfox": "arkenfox",
         "catppuccin": "catppuccin",
         "determinate": "determinate",
-        "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "getchpkgs": "getchpkgs",
         "getchvim": "getchvim",
@@ -540,6 +516,21 @@
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
