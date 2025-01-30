@@ -9,6 +9,7 @@
         ./profiles
         ./services
         ./traits
+        ./tweaks
       ];
     };
   };
