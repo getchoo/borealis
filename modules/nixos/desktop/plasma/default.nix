@@ -14,9 +14,10 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       plasma6.excludePackages = with pkgs.kdePackages; [
+        discover
         khelpcenter
+        konsole
         plasma-browser-integration
-        print-manager
       ];
 
       sessionVariables = {
@@ -24,8 +25,9 @@ in
       };
 
       systemPackages = [
-        pkgs.haruna # mpv frontend
         inputs'.krunner-nix.packages.default # thank you leah
+        pkgs.ghostty
+        pkgs.haruna # mpv frontend
       ];
     };
 
