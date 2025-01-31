@@ -41,9 +41,9 @@ Configuration secrets managed by the wonderful
 
 My NixOS and nix-darwin system configurations
 
-## terranix/
+## terraform/
 
-Personal infrastructure defined with [terranix](https://terranix.org/)
+Personal infrastructure defined with [Terraform/OpenTofu](https://opentofu.org/)
 
 ## users/
 

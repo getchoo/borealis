@@ -25,13 +25,13 @@
             self'.formatter
 
             pkgs.just
+            pkgs.opentofu
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
             # See above comment about Nix
             inputs'.nix-darwin.packages.darwin-rebuild
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-
             # Ditto
             pkgs.nixos-rebuild
 

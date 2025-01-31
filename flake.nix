@@ -9,10 +9,6 @@
   outputs =
     inputs:
 
-    let
-      flakeModules = import ./modules/flake;
-    in
-
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -22,7 +18,6 @@
       ];
 
       imports = [
-        flakeModules.terranix
         inputs.getchpkgs.flakeModules.checks
         inputs.getchpkgs.flakeModules.configurations
 
@@ -31,11 +26,8 @@
         ./modules
         ./openwrt
         ./systems
-        ./terranix
         ./users
       ];
-
-      flake = { inherit flakeModules; };
     };
 
   inputs = {
@@ -140,18 +132,6 @@
     teawiebot = {
       url = "github:getchoo/teawiebot";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    terranix = {
-      url = "github:terranix/terranix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "agenix/systems";
-        terranix-examples.follows = "";
-        bats-support.follows = "";
-        bats-assert.follows = "";
-      };
     };
   };
 }
