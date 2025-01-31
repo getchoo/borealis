@@ -21,6 +21,10 @@
     networkmanager.enable = true;
   };
 
+  programs = {
+    steam.enable = true;
+  };
+
   security.tpm2 = {
     enable = true;
     abrmd.enable = true;
