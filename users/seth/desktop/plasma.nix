@@ -9,10 +9,6 @@ let
 in
 {
   config = lib.mkIf enable {
-    catppuccin = {
-      cursors.enable = true;
-    };
-
     home.packages = [
       # Matrix client
       # TODO: Use after it drops libolm

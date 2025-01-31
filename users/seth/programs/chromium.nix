@@ -16,6 +16,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    catppuccin.chromium.enable = false;
+
     programs.chromium = {
       enable = true;
 
