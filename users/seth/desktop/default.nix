@@ -35,7 +35,12 @@ in
 
       pkgs.prismlauncher
 
-      pkgs.spotify
+      (pkgs.spotify.overrideAttrs {
+        # Spotify doesn't work well on Wayland natively. Don't force it
+        preFixup = ''
+          gappsWrapperArgs+=(--unset NIXOS_OZONE_WL)
+        '';
+      })
     ];
 
     programs.ghostty.enable = true;
