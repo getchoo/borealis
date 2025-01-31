@@ -20,7 +20,7 @@ in
           favorite-apps = [
             "chromium-browser.desktop"
             "org.gnome.Nautilus.desktop"
-            "discord-canary.desktop"
+            "discord.desktop"
           ];
         };
 
