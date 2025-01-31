@@ -32,6 +32,8 @@ in
         { id = "fnaicdffflnofjppbagibeoednhnbjhg"; }
         # Tabby Cat
         { id = "mefhakmgclhhfbdadeojlkbllmecialg"; }
+        # Startpage
+        { id = "fgmjlmbojbkmdpofahffgcpkhkngfpef"; }
       ];
     };
   };
