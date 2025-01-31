@@ -29,6 +29,10 @@ in
 
     home.packages = [
       pkgs.discord
+
+      # Matrix client
+      pkgs.element
+
       pkgs.prismlauncher
     ];
 

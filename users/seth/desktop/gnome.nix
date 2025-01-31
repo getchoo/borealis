@@ -52,9 +52,6 @@ in
     gtk.enable = true;
 
     home.packages = [
-      # Matrix client
-      pkgs.fractal
-
       # Torrent client
       pkgs.fragments
 
