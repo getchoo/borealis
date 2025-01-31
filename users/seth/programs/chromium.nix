@@ -22,14 +22,16 @@ in
       dictionaries = [ pkgs.hunspellDictsChromium.en_US ];
 
       extensions = [
-        # ublock origin
+        # uBlock Origin
         { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
-        # bitwarden
+        # Bitwarden
         { id = "nngceckbapebfimnlniiiahkandclblb"; }
-        # floccus bookmark sync
+        # Floccus Bookmark Sync
         { id = "fnaicdffflnofjppbagibeoednhnbjhg"; }
-        # tabby cat
+        # Tabby Cat
         { id = "mefhakmgclhhfbdadeojlkbllmecialg"; }
+        # Startpage
+        { id = "fgmjlmbojbkmdpofahffgcpkhkngfpef"; }
       ];
     };
   };
