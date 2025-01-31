@@ -29,7 +29,7 @@ in
           document-font-name = "Noto Sans 11";
           font-antialiasing = "rgba";
           font-name = "Noto Sans 11";
-          monospace-font-name = "NotoMono Nerd Font 10";
+          monospace-font-name = "Hack Nerd Font 10";
         };
 
         "org/gnome/desktop/peripherals/mouse" = {
@@ -41,8 +41,8 @@ in
         };
 
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          name = "ghostty";
-          command = "ghostty";
+          name = "ptyxis";
+          command = "ptyxis";
           binding = "<Control><Alt>t";
         };
       };
@@ -60,6 +60,9 @@ in
 
       # Keep my screen awake
       pkgs.gnomeExtensions.caffeine
+
+      # Terminal emulator
+      pkgs.ptyxis
 
       # Mastodon client
       pkgs.tuba
