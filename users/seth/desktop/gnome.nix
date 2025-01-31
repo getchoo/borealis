@@ -65,7 +65,7 @@ in
       pkgs.tuba
     ];
 
-    # See comment for spot
+    # The regular Spotify client is weird sometimes
     services.spotifyd.enable = true;
 
     seth.tweaks.adwaita-ize.enable = true;

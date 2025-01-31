@@ -34,6 +34,8 @@ in
       pkgs.element
 
       pkgs.prismlauncher
+
+      pkgs.spotify
     ];
 
     programs.ghostty.enable = true;

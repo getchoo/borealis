@@ -17,8 +17,6 @@ in
       pkgs.kdePackages.tokodon
       # Torrent client
       pkgs.qbittorrent
-
-      pkgs.spotify
     ];
   };
 }
