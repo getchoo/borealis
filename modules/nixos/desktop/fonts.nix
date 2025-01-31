@@ -24,9 +24,7 @@ in
         noto-fonts-color-emoji
         noto-fonts-cjk-sans
 
-        nerd-fonts.fira-code
         nerd-fonts.hack
-        nerd-fonts.noto
       ];
 
       fontconfig = {
@@ -35,7 +33,7 @@ in
           serif = [ "Noto Serif" ];
           sansSerif = [ "Noto Sans" ];
           emoji = [ "Noto Color Emoji" ];
-          monospace = [ "Noto Sans Mono" ];
+          monospace = [ "Hack Nerd Font" ];
         };
       };
     };
