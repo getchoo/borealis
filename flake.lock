@@ -427,8 +427,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
         "openwrt-imagebuilder": "openwrt-imagebuilder",
-        "teawiebot": "teawiebot",
-        "terranix": "terranix"
+        "teawiebot": "teawiebot"
       }
     },
     "rust-overlay": {
@@ -484,36 +483,6 @@
       "original": {
         "owner": "getchoo",
         "repo": "teawiebot",
-        "type": "github"
-      }
-    },
-    "terranix": {
-      "inputs": {
-        "bats-assert": [],
-        "bats-support": [],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "agenix",
-          "systems"
-        ],
-        "terranix-examples": []
-      },
-      "locked": {
-        "lastModified": 1736894800,
-        "narHash": "sha256-Wt3MohH6lx3dQnpYdkq1r3kopWaKVCiKesAzI10Jek0=",
-        "owner": "terranix",
-        "repo": "terranix",
-        "rev": "cd369149ebe821ed81f58410f889e369820eb1a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "terranix",
-        "repo": "terranix",
         "type": "github"
       }
     }
