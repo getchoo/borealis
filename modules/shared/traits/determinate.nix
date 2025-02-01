@@ -33,7 +33,7 @@ in
 
       (lib.mkIf cfg.flakehub-cache.enable {
         nix.settings = {
-          extra-trusted-substituters = [ "https://cache.flakehub.com" ];
+          extra-substituters = [ "https://cache.flakehub.com" ];
           extra-trusted-public-keys = [
             "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
             "cache.flakehub.com-4:Asi8qIv291s0aYLyH6IOnr5Kf6+OF14WVjkE6t3xMio="
