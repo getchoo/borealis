@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -13,6 +14,10 @@ let
     || lib.versionAtLeast config.nix.package.version "2.90.0"; # but not in lix yet
 
   hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
+
+  # Use systemd-tmpfiles on Linux
+  nixPathFromInput =
+    name: input: "${name}=${if isLinux then "/etc/nix/inputs/${name}" else input.outPath}";
 in
 {
   config = lib.mkMerge [
@@ -33,7 +38,7 @@ in
         };
 
         # See comment below
-        nixPath = [ "nixpkgs=${config.nixpkgs.flake.source}" ];
+        nixPath = lib.mapAttrsToList nixPathFromInput inputs;
       };
 
       nixpkgs = {
