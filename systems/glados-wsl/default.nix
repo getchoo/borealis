@@ -26,6 +26,7 @@
 
   traits = {
     arm-builder.enable = true;
+    determinate.enable = true;
     mac-builder.enable = true;
     resolved.enable = false;
   };

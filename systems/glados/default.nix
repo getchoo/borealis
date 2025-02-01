@@ -39,8 +39,9 @@
   system.stateVersion = "23.11";
 
   traits = {
-    containers.enable = true;
     arm-builder.enable = true;
+    containers.enable = true;
+    determinate.enable = true;
     mac-builder.enable = true;
     nvidia = {
       enable = true;
