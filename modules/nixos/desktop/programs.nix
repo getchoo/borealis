@@ -12,7 +12,6 @@
 
     programs = {
       chromium.enable = lib.mkDefault true;
-      firefox.enable = false;
     };
   };
 }

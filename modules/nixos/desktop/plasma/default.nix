@@ -20,10 +20,6 @@ in
         plasma-browser-integration
       ];
 
-      sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-      };
-
       systemPackages = [
         inputs'.krunner-nix.packages.default # thank you leah
         pkgs.ghostty

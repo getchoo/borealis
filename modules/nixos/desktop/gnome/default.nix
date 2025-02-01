@@ -18,10 +18,6 @@ in
         seahorse # Replaced with key-rack
       ];
 
-      sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-      };
-
       systemPackages = [
         pkgs.adw-gtk3 # Make gtk3 apps look good
         pkgs.celluloid
