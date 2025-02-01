@@ -15,9 +15,14 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       (lib.mkIf cfg.determinate-nixd.enable {
-        environment.systemPackages = [
-          package
-        ];
+        environment = {
+          # `determinate-nixd` overrides /etc/nix/nix.conf with it's own
+          etc."nix/nix.custom.conf" = { inherit (config.environment.etc."nix/nix.conf") source; };
+
+          systemPackages = [
+            package
+          ];
+        };
 
         systemd = {
           services.nix-daemon.serviceConfig = {
