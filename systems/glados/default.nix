@@ -1,4 +1,9 @@
-{ config, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./boot.nix
@@ -14,7 +19,12 @@
     gnome.enable = true;
   };
 
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+
+    # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/693
+    open = lib.mkForce false;
+  };
 
   networking = {
     hostName = "glados";
