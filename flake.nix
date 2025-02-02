@@ -23,8 +23,8 @@
 
       imports = [
         flakeModules.terranix
-        inputs.getchpkgs.flakeModules.configs
         inputs.getchpkgs.flakeModules.checks
+        inputs.getchpkgs.flakeModules.configurations
 
         ./flake
         ./lib

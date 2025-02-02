@@ -13,7 +13,7 @@
 
       atlas = {
         modules = [ ./atlas ];
-        nixpkgs = inputs.nixpkgs-stable;
+        builder = inputs.nixpkgs-stable.lib.nixosSystem;
       };
     };
 
