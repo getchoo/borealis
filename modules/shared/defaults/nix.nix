@@ -14,10 +14,6 @@ let
     || lib.versionAtLeast config.nix.package.version "2.90.0"; # but not in lix yet
 
   hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
-
-  # Use systemd-tmpfiles on Linux
-  nixPathFromInput =
-    name: input: "${name}=${if isLinux then "/etc/nix/inputs/${name}" else input.outPath}";
 in
 {
   config = lib.mkMerge [
@@ -37,14 +33,16 @@ in
           options = lib.mkDefault "--delete-older-than 2d";
         };
 
+        registry = lib.mapAttrs (lib.const (flake: {
+          inherit flake;
+        })) inputs;
+
         # See comment below
-        nixPath = lib.mapAttrsToList nixPathFromInput inputs;
+        nixPath = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs;
       };
 
       nixpkgs = {
         config.allowUnfree = lib.mkDefault true;
-        # The `flake:` syntax in `$NIX_PATH` seems to do some weird copying on Nix 2.24
-        flake.setNixPath = false;
       };
     }
 
