@@ -28,7 +28,13 @@ in
     assertions = [ (lib.hm.assertions.assertPlatform "seth.desktop" pkgs lib.platforms.linux) ];
 
     home.packages = [
-      pkgs.discord
+      ((pkgs.discord-canary.override { withOpenASAR = true; }).overrideAttrs (old: {
+        preInstall =
+          old.preInstall or ""
+          + ''
+            gappsWrapperArgs+=(--add-flags "--enable-features=VaapiOnNvidiaGPUs,AcceleratedVideoDecodeLinuxGL")
+          '';
+      }))
 
       # Matrix client
       pkgs.element
