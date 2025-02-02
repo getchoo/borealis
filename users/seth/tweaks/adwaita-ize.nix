@@ -14,9 +14,6 @@ in
     adw-gtk3 = lib.mkEnableOption "adw-gtk3 theme for GTK3 apps" // {
       default = true;
     };
-    qadwaitadecorations = lib.mkEnableOption "Adwaita CSDs for Qt apps" // {
-      default = true;
-    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -32,19 +29,6 @@ in
         gtk.theme = {
           name = "adw-gtk3-dark";
           package = pkgs.adw-gtk3;
-        };
-      })
-
-      (lib.mkIf cfg.qadwaitadecorations {
-        home = {
-          packages = [
-            pkgs.qadwaitadecorations
-            pkgs.qadwaitadecorations-qt6
-          ];
-
-          sessionVariables = {
-            QT_WAYLAND_DECORATION = "adwaita";
-          };
         };
       })
     ]

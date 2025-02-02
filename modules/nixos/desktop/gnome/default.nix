@@ -20,13 +20,31 @@ in
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
+        # For qadwaitadecorations
+        QT_WAYLAND_DECORATION = "adwaita";
       };
 
       systemPackages = [
-        pkgs.adw-gtk3 # Make gtk3 apps look good
+        # Make GTK3 apps look good
+        pkgs.adw-gtk3
+        # Media player
         pkgs.celluloid
+        # Checksum verifier
+        pkgs.collision
+        # Audio player
+        pkgs.decibels
+        # Screen recorder
         pkgs.kooha
+        # Secret manager
         pkgs.key-rack
+        # Fix Qt app client decorations
+        pkgs.qadwaitadecorations
+        pkgs.qadwaitadecorations-qt6
+        # Task manager
+        pkgs.resources
+        # Emoji picker
+        pkgs.smile
+        pkgs.video-trimmer
       ];
     };
 
