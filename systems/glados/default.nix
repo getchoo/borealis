@@ -31,6 +31,15 @@
     networkmanager.enable = true;
   };
 
+  nixpkgs.overlays = [
+    # TODO: Remove when `programs.chromium.package` exists
+    (_: prev: {
+      chromium = prev.chromium.override {
+        commandLineArgs = [ "--enable-features=VaapiOnNvidiaGPUs,AcceleratedVideoDecodeLinuxGL" ];
+      };
+    })
+  ];
+
   programs = {
     steam.enable = true;
   };
