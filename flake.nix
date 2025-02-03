@@ -61,15 +61,6 @@
       };
     };
 
-    arkenfox = {
-      url = "github:dwarfmaster/arkenfox-nixos";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "";
-        pre-commit.follows = "";
-      };
-    };
-
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs = {

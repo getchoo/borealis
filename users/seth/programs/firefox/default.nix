@@ -14,7 +14,8 @@ in
 
   imports = [
     inputs.getchpkgs.nixosModules.firefox-addons
-    ./arkenfox.nix
+    # Requires `github:dwarfmaster/arkenfox-nixos`
+    # ./arkenfox.nix
   ];
 
   config = lib.mkIf cfg.enable {
