@@ -8,7 +8,8 @@
 
 {
   perSystem =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
+
     {
       quickChecks = {
         actionlint = {
@@ -19,6 +20,11 @@
         deadnix = {
           dependencies = [ pkgs.deadnix ];
           script = "deadnix --fail ${self}";
+        };
+
+        hclfmt = {
+          dependencies = [ pkgs.hclfmt ];
+          script = "hclfmt -require-no-change ${self}/terraform/*.tf";
         };
 
         just = {
@@ -39,6 +45,17 @@
           dependencies = [ pkgs.statix ];
           script = "statix check ${self}";
         };
+
+        tflint = {
+          dependencies = [ pkgs.tflint ];
+          script = ''
+            tflint --chdir=${self}/terraform --format=sarif |& tee $out || true
+          '';
+        };
+      };
+
+      legacyPackages = {
+        tflint = config.quickChecks.tflint.package;
       };
     };
 
