@@ -3,13 +3,7 @@ name: tflint
 on:
   push:
     branches: [ main ]
-    paths:
-      - "terraform/**"
-      - ".github/workflows/tflint.yaml"
   pull_request:
-    paths:
-      - "terraform/**"
-      - ".github/workflows/tflint.yaml"
   workflow_dispatch:
 
 jobs:
