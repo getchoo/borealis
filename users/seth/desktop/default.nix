@@ -48,7 +48,5 @@ in
         '';
       })
     ];
-
-    programs.ghostty.enable = true;
   };
 }

@@ -14,6 +14,7 @@
     ./firefox
     ./fish.nix
     ./gh.nix
+    ./ghostty.nix
     ./git.nix
     ./gpg.nix
     ./mangohud.nix
