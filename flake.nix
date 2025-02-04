@@ -98,6 +98,11 @@
       };
     };
 
+    moyai-bot = {
+      url = "github:getchoo/moyai-bot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -127,11 +132,6 @@
         flake-parts.follows = "flake-parts";
         systems.follows = "agenix/systems";
       };
-    };
-
-    teawiebot = {
-      url = "github:getchoo/teawiebot";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

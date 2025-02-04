@@ -249,6 +249,26 @@
         "type": "github"
       }
     },
+    "moyai-bot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1738711387,
+        "narHash": "sha256-bOI4H6vmkwqpiSUbdwLtiQgc3DWU67poYtzO64S/6HA=",
+        "owner": "getchoo",
+        "repo": "moyai-bot",
+        "rev": "e769f685b3a0a530a4e0c582d021861c5d612b4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getchoo",
+        "repo": "moyai-bot",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -420,14 +440,14 @@
         "home-manager": "home-manager",
         "krunner-nix": "krunner-nix",
         "lanzaboote": "lanzaboote",
+        "moyai-bot": "moyai-bot",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
-        "openwrt-imagebuilder": "openwrt-imagebuilder",
-        "teawiebot": "teawiebot"
+        "openwrt-imagebuilder": "openwrt-imagebuilder"
       }
     },
     "rust-overlay": {
@@ -463,26 +483,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "teawiebot": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1736905095,
-        "narHash": "sha256-7biHHMu+xBem7HrwXN5XMO/jvb/abDEQzK4dqz1eCC4=",
-        "owner": "getchoo",
-        "repo": "teawiebot",
-        "rev": "282f42046d5f4f6a8d0194ec28f6ee6efb11afc4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "getchoo",
-        "repo": "teawiebot",
         "type": "github"
       }
     }

@@ -4,9 +4,9 @@
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
     ./miniflux.nix
+    ./moyai.nix
     ./nginx.nix
     ./nixpkgs-tracker-bot.nix
-    ./teawiebot.nix
 
     inputs.self.nixosModules.default
   ];
