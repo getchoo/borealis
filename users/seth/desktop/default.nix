@@ -28,7 +28,7 @@ in
     assertions = [ (lib.hm.assertions.assertPlatform "seth.desktop" pkgs lib.platforms.linux) ];
 
     home.packages = [
-      ((pkgs.discord-canary.override { withOpenASAR = true; }).overrideAttrs (old: {
+      (pkgs.discord-canary.overrideAttrs (old: {
         preInstall =
           old.preInstall or ""
           + ''
