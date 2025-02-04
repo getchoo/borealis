@@ -12,7 +12,7 @@
     ./bash.nix
     ./chromium.nix
     ./firefox
-    ./fish
+    ./fish.nix
     ./gh.nix
     ./git.nix
     ./gpg.nix
