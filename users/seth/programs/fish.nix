@@ -41,6 +41,7 @@ in
             set --global hydro_symbol_prompt ">"
 
             set --global hydro_color_duration $fish_color_end
+            set --global hydro_color_error $fish_color_error
             set --global hydro_color_git cba6f7
             set --global hydro_color_prompt $fish_color_cwd
             set --global hydro_color_pwd $fish_color_user
