@@ -55,6 +55,17 @@
     fwupd.enable = true;
   };
 
+  swapDevices = [
+    {
+      # WARN: Don't set size!
+      #
+      # We're on btrfs and the NixOS module won't handle it properly.
+      # Make it 4GB or so manually with
+      # `btrfs filesystem mkswapfile --size 4g --uuid clear /swap/swapfile` in it's own subvol
+      device = "/swap/swapfile";
+    }
+  ];
+
   system.stateVersion = "23.11";
 
   traits = {

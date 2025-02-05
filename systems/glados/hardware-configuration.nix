@@ -74,6 +74,15 @@
       ];
     };
 
+    "/swap" = {
+      device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = [
+        "subvol=swap"
+        "noatime"
+      ];
+    };
+
     "/boot" = {
       device = "/dev/disk/by-uuid/B95B-9412";
       fsType = "vfat";
