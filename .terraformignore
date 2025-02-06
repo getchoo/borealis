@@ -1,4 +1,2 @@
 *
-.*
-!terraform/
-!.terraform/modules
+!terraform/*.tf
