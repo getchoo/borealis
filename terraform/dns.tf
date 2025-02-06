@@ -5,17 +5,17 @@ locals {
     {
       name    = "_dmarc"
       type    = "TXT"
-      content = "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;"
+      content = "'v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;'"
     },
     {
       name    = "*._domainkey"
       type    = "TXT"
-      content = "v=DKIM1; p="
+      content = "'v=DKIM1; p='"
     },
     {
       name    = "@"
       type    = "TXT"
-      content = "v=spf1 -all"
+      content = "'v=spf1 -all'"
     }
   ]
 
@@ -57,7 +57,7 @@ locals {
     },
     {
       name    = "@"
-      content = "$argon2id$v=19$m=512,t=256,p=1$AlA6W5fP7J14zMsw0W5KFQ$EQz/NCE0/TQpE64r2Eo/yOpjtMZ9WXevHsv3YYP7CXg"
+      content = "'$argon2id$v=19$m=512,t=256,p=1$AlA6W5fP7J14zMsw0W5KFQ$EQz/NCE0/TQpE64r2Eo/yOpjtMZ9WXevHsv3YYP7CXg'"
       type    = "TXT"
     }
   ]
@@ -77,6 +77,8 @@ resource "cloudflare_record" "getchoo_com" {
   name    = each.value.name
   type    = each.value.type
   content = each.value.content
+
+  proxied = lookup(each.value, "proxied", each.value.type != "TXT")
 }
 
 resource "cloudflare_record" "dmarc_hardening" {
