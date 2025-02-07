@@ -35,7 +35,7 @@ in
 
         gc = {
           automatic = lib.mkDefault true;
-          options = lib.mkDefault "--delete-older-than 2d";
+          options = lib.mkDefault "--delete-older-than 5d";
         };
 
         registry = lib.mapAttrs (lib.const (

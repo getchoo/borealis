@@ -6,6 +6,11 @@
 }:
 let
   cfg = config.profiles.server;
+
+  # 2^30
+  # Why doesn't nix have a `pow`???
+  gb = 1024 * 1024 * 1024;
+  minimumStorageKb = 15 * gb;
 in
 {
   options.profiles.server = {
@@ -35,9 +40,12 @@ in
         };
 
         nix.gc = {
-          # Every ~2 days
-          dates = "Mon,Wed,Fri *-*-* 00:00:00";
-          options = "-d --delete-older-than 2d";
+          dates = "*:0/30"; # Every 30 minutes
+          # GC to stay above minimumStorageBytes
+          options = toString [
+            "--delete-older-than 5d"
+            "--max-freed \"$((${toString minimumStorageKb} - 1024 * $(df -k --output=avail /nix/store | tail -n 1)))\""
+          ];
         };
 
         traits = {
