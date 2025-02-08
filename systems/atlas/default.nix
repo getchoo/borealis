@@ -3,6 +3,7 @@
   imports = [
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
+    ./forgejo.nix
     ./miniflux.nix
     ./moyai.nix
     ./nginx.nix
@@ -24,17 +25,6 @@
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";
-
-  services = {
-    github-mirror = {
-      enable = true;
-      hostname = "git.getchoo.com";
-      mirroredUsers = [
-        "getchoo"
-        "getchoo-archive"
-      ];
-    };
-  };
 
   system.stateVersion = "23.05";
 }
