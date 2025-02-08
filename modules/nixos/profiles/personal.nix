@@ -1,7 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
+
 let
   cfg = config.profiles.personal;
 in
+
 {
   options.profiles.personal = {
     enable = lib.mkEnableOption "the Personal profile";
@@ -11,7 +18,10 @@ in
     traits = {
       home-manager.enable = true;
 
-      secrets.enable = true;
+      secrets = {
+        enable = true;
+        secretsDir = inputs.self + "/secrets/personal";
+      };
       tailscale.enable = true;
 
       users = {
