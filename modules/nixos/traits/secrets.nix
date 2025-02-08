@@ -16,6 +16,13 @@ in
       default = config.profiles.server.hostUser;
       defaultText = "config.profiles.server.hostUser";
     };
+
+    secretsDir = lib.mkOption {
+      type = lib.types.path;
+      default = inputs.self + "/secrets/${config.networking.hostName}";
+      defaultText = lib.literalExample "inputs.self + \"/secrets/\${config.networking.hostName}\"";
+      description = "Path to your `secrets.nix` subdirectory.";
+    };
   };
 
   imports = [ inputs.agenix.nixosModules.default ];
@@ -24,7 +31,7 @@ in
     lib.mkMerge [
       {
         _module.args = {
-          secretsDir = inputs.self + "/secrets/${config.networking.hostName}";
+          inherit (cfg) secretsDir;
         };
 
         age = {
