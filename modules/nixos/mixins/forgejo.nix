@@ -22,7 +22,6 @@ in
           PROTOCOL = "http+unix";
           DOMAIN = "git." + config.networking.domain;
           ROOT_URL = "https://" + config.services.forgejo.settings.server.DOMAIN + "/";
-          HTTP_ADDR = "/run/forgejo";
 
           DISABLE_SSH = true;
         };
