@@ -6,7 +6,6 @@
     ./forgejo.nix
     ./miniflux.nix
     ./moyai.nix
-    ./nginx.nix
     ./nixpkgs-tracker-bot.nix
 
     inputs.self.nixosModules.default
