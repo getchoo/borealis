@@ -1,12 +1,12 @@
-{ config, inputs, ... }:
-let
-  inherit (inputs.self.lib.nginx) mkProxy toVHosts;
-in
+{ config, ... }:
+
 {
   services.nginx = {
-    virtualHosts = toVHosts config.networking.domain {
-      miniflux = {
-        locations = mkProxy "/" "7000";
+    virtualHosts = {
+      "miniflux.getchoo.com" = {
+        locations."/" = {
+          proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}";
+        };
       };
     };
   };
