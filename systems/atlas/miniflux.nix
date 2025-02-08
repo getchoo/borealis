@@ -1,4 +1,9 @@
-{ config, secretsDir, ... }:
+{
+  config,
+  lib,
+  secretsDir,
+  ...
+}:
 
 {
   age.secrets.miniflux.file = secretsDir + "/miniflux.age";
@@ -9,7 +14,6 @@
       adminCredentialsFile = config.age.secrets.miniflux.path;
       config = {
         BASE_URL = "https://miniflux.${config.networking.domain}";
-        LISTEN_ADDR = "/run/miniflux";
       };
     };
 
@@ -17,10 +21,21 @@
       virtualHosts = {
         "miniflux.getchoo.com" = {
           locations."/" = {
-            proxyPass = "http://unix:${config.services.miniflux.config.LISTEN_ADDR}";
+            proxyPass = "http://unix:${lib.head config.systemd.sockets.miniflux.listenStreams}";
           };
         };
       };
+    };
+  };
+
+  systemd = {
+    services.miniflux = {
+      requires = [ "miniflux.socket" ];
+    };
+
+    sockets.miniflux = {
+      wantedBy = [ "sockets.target" ];
+      listenStreams = [ "/run/miniflux.sock" ];
     };
   };
 }
