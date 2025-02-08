@@ -26,6 +26,14 @@ in
           DISABLE_SSH = true;
         };
 
+        oauth2_client = {
+          ENABLE_AUTO_REGISTRATION = true;
+        };
+
+        service = {
+          DISABLE_REGISTRATION = lib.mkDefault true;
+        };
+
         packages = {
           ENABLED = false;
         };
