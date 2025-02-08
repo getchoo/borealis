@@ -63,7 +63,7 @@ for user in "${users[@]}"; do
 	curl --fail --location --show-error --silent "$url" | jq --raw-output '.[].name' | while read -r repo; do
 		repo_path="$user"/"$repo"
 
-		if [ -d "$repo_path"/.git ]; then
+		if [ -d "$repo_path" ]; then
 			pushd "$repo_path" &>/dev/null
 			echo "Pulling $repo_path..."
 			if ! git remote update --prune &>/dev/null; then
