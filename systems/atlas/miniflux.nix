@@ -9,7 +9,7 @@
       adminCredentialsFile = config.age.secrets.miniflux.path;
       config = {
         BASE_URL = "https://miniflux.${config.networking.domain}";
-        LISTEN_ADDR = "localhost:7000";
+        LISTEN_ADDR = "/run/miniflux";
       };
     };
 
@@ -17,7 +17,7 @@
       virtualHosts = {
         "miniflux.getchoo.com" = {
           locations."/" = {
-            proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}";
+            proxyPass = "http://unix:${config.services.miniflux.config.LISTEN_ADDR}";
           };
         };
       };
