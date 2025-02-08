@@ -24,6 +24,7 @@ remote-rebuild system subcmd *extraArgs="":
       --build-host root@{{ system }} \
       --target-host root@{{ system }} \
       --fast \
+      --use-substitutes \
       {{ extraArgs }} \
       --flake '.#{{ system }}'
 
