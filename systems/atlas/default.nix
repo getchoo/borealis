@@ -4,6 +4,7 @@
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
     ./forgejo.nix
+    ./kanidm.nix
     ./miniflux.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix

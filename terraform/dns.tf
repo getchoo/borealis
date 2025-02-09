@@ -45,6 +45,11 @@ locals {
       content = resource.cloudflare_pages_project.teawie_api.subdomain
     },
     {
+      name    = "auth"
+      type    = "A"
+      content = resource.oci_core_instance.atlas.public_ip
+    },
+    {
       name    = "miniflux"
       type    = "A"
       content = resource.oci_core_instance.atlas.public_ip
