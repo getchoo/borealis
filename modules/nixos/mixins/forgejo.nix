@@ -1,7 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 
 let
   forgejoCfg = config.services.forgejo;
+
+  robotsTxtPath = forgejoCfg.stateDir + "/custom/public/robots.txt";
 in
 
 {
@@ -44,6 +51,16 @@ in
       services.nginx.virtualHosts.${forgejoCfg.settings.server.DOMAIN} = {
         locations."/" = {
           proxyPass = "http://unix:${forgejoCfg.settings.server.HTTP_ADDR}";
+        };
+      };
+
+      systemd.tmpfiles.settings."forgejo-settings" = {
+        ${robotsTxtPath}."L+" = {
+          argument = inputs.codeberg-infra + "/etc/gitea/public/robots.txt";
+        };
+
+        ${dirOf robotsTxtPath}.d = {
+          inherit (forgejoCfg) user group;
         };
       };
     })

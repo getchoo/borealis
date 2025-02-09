@@ -64,6 +64,12 @@
       };
     };
 
+    # Use their robots.txt
+    codeberg-infra = {
+      url = "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz";
+      flake = false;
+    };
+
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
       inputs = {

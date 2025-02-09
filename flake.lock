@@ -43,6 +43,20 @@
         "type": "github"
       }
     },
+    "codeberg-infra": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738600070,
+        "narHash": "sha256-bx/PifD43unF++cMyd/IsW32GGBJltF9QrtqsYMo/GA=",
+        "rev": "be1458a9568757e36652060633899947e9e7d200",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/Codeberg-Infrastructure/build-deploy-forgejo/archive/be1458a9568757e36652060633899947e9e7d200.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -433,6 +447,7 @@
       "inputs": {
         "agenix": "agenix",
         "catppuccin": "catppuccin",
+        "codeberg-infra": "codeberg-infra",
         "determinate": "determinate",
         "flake-parts": "flake-parts",
         "getchpkgs": "getchpkgs",
