@@ -19,7 +19,7 @@ in
           domain = lib.mkDefault ("auth." + config.networking.domain);
           origin = lib.mkDefault ("https://" + config.services.kanidm.serverSettings.domain);
 
-          online_backups = {
+          online_backup = {
             versions = lib.mkDefault 7; # Keep a week's worth of backups
           };
         };
@@ -29,7 +29,7 @@ in
     (lib.mkIf kanidmCfg.enableServer {
       services.nginx.virtualHosts.${kanidmCfg.serverSettings.domain} = {
         locations."/" = {
-          proxyPass = kanidmCfg.serverSettings.bindaddress;
+          proxyPass = "https://" + kanidmCfg.serverSettings.bindaddress;
         };
       };
     })
