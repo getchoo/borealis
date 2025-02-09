@@ -28,7 +28,6 @@ locals {
     }
   ]])
 
-  getchoo_tunnels = data.cloudflare_zero_trust_tunnel_cloudflared.getchoo_tunnels
   getchoo_records = [
     {
       name    = "@"
@@ -47,13 +46,13 @@ locals {
     },
     {
       name    = "miniflux"
-      type    = "CNAME"
-      content = "${local.getchoo_tunnels["atlas-nginx"].id}.cfargotunnel.com"
+      type    = "A"
+      content = resource.oci_core_instance.atlas.public_ip
     },
     {
       name    = "git"
-      type    = "CNAME"
-      content = "${local.getchoo_tunnels["atlas-nginx"].id}.cfargotunnel.com"
+      type    = "A"
+      content = resource.oci_core_instance.atlas.public_ip
     },
     {
       name    = "@"
@@ -61,13 +60,6 @@ locals {
       type    = "TXT"
     }
   ]
-}
-
-data "cloudflare_zero_trust_tunnel_cloudflared" "getchoo_tunnels" {
-  for_each = toset(["atlas-nginx"])
-
-  account_id = var.cloudflare_account_id
-  name       = each.key
 }
 
 resource "cloudflare_record" "getchoo_com" {
