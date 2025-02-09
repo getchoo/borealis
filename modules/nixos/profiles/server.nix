@@ -36,7 +36,6 @@ in
 
         mixins = {
           cloudflared.enable = true;
-          nginx.enable = true;
         };
 
         nix.gc = {

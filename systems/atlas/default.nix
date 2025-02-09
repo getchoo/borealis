@@ -25,5 +25,9 @@
 
   nixpkgs.hostPlatform = "aarch64-linux";
 
+  services = {
+    nginx.enable = true;
+  };
+
   system.stateVersion = "23.05";
 }

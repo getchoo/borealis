@@ -1,22 +1,35 @@
 { config, lib, ... }:
-let
-  cfg = config.mixins.nginx;
-in
+
 {
-  options.mixins.nginx = {
-    enable = lib.mkEnableOption "NGINX mixin";
-  };
-
-  config = lib.mkIf cfg.enable {
-    services.nginx = {
-      enable = true;
-
-      recommendedBrotliSettings = true;
-      recommendedGzipSettings = true;
-      recommendedOptimisation = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
-      recommendedZstdSettings = true;
+  options = {
+    services.nginx.virtualHosts = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
+          config = {
+            enableACME = lib.mkDefault true;
+            forceSSL = lib.mkDefault true;
+          };
+        }
+      );
     };
   };
+
+  config = lib.mkMerge [
+    {
+      services.nginx = {
+        enableReload = true;
+
+        recommendedBrotliSettings = true;
+        recommendedGzipSettings = true;
+        recommendedOptimisation = true;
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+        recommendedZstdSettings = true;
+      };
+    }
+
+    (lib.mkIf config.services.nginx.enable {
+      security.acme.defaults.reloadServices = [ "nginx.service" ];
+    })
+  ];
 }
