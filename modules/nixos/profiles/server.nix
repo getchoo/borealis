@@ -34,10 +34,6 @@ in
 
         environment.defaultPackages = lib.mkForce [ ];
 
-        mixins = {
-          cloudflared.enable = true;
-        };
-
         nix.gc = {
           dates = "*:0/30"; # Every 30 minutes
           # GC to stay above minimumStorageBytes

@@ -18,6 +18,8 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
+  mixins.cloudflared.enable = true;
+
   networking = {
     domain = "getchoo.com";
     hostName = "atlas";
