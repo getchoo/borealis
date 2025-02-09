@@ -24,7 +24,8 @@ resource "oci_core_subnet" "borealis_global" {
   compartment_id = oci_core_vcn.borealis.compartment_id
   vcn_id         = oci_core_vcn.borealis.id
 
-  display_name = "global"
+  display_name      = "global"
+  security_list_ids = [oci_core_security_list.borealis_global.id]
 }
 
 resource "oci_core_security_list" "borealis_global" {
