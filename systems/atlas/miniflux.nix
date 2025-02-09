@@ -19,9 +19,6 @@
 
     nginx.virtualHosts = {
       "miniflux.getchoo.com" = {
-        enableACME = false;
-        forceSSL = false;
-
         locations."/" = {
           proxyPass = "http://unix:${lib.head config.systemd.sockets.miniflux.listenStreams}";
         };

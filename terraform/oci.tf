@@ -55,4 +55,28 @@ resource "oci_core_security_list" "borealis_global" {
     protocol = "1"
     source   = "10.0.0.0/16"
   }
+
+  ingress_security_rules {
+    description = "Allow HTTP traffic"
+
+    protocol = "6"
+    source   = "0.0.0.0/0"
+
+    tcp_options {
+      min = 80
+      max = 80
+    }
+  }
+
+  ingress_security_rules {
+    description = "Allow HTTPS traffic"
+
+    protocol = "6"
+    source   = "0.0.0.0/0"
+
+    tcp_options {
+      min = 443
+      max = 443
+    }
+  }
 }

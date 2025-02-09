@@ -18,11 +18,14 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-  mixins.cloudflared.enable = true;
-
   networking = {
     domain = "getchoo.com";
     hostName = "atlas";
+
+    firewall.allowedTCPPorts = [
+      80 # HTTP
+      443 # HTTPS
+    ];
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";
