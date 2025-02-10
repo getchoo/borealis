@@ -3,6 +3,8 @@
 let
   cfg = config.hardware.nvidia;
 
+  isNvidiaEnabled = lib.elem "nvidia" config.services.xserver.videoDrivers;
+
   # Unlike Nixpkgs, I know all of my GPUs should prefer the open modules after 560
   useOpenModulesByDefault = lib.versionAtLeast config.hardware.nvidia.package.version "560";
 in
@@ -20,6 +22,14 @@ in
         powerManagement.enable = lib.mkDefault true;
       };
     }
+
+    (lib.mkIf (isNvidiaEnabled && !config.hardware.nvidia.open) {
+      # Don't use GSP Firmware on proprietary driver
+      # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/693
+      boot.kernelParams = [
+        "nvidia.NVreg_EnableGpuFirmware=0"
+      ];
+    })
 
     (lib.mkIf cfg.nvk.enable {
       specialisation = {
