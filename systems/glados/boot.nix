@@ -1,14 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
 {
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
-
     kernelParams =
       [
         "amd_pstate=active"
@@ -20,7 +17,5 @@
     lanzaboote = {
       enable = true;
     };
-
-    supportedFilesystems = [ "ntfs" ]; # for game drive
   };
 }
