@@ -22,6 +22,7 @@
         inputs.getchpkgs.flakeModules.configurations
 
         ./flake
+        ./lib
         ./modules
         ./openwrt
         ./systems
