@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ./boot.nix
     ./hardware-configuration.nix
 
     inputs.self.nixosModules.default
@@ -17,6 +16,20 @@
   desktop = {
     enable = true;
     gnome.enable = true;
+  };
+
+  boot = {
+    kernelParams =
+      [
+        "amd_pstate=active"
+      ]
+      # Don't use GSP Firmware on proprietary driver
+      # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/693
+      ++ lib.optional (!config.hardware.nvidia.open) "nvidia.NVreg_EnableGpuFirmware=0";
+
+    lanzaboote = {
+      enable = true;
+    };
   };
 
   hardware.nvidia = {
