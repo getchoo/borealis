@@ -8,7 +8,6 @@
     ./locale.nix
     ./mac-builder.nix
     ./nvd-diff.nix
-    ./nvidia.nix
     ./resolved.nix
     ./secrets.nix
     ./tailscale.nix

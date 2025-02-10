@@ -53,6 +53,7 @@
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
+    xserver.videoDrivers = [ "nvidia" ];
   };
 
   swapDevices = [
@@ -73,10 +74,6 @@
     containers.enable = true;
     determinate.enable = true;
     mac-builder.enable = true;
-    nvidia = {
-      enable = true;
-      nvk.enable = false;
-    };
     tailscale.enable = true;
     zram.enable = true;
   };
