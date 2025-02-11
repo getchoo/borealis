@@ -48,6 +48,8 @@ jobs:
       - name: Run checks
         run: |
           nix flake check \
+            --no-allow-import-from-derivation \
+            --no-update-lock-file \
             --print-build-logs \
             --show-trace
 
