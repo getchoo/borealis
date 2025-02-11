@@ -56,7 +56,7 @@ jobs:
       - name: Enable auto-merge
         shell: bash
         if: ${{ env.PR_ID != '' }}
-        run: gh pr merge --auto --squash "$PR_ID"
+        run: gh pr merge --auto --rebase "$PR_ID"
         env:
           PR_ID: ${{ steps.pull-request.outputs.pull-request-number }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
