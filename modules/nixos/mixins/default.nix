@@ -1,6 +1,7 @@
 {
   imports = [
     ./acme.nix
+    ./comin.nix
     ./forgejo.nix
     ./hercules.nix
     ./kanidm.nix
