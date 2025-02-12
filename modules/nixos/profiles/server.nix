@@ -43,8 +43,9 @@ in
           ];
         };
 
+        services.comin.enable = true;
+
         traits = {
-          autoUpgrade.enable = true;
           secrets.enable = true;
           tailscale = {
             enable = true;
