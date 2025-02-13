@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  secretsDir,
   inputs',
   ...
 }:
@@ -27,6 +28,10 @@ in
         # All servers are most likely on stable, so we want to pull in some newer packages from time to time
         _module.args.unstable = inputs'.nixpkgs.legacyPackages;
 
+        age.secrets = {
+          tailscaleAuthKey.file = "${secretsDir}/tailscaleAuthKey.age";
+        };
+
         boot.tmp.cleanOnBoot = lib.mkDefault true;
 
         # We don't need it here
@@ -43,16 +48,22 @@ in
           ];
         };
 
-        services.comin.enable = true;
+        services = {
+          comin.enable = true;
+
+          tailscale = {
+            enable = true;
+
+            authKeyFile = config.age.secrets.tailscaleAuthKey.path;
+            extraUpFlags = [ "--ssh" ];
+          };
+        };
 
         traits = {
           secrets.enable = true;
-          tailscale = {
-            enable = true;
-            ssh.enable = true;
-          };
-          zram.enable = true;
         };
+
+        zramSwap.enable = true;
       }
 
       (lib.mkIf cfg.hostUser {

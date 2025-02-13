@@ -4,6 +4,7 @@
   inputs,
   ...
 }:
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -80,10 +81,14 @@
 
   traits = {
     arm-builder.enable = true;
-    containers.enable = true;
     determinate.enable = true;
     mac-builder.enable = true;
-    tailscale.enable = true;
-    zram.enable = true;
   };
+
+  virtualisation = {
+    oci-containers.backend = "podman";
+    podman.enable = true;
+  };
+
+  zramSwap.enable = true;
 }

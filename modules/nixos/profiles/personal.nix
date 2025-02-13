@@ -15,6 +15,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    services = {
+      tailscale.enable = true;
+    };
+
     traits = {
       home-manager.enable = true;
 
@@ -22,7 +26,6 @@ in
         enable = true;
         secretsDir = inputs.self + "/secrets/personal";
       };
-      tailscale.enable = true;
 
       users = {
         seth.enable = true;

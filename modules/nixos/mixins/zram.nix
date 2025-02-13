@@ -1,13 +1,8 @@
 { config, lib, ... }:
-let
-  cfg = config.traits.zram;
-in
-{
-  options.traits.zram = {
-    enable = lib.mkEnableOption "zram and sysctl optimizations";
-  };
 
-  config = lib.mkIf cfg.enable {
+{
+  config = lib.mkIf config.zramSwap.enable {
+    # Optimize system for zram
     # https://github.com/pop-os/default-settings/pull/163
     # https://wiki.archlinux.org/title/Zram#Multiple_zram_devices
     boot.kernel.sysctl = {
@@ -16,7 +11,5 @@ in
       "vm.watermark_scale_factor" = 125;
       "vm.page-cluster" = 0;
     };
-
-    zramSwap.enable = true;
   };
 }
