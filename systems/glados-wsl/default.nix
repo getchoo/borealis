@@ -1,4 +1,5 @@
 { pkgs, inputs, ... }:
+
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -22,13 +23,16 @@
   # (nixos-wsl probably doesn't set it)
   security.apparmor.enable = false;
 
+  services = {
+    resolved.enable = false;
+  };
+
   system.stateVersion = "23.11";
 
   traits = {
     arm-builder.enable = true;
     determinate.enable = true;
     mac-builder.enable = true;
-    resolved.enable = false;
   };
 
   wsl = {

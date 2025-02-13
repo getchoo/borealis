@@ -9,5 +9,8 @@
     ./nginx.nix
     ./nvidia.nix
     ./promtail.nix
+    ./resolved.nix
+    ./tailscale.nix
+    ./zram.nix
   ];
 }
