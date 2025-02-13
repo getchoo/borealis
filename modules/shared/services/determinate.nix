@@ -7,13 +7,13 @@
 }:
 
 let
-  cfg = config.traits.determinate;
+  cfg = config.services.determinate;
 
   nixPackage = inputs.determinate.inputs.nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 
 {
-  options.traits.determinate = {
+  options.services.determinate = {
     enable = lib.mkEnableOption "Determinate with a bit less Determinate";
 
     determinate-nix.enable = lib.mkEnableOption "Determinate Nix";

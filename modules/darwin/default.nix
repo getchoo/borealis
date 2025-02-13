@@ -7,6 +7,7 @@
         ./desktop
         ./mixins
         ./profiles
+        ./services
         ./traits
       ];
     };

@@ -24,6 +24,7 @@
   security.apparmor.enable = false;
 
   services = {
+    determinate.enable = true;
     resolved.enable = false;
   };
 
@@ -31,7 +32,6 @@
 
   traits = {
     arm-builder.enable = true;
-    determinate.enable = true;
     mac-builder.enable = true;
   };
 
