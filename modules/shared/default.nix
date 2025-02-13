@@ -1,6 +1,7 @@
 {
   imports = [
     ./defaults
+    ./mixins
     ./traits
   ];
 }

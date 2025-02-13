@@ -11,7 +11,6 @@ in
     desktop.enable = true;
 
     traits = {
-      home-manager.enable = true;
       users = {
         seth.enable = true;
       };

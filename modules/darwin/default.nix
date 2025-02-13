@@ -5,6 +5,7 @@
         ../shared
         ./defaults
         ./desktop
+        ./mixins
         ./profiles
         ./traits
       ];
