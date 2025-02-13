@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.traits.determinate;
+  cfg = config.services.determinate;
 
   package = inputs'.determinate.packages.default;
 in

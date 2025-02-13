@@ -1,5 +1,5 @@
 {
   imports = [
-    ./users
+    ./determinate.nix
   ];
 }

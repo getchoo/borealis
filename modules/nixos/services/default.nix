@@ -1,3 +1,6 @@
 {
-  imports = [ ./github-mirror ];
+  imports = [
+    ./determinate.nix
+    ./github-mirror
+  ];
 }
