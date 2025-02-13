@@ -13,7 +13,6 @@
     ./nvidia.nix
     ./pipewire.nix
     ./plasma.nix
-    ./promtail.nix
     ./resolved.nix
     ./tailscale.nix
     ./zram.nix
