@@ -20,8 +20,6 @@ in
     };
 
     traits = {
-      home-manager.enable = true;
-
       secrets = {
         enable = true;
         secretsDir = inputs.self + "/secrets/personal";
