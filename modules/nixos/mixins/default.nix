@@ -5,7 +5,6 @@
     ./comin.nix
     ./forgejo.nix
     ./gnome.nix
-    ./hercules.nix
     ./kanidm.nix
     ./lanzaboote.nix
     ./nginx.nix
