@@ -4,18 +4,9 @@
   pkgs,
   ...
 }:
-let
-  cfg = config.desktop.fonts;
-in
-{
-  options.desktop.fonts = {
-    enable = lib.mkEnableOption "desktop fonts" // {
-      default = config.desktop.enable;
-      defaultText = lib.literalExpression "config.desktop.enable";
-    };
-  };
 
-  config = lib.mkIf cfg.enable {
+{
+  config = lib.mkIf config.services.xserver.enable {
     fonts = {
       enableDefaultPackages = true;
 

@@ -1,6 +1,9 @@
 { lib, ... }:
+
 {
   imports = [
+    ./desktop-programs.nix
+    ./fonts.nix
     ./nix.nix
     ./programs.nix
     ./security.nix

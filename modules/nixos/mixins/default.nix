@@ -1,13 +1,18 @@
 {
   imports = [
     ./acme.nix
+    ./budgie.nix
     ./comin.nix
     ./forgejo.nix
+    ./gnome.nix
     ./hercules.nix
     ./kanidm.nix
     ./lanzaboote.nix
     ./nginx.nix
+    ./niri.nix
     ./nvidia.nix
+    ./pipewire.nix
+    ./plasma.nix
     ./promtail.nix
     ./resolved.nix
     ./tailscale.nix
