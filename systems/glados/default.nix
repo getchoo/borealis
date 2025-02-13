@@ -14,11 +14,6 @@
 
   profiles.personal.enable = true;
 
-  desktop = {
-    enable = true;
-    gnome.enable = true;
-  };
-
   boot = {
     kernelParams = [
       "amd_pstate=active"
@@ -63,7 +58,12 @@
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
-    xserver.videoDrivers = [ "nvidia" ];
+
+    xserver = {
+      desktopManager.gnome.enable = true;
+
+      videoDrivers = [ "nvidia" ];
+    };
   };
 
   swapDevices = [
