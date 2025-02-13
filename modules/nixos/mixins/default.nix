@@ -2,9 +2,11 @@
   imports = [
     ./acme.nix
     ./budgie.nix
+    ./catppuccin.nix
     ./comin.nix
     ./forgejo.nix
     ./gnome.nix
+    ./home-manager.nix
     ./kanidm.nix
     ./lanzaboote.nix
     ./nginx.nix
