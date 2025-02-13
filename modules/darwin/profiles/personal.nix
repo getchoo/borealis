@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    desktop.enable = true;
+    homebrew.enable = true;
 
     traits = {
       users = {
