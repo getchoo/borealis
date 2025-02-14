@@ -15,6 +15,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    _module.args = {
+      secretsDir = inputs.self + "/secrets/personal";
+    };
+
     borealis = {
       users = {
         seth.enable = true;
@@ -23,13 +27,6 @@ in
 
     services = {
       tailscale.enable = true;
-    };
-
-    traits = {
-      secrets = {
-        enable = true;
-        secretsDir = inputs.self + "/secrets/personal";
-      };
     };
   };
 }

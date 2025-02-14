@@ -2,6 +2,7 @@
   config,
   lib,
   secretsDir,
+  inputs,
   inputs',
   ...
 }:
@@ -23,8 +24,12 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
-        # All servers are most likely on stable, so we want to pull in some newer packages from time to time
-        _module.args.unstable = inputs'.nixpkgs.legacyPackages;
+        _module.args = {
+          # All servers are most likely on stable, so we want to pull in some newer packages from time to time
+          unstable = inputs'.nixpkgs.legacyPackages;
+
+          secretsDir = inputs.self + "/secrets/${config.networking.hostName}";
+        };
 
         age.secrets = {
           tailscaleAuthKey.file = "${secretsDir}/tailscaleAuthKey.age";
@@ -59,10 +64,6 @@ in
             authKeyFile = config.age.secrets.tailscaleAuthKey.path;
             extraUpFlags = [ "--ssh" ];
           };
-        };
-
-        traits = {
-          secrets.enable = true;
         };
 
         # I use exclusively Tailscale auth on some machines
