@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./desktop-programs.nix
+    ./desktop.nix
     ./fonts.nix
     ./nix.nix
     ./programs.nix

@@ -21,6 +21,10 @@
       programs = {
         chromium.enable = lib.mkDefault true;
       };
+
+      services = {
+        pipewire.enable = true;
+      };
     })
   ];
 }
