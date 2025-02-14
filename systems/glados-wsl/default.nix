@@ -6,6 +6,19 @@
     inputs.self.nixosModules.default
   ];
 
+  borealis = {
+    determinate.enable = true;
+
+    remote-builders = {
+      enable = true;
+
+      builders = {
+        atlas = true;
+        macstadium = true;
+      };
+    };
+  };
+
   profiles.personal.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -24,16 +37,10 @@
   security.apparmor.enable = false;
 
   services = {
-    determinate.enable = true;
     resolved.enable = false;
   };
 
   system.stateVersion = "23.11";
-
-  traits = {
-    arm-builder.enable = true;
-    mac-builder.enable = true;
-  };
 
   wsl = {
     enable = true;

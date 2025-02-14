@@ -10,6 +10,10 @@
     ./users.nix
   ];
 
+  borealis = {
+    nvd-diff.enable = true;
+  };
+
   documentation.nixos.enable = lib.mkDefault false;
 
   i18n = {
