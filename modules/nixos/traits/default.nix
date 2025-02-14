@@ -5,6 +5,5 @@
     ./mac-builder.nix
     ./nvd-diff.nix
     ./secrets.nix
-    ./users
   ];
 }

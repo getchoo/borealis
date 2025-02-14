@@ -4,5 +4,6 @@
     ./mixins
     ./services
     ./traits
+    ./users
   ];
 }

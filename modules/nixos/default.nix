@@ -8,6 +8,7 @@
         ./profiles
         ./services
         ./traits
+        ./users
       ];
     };
   };

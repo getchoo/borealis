@@ -5,6 +5,7 @@
   inputs',
   ...
 }:
+
 let
   cfg = config.profiles.server;
 
@@ -13,6 +14,7 @@ let
   gb = 1024 * 1024 * 1024;
   minimumStorageKb = 15 * gb;
 in
+
 {
   options.profiles.server = {
     enable = lib.mkEnableOption "the Server profile";

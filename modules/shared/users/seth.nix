@@ -5,11 +5,15 @@
   inputs,
   ...
 }:
+
 let
-  cfg = config.traits.users.seth;
+  cfg = config.borealis.users.seth;
+
+  inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
 in
+
 {
-  options.traits.users.seth = {
+  options.borealis.users.seth = {
     enable = lib.mkEnableOption "Seth's user & home configurations";
   };
 
@@ -28,13 +32,13 @@ in
       };
     })
 
-    (lib.mkIf (cfg.enable && pkgs.stdenv.isDarwin) {
+    (lib.mkIf (cfg.enable && isDarwin) {
       users.users.seth = {
         home = lib.mkDefault "/Users/seth";
       };
     })
 
-    (lib.mkIf (cfg.enable && pkgs.stdenv.isLinux) {
+    (lib.mkIf (cfg.enable && isLinux) {
       users.users.seth = {
         extraGroups = [ "wheel" ];
         isNormalUser = true;
