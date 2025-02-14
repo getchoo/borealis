@@ -1,0 +1,23 @@
+{
+  imports = [
+    ./bash.nix
+    ./budgie.nix
+    ./catppuccin.nix
+    ./chromium.nix
+    ./firefox
+    ./fish.nix
+    ./gh.nix
+    ./ghostty.nix
+    ./git.nix
+    ./gnome.nix
+    ./gpg.nix
+    ./mangohud.nix
+    ./niri.nix
+    ./nu.nix
+    ./plasma.nix
+    ./spotifyd.nix
+    ./ssh.nix
+    ./vim.nix
+    ./zsh.nix
+  ];
+}
