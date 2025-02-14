@@ -7,7 +7,6 @@
         ./defaults
         ./mixins
         ./profiles
-        ./users
       ];
     };
   };
