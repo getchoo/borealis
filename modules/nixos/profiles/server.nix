@@ -18,10 +18,6 @@ in
 {
   options.profiles.server = {
     enable = lib.mkEnableOption "the Server profile";
-
-    hostUser = lib.mkEnableOption "a default interactive user" // {
-      default = true;
-    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -35,6 +31,10 @@ in
         };
 
         boot.tmp.cleanOnBoot = lib.mkDefault true;
+
+        borealis.users = {
+          system.enable = true;
+        };
 
         # We don't need it here
         documentation.enable = false;
@@ -65,17 +65,15 @@ in
           secrets.enable = true;
         };
 
+        # I use exclusively Tailscale auth on some machines
+        users.allowNoPasswordLogin = true;
+
         zramSwap.enable = true;
       }
 
-      (lib.mkIf cfg.hostUser {
+      (lib.mkIf config.borealis.users.system.enable {
         # Hardening access to `nix` as no other users *should* ever really touch it
         nix.settings.allowed-users = [ config.networking.hostName ];
-
-        users.users.${config.networking.hostName} = {
-          isNormalUser = true;
-          extraGroups = [ "wheel" ];
-        };
       })
     ]
   );

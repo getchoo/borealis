@@ -1,1 +1,6 @@
-{ imports = [ ./seth.nix ]; }
+{
+  imports = [
+    ./seth.nix
+    ./system.nix
+  ];
+}
