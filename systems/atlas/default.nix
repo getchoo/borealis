@@ -12,7 +12,9 @@
     inputs.self.nixosModules.default
   ];
 
-  profiles.server.enable = true;
+  borealis = {
+    profiles.server.enable = true;
+  };
 
   boot = {
     loader.systemd-boot.enable = true;
