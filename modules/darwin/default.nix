@@ -3,10 +3,10 @@
     default = {
       imports = [
         ../shared
+        ./custom
         ./defaults
         ./mixins
         ./profiles
-        ./services
         ./users
       ];
     };

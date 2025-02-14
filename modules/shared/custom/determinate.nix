@@ -7,13 +7,13 @@
 }:
 
 let
-  cfg = config.services.determinate;
+  cfg = config.borealis.determinate;
 
   nixPackage = inputs.determinate.inputs.nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 
 {
-  options.services.determinate = {
+  options.borealis.determinate = {
     enable = lib.mkEnableOption "Determinate with a bit less Determinate";
 
     determinate-nix.enable = lib.mkEnableOption "Determinate Nix";

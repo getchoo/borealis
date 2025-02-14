@@ -12,6 +12,19 @@
     inputs.self.nixosModules.default
   ];
 
+  borealis = {
+    determinate.enable = true;
+
+    remote-builders = {
+      enable = true;
+
+      builders = {
+        atlas = true;
+        macstadium = true;
+      };
+    };
+  };
+
   profiles.personal.enable = true;
 
   boot = {
@@ -55,7 +68,6 @@
   };
 
   services = {
-    determinate.enable = true;
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
@@ -79,11 +91,6 @@
   ];
 
   system.stateVersion = "23.11";
-
-  traits = {
-    arm-builder.enable = true;
-    mac-builder.enable = true;
-  };
 
   virtualisation = {
     oci-containers.backend = "podman";

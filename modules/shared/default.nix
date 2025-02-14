@@ -1,8 +1,8 @@
 {
   imports = [
+    ./custom
     ./defaults
     ./mixins
-    ./services
     ./users
   ];
 }

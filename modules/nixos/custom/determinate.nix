@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.services.determinate;
+  cfg = config.borealis.determinate;
 
   package = inputs'.determinate.packages.default;
 in

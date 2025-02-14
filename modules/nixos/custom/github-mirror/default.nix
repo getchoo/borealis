@@ -4,8 +4,9 @@
   pkgs,
   ...
 }:
+
 let
-  cfg = config.services.github-mirror;
+  cfg = config.borealis.github-mirror;
   cgitInstance = config.services.cgit.${cfg.hostname};
 
   update-mirror =
@@ -25,8 +26,9 @@ let
         patchShebangs $out
       '';
 in
+
 {
-  options.services.github-mirror = {
+  options.borealis.github-mirror = {
     enable = lib.mkEnableOption "the github-mirror service";
 
     hostname = lib.mkOption {
@@ -46,7 +48,7 @@ in
     assertions = [
       {
         assertion = cfg.mirroredUsers != [ ];
-        message = "`services.git-mirror.mirroredUsers` must have at least one user";
+        message = "`borealis.github-mirror.mirroredUsers` must have at least one user";
       }
     ];
 
