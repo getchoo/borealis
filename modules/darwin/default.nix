@@ -7,7 +7,7 @@
         ./mixins
         ./profiles
         ./services
-        ./traits
+        ./users
       ];
     };
   };

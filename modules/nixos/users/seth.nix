@@ -4,11 +4,13 @@
   secretsDir,
   ...
 }:
+
 let
-  cfg = config.traits.users.seth;
+  cfg = config.borealis.users.seth;
 in
+
 {
-  options.traits.users.seth = {
+  options.borealis.users.seth = {
     manageSecrets = lib.mkEnableOption "automatic management of secrets" // {
       default = config.traits.secrets.enable;
       defaultText = lib.literalExpression "config.traits.secrets.enable";

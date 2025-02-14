@@ -1,7 +1,9 @@
 { config, lib, ... }:
+
 let
-  cfg = config.traits.users.seth;
+  cfg = config.borealis.users.seth;
 in
+
 {
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
