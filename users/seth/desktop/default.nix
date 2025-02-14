@@ -11,7 +11,7 @@ in
 {
   options.seth.desktop = {
     enable = lib.mkEnableOption "desktop (Linux) settings" // {
-      default = osConfig.desktop.enable or false;
+      default = osConfig.services.xserver.enable or false;
       defaultText = lib.literalExpression "osConfig.desktop.enable or false";
     };
   };
