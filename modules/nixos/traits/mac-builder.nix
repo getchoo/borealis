@@ -11,8 +11,7 @@ in
   options.traits.mac-builder = {
     enable = lib.mkEnableOption "macOS remote builders";
     manageSecrets = lib.mkEnableOption "managing SSH keys for builders" // {
-      default = config.traits.secrets.enable;
-      defaultText = "traits.secrets.enable";
+      default = true;
     };
   };
 

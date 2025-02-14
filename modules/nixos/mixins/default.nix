@@ -1,6 +1,7 @@
 {
   imports = [
     ./acme.nix
+    ./agenix.nix
     ./budgie.nix
     ./catppuccin.nix
     ./comin.nix
