@@ -4,7 +4,9 @@
     inputs.self.darwinModules.default
   ];
 
-  profiles.personal.enable = true;
+  borealis = {
+    profiles.personal.enable = true;
+  };
 
   homebrew.casks = [
     "altserver"

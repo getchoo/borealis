@@ -8,7 +8,7 @@
 }:
 
 let
-  cfg = config.profiles.server;
+  cfg = config.borealis.profiles.server;
 
   # 2^30
   # Why doesn't nix have a `pow`???
@@ -17,7 +17,7 @@ let
 in
 
 {
-  options.profiles.server = {
+  options.borealis.profiles.server = {
     enable = lib.mkEnableOption "the Server profile";
   };
 

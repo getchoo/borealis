@@ -7,6 +7,8 @@
   ];
 
   borealis = {
+    profiles.personal.enable = true;
+
     determinate.enable = true;
 
     remote-builders = {
@@ -18,8 +20,6 @@
       };
     };
   };
-
-  profiles.personal.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

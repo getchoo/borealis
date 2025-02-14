@@ -6,11 +6,11 @@
 }:
 
 let
-  cfg = config.profiles.personal;
+  cfg = config.borealis.profiles.personal;
 in
 
 {
-  options.profiles.personal = {
+  options.borealis.profiles.personal = {
     enable = lib.mkEnableOption "the Personal profile";
   };
 
