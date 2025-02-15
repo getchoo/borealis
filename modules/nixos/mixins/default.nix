@@ -7,11 +7,14 @@
     ./comin.nix
     ./forgejo.nix
     ./gnome.nix
+    ./grafana.nix
     ./home-manager.nix
+    ./journal-upload.nix
     ./kanidm.nix
     ./lanzaboote.nix
     ./nginx.nix
     ./niri.nix
+    ./node-exporter.nix
     ./nvidia.nix
     ./pipewire.nix
     ./plasma.nix
