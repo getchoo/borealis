@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   secretsDir,
   ...
 }:
@@ -14,28 +13,32 @@
       adminCredentialsFile = config.age.secrets.miniflux.path;
       config = {
         BASE_URL = "https://miniflux.${config.networking.domain}";
+        LISTEN_ADDR = "localhost:7000";
+        METRICS_COLLECTOR = 1;
       };
     };
 
     nginx.virtualHosts = {
       "miniflux.getchoo.com" = {
         locations."/" = {
-          proxyPass = "http://unix:${lib.head config.systemd.sockets.miniflux.listenStreams}";
+          proxyPass = "http://${config.services.miniflux.config.LISTEN_ADDR}";
         };
       };
     };
   };
 
-  # Create the socket manually to ensure NGINX has permission for the socket's parent directory
-  # ...since for some reason Miniflux will not give it the same `0777` permission as the socket itself
-  systemd = {
-    services.miniflux = {
-      requires = [ "miniflux.socket" ];
-    };
+  /*
+    # Create the socket manually to ensure NGINX has permission for the socket's parent directory
+    # ...since for some reason Miniflux will not give it the same `0777` permission as the socket itself
+    systemd = {
+      services.miniflux = {
+        requires = [ "miniflux.socket" ];
+      };
 
-    sockets.miniflux = {
-      wantedBy = [ "sockets.target" ];
-      listenStreams = [ "/run/miniflux.sock" ];
+      sockets.miniflux = {
+        wantedBy = [ "sockets.target" ];
+        listenStreams = [ "/run/miniflux.sock" ];
+      };
     };
-  };
+  */
 }
