@@ -21,11 +21,15 @@ in
 
         settings = {
           server = {
-            PROTOCOL = "http+unix";
+            PROTOCOL = "http";
             DOMAIN = lib.mkDefault ("git." + config.networking.domain);
             ROOT_URL = "https://" + forgejoCfg.settings.server.DOMAIN + "/";
 
             DISABLE_SSH = lib.mkDefault true;
+          };
+
+          metrics = {
+            ENABLED = true;
           };
 
           oauth2_client = {
@@ -50,7 +54,7 @@ in
     (lib.mkIf forgejoCfg.enable {
       services.nginx.virtualHosts.${forgejoCfg.settings.server.DOMAIN} = {
         locations."/" = {
-          proxyPass = "http://unix:${forgejoCfg.settings.server.HTTP_ADDR}";
+          proxyPass = "http://${forgejoCfg.settings.server.HTTP_ADDR}:${toString forgejoCfg.settings.server.HTTP_PORT}";
         };
       };
 
