@@ -15,7 +15,10 @@
             reporting_enabled = false;
           };
 
-          "auth.anonymous".enable = true;
+          "auth.anonymous" = {
+            enable = true;
+            org_role = "Viewer";
+          };
 
           server = {
             http_port = 6000;
