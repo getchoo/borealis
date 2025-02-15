@@ -5,5 +5,6 @@
     ./nvd-diff.nix
     ./nvk.nix
     ./remote-builders.nix
+    ./victorialogs.nix
   ];
 }
