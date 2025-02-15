@@ -4,10 +4,12 @@
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
     ./forgejo.nix
+    ./grafana.nix
     ./kanidm.nix
     ./miniflux.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix
+    ./victoria-metrics.nix
 
     inputs.self.nixosModules.default
   ];
