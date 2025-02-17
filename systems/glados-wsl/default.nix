@@ -32,9 +32,13 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  # Something, something `resolv.conf` error
-  # (nixos-wsl probably doesn't set it)
-  security.apparmor.enable = false;
+  security = {
+    # Something, something `resolv.conf` error
+    # (nixos-wsl probably doesn't set it)
+    apparmor.enable = false;
+    # `run0` fails with `Failed to start transient service unit: Interactive authentication required.`
+    sudo.enable = true;
+  };
 
   services = {
     resolved.enable = false;

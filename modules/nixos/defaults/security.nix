@@ -18,7 +18,10 @@
 
     polkit.enable = true;
 
-    sudo.enable = false;
+    sudo = {
+      enable = lib.mkDefault false;
+      execWheelOnly = true;
+    };
   };
 
   services.dbus.apparmor = lib.mkDefault "enabled";
