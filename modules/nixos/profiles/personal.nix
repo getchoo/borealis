@@ -21,12 +21,12 @@ in
 
     borealis = {
       users = {
-        seth.enable = true;
+        seth.enable = lib.mkDefault true;
       };
     };
 
     services = {
-      tailscale.enable = true;
+      tailscale.enable = lib.mkDefault true;
     };
   };
 }
