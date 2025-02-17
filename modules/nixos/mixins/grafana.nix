@@ -15,11 +15,6 @@
             reporting_enabled = false;
           };
 
-          "auth.anonymous" = {
-            enable = true;
-            org_role = "Viewer";
-          };
-
           server = {
             http_port = 6000;
 
@@ -52,6 +47,7 @@
 
             allow_assign_grafana_admin = true;
             allow_sign_up = true;
+            auto_login = true;
             groups_attribute_path = "groups";
             login_attribute_path = "preferred_username";
             role_attribute_path = "contains(grafana_role[*], 'GrafanaAdmin') && 'GrafanaAdmin' || contains(grafana_role[*], 'Admin') && 'Admin' || contains(grafana_role[*], 'Editor') && 'Editor' || 'Viewer'";
