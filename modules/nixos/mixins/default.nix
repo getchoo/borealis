@@ -22,6 +22,7 @@
     ./plasma.nix
     ./resolved.nix
     ./tailscale.nix
+    ./wsl.nix
     ./zram.nix
   ];
 }
