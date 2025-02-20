@@ -36,6 +36,7 @@
   nixpkgs.hostPlatform = "aarch64-linux";
 
   services = {
+    hedgedoc.enable = true;
     nginx.enable = true;
   };
 
