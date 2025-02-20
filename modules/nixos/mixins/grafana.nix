@@ -5,6 +5,10 @@
   ...
 }:
 
+let
+  grafanaCfg = config.services.grafana;
+in
+
 {
   config = lib.mkMerge [
     {
@@ -21,11 +25,22 @@
             domain = lib.mkDefault ("grafana." + config.networking.domain);
             enable_gzip = true;
             enforce_domain = true;
-            root_url = "https://" + config.services.grafana.settings.server.domain + "/";
+            root_url = "https://" + grafanaCfg.settings.server.domain + "/";
           };
         };
       };
     }
+
+    (lib.mkIf grafanaCfg.enable {
+      services = {
+        nginx.virtualHosts.${grafanaCfg.settings.server.domain} = {
+          locations."/" = {
+            proxyPass = "http://${grafanaCfg.settings.server.http_addr}:${toString grafanaCfg.settings.server.http_port}";
+            proxyWebsockets = true;
+          };
+        };
+      };
+    })
 
     (lib.mkIf config.services.kanidm.enableServer {
       services.grafana = {
@@ -56,7 +71,7 @@
       };
     })
 
-    (lib.mkIf (config.services.grafana.enable && config.services.kanidm.enableServer) {
+    (lib.mkIf (grafanaCfg.enable && config.services.kanidm.enableServer) {
       age.secrets.grafanaKanidm = {
         file = secretsDir + "/grafanaKanidmSecret.age";
         owner = config.users.users.grafana.name;

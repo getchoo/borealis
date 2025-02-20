@@ -3,10 +3,6 @@
   imports = [
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
-    ./forgejo.nix
-    ./grafana.nix
-    ./kanidm.nix
-    ./miniflux.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix
     ./victoria-metrics.nix
@@ -23,6 +19,10 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
+  catppuccin = {
+    forgejo.enable = true;
+  };
+
   networking = {
     domain = "getchoo.com";
     hostName = "atlas";
@@ -36,7 +36,24 @@
   nixpkgs.hostPlatform = "aarch64-linux";
 
   services = {
+    forgejo.enable = true;
+
+    grafana.enable = true;
+
     hedgedoc.enable = true;
+
+    kanidm = {
+      enableClient = true;
+      enableServer = true;
+    };
+
+    miniflux = {
+      enable = true;
+      config = {
+        METRICS_COLLECTOR = 1;
+      };
+    };
+
     nginx.enable = true;
   };
 

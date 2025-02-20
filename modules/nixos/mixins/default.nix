@@ -13,6 +13,7 @@
     ./journal-upload.nix
     ./kanidm.nix
     ./lanzaboote.nix
+    ./miniflux.nix
     ./nginx.nix
     ./niri.nix
     ./node-exporter.nix
