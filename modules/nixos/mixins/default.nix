@@ -8,6 +8,7 @@
     ./forgejo.nix
     ./gnome.nix
     ./grafana.nix
+    ./hedgedoc.nix
     ./home-manager.nix
     ./journal-upload.nix
     ./kanidm.nix
