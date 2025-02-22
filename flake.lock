@@ -57,6 +57,30 @@
         "url": "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz"
       }
     },
+    "colmena": {
+      "inputs": {
+        "flake-compat": [],
+        "flake-utils": "flake-utils",
+        "nix-github-actions": [],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "stable": []
+      },
+      "locked": {
+        "lastModified": 1739900653,
+        "narHash": "sha256-hPSLvw6AZQYrZyGI6Uq4XgST7benF/0zcCpugn/P0yM=",
+        "owner": "zhaofengli",
+        "repo": "colmena",
+        "rev": "2370d4336eda2a9ef29fce10fa7076ae011983ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zhaofengli",
+        "repo": "colmena",
+        "type": "github"
+      }
+    },
     "comin": {
       "inputs": {
         "nixpkgs": [
@@ -172,6 +196,21 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -468,6 +507,7 @@
         "agenix": "agenix",
         "catppuccin": "catppuccin",
         "codeberg-infra": "codeberg-infra",
+        "colmena": "colmena",
         "comin": "comin",
         "determinate": "determinate",
         "flake-parts": "flake-parts",

@@ -1,0 +1,3 @@
+{
+  colmena = ./colmena.nix;
+}

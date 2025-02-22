@@ -9,6 +9,10 @@
   outputs =
     inputs:
 
+    let
+      flakeModules = import ./modules/flake;
+    in
+
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -18,6 +22,7 @@
       ];
 
       imports = [
+        flakeModules.colmena
         inputs.getchpkgs.flakeModules.checks
         inputs.getchpkgs.flakeModules.configurations
 
@@ -28,6 +33,8 @@
         ./systems
         ./users
       ];
+
+      flake = { inherit flakeModules; };
     };
 
   inputs = {
@@ -69,6 +76,16 @@
     codeberg-infra = {
       url = "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz";
       flake = false;
+    };
+
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        stable.follows = "";
+        nix-github-actions.follows = "";
+        flake-compat.follows = "";
+      };
     };
 
     comin = {
