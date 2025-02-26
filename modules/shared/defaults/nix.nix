@@ -11,7 +11,10 @@ let
   # TODO: remove this nonsense when all implementations remove repl-flake
   hasReplFlake =
     lib.versionOlder config.nix.package.version "2.22.0" # repl-flake was removed in nix 2.22.0
-    || lib.versionAtLeast config.nix.package.version "2.90.0"; # but not in lix yet
+    || (
+      lib.versionAtLeast config.nix.package.version "2.90.0"
+      && lib.versionOlder config.nix.package.version "2.91.0"
+    ); # but not until lix 2.91
 
   hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
 in
@@ -43,14 +46,13 @@ in
           options = lib.mkDefault "--delete-older-than 5d";
         };
 
-        registry = lib.mapAttrs (lib.const (
-          flake:
-          lib.mkForce {
-            inherit flake;
-          }
-        )) inputs;
+        registry = lib.mapAttrs (lib.const (flake: {
+          to = lib.mkDefault {
+            type = "path";
+            path = flake.outPath;
+          };
+        })) inputs;
 
-        # See comment below
         nixPath = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs;
       };
 
