@@ -1,7 +1,7 @@
 {
   imports = [
     ./ci.nix
-    ./dev-shell.nix
+    ./dev-shells.nix
   ];
 
   perSystem =
