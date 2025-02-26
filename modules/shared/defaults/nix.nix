@@ -8,13 +8,10 @@
 let
   inherit (pkgs.stdenv.hostPlatform) isLinux;
 
-  # TODO: remove this nonsense when all implementations remove repl-flake
+  # TODO: Remove this nonsense when all implementations remove repl-flake
   hasReplFlake =
     lib.versionOlder config.nix.package.version "2.22.0" # repl-flake was removed in nix 2.22.0
-    || (
-      lib.versionAtLeast config.nix.package.version "2.90.0"
-      && lib.versionOlder config.nix.package.version "2.91.0"
-    ); # but not until lix 2.91
+    || lib.versionAtLeast config.nix.package.version "2.90.0"; # but not in lix (yet, https://gerrit.lix.systems/c/lix/+/2147)
 
   hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
 in
