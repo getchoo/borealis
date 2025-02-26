@@ -49,7 +49,7 @@ in
         registry = lib.mapAttrs (lib.const (flake: {
           to = lib.mkDefault {
             type = "path";
-            path = flake.outPath;
+            path = lib.mkForce flake.outPath;
           };
         })) inputs;
 
