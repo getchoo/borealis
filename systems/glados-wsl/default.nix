@@ -1,8 +1,9 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
     inputs.self.nixosModules.default
+    inputs.lix-module.nixosModules.default
   ];
 
   borealis = {
@@ -21,8 +22,6 @@
   };
 
   networking.hostName = "glados-wsl";
-
-  nix.package = pkgs.nixVersions.latest;
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
