@@ -55,6 +55,7 @@
         nixpkgs.follows = "nixpkgs";
         darwin.follows = "";
         home-manager.follows = "";
+        systems.follows = "lix-module/flake-utils/systems";
       };
     };
 
@@ -106,6 +107,14 @@
         flake-parts.follows = "flake-parts";
         flake-compat.follows = "";
         pre-commit-hooks-nix.follows = "";
+      };
+    };
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/refs/tags/2.92.0.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flakey-profile.follows = "";
       };
     };
 
