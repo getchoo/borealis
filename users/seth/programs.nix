@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   inputs',
@@ -28,10 +27,10 @@
           '';
         }
       )
-      (nurl.override { nix = config.nix.package; })
 
       hydra-check
       nixfmt-rfc-style
+      nurl
     ];
 
     programs = {
