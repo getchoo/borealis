@@ -10,6 +10,11 @@
 
     let
       inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
+
+      nix = inputs'.lix-module.packages.default;
+
+      overrideNix = p: p.override { inherit nix; };
+      nixos-rebuild = overrideNix pkgs.nixos-rebuild;
     in
 
     {
@@ -19,7 +24,7 @@
             [
               # We want to make sure we have the same
               # Nix behavior across machines
-              pkgs.nix
+              nix
 
               # For CI
               pkgs.actionlint
@@ -33,12 +38,11 @@
               pkgs.opentofu
             ]
             ++ lib.optionals isDarwin [
-              # See above comment about Nix
               inputs'.nix-darwin.packages.darwin-rebuild
             ]
             ++ lib.optionals isLinux [
-              # Ditto
-              pkgs.nixos-rebuild
+              # See above comment about Nix
+              nixos-rebuild
 
               inputs'.agenix.packages.agenix
             ];
