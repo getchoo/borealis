@@ -15,7 +15,7 @@ rebuild subcmd *extraArgs="":
     {{ rebuild }} \
       {{ subcmd }} \
       {{ extraArgs }} \
-      --print-build-logs \
+      --use-remote-sudo \
       --flake .
 
 remote-rebuild system subcmd *extraArgs="":
