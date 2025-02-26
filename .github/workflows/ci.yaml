@@ -31,6 +31,13 @@ jobs:
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
+        # Only required for building Lix
+        # TODO: Remove after https://git.lix.systems/lix-project/lix/issues/545 is fixed
+      - name: Loosen AppArmor Restrictions
+        run: |
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
