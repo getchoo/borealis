@@ -9,8 +9,6 @@
   borealis = {
     profiles.personal.enable = true;
 
-    determinate.enable = true;
-
     remote-builders = {
       enable = true;
 
