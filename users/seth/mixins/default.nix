@@ -11,6 +11,7 @@
     ./git.nix
     ./gnome.nix
     ./gpg.nix
+    ./jj.nix
     ./mangohud.nix
     ./niri.nix
     ./nu.nix
