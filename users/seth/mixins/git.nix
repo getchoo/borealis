@@ -2,13 +2,10 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 
 {
-  imports = [ inputs.getchpkgs.homeModules.riff ];
-
   config = lib.mkMerge [
     {
       programs.git = {
