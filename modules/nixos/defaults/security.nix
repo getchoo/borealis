@@ -19,7 +19,6 @@
     polkit.enable = true;
 
     sudo = {
-      enable = lib.mkDefault false;
       execWheelOnly = true;
     };
   };
