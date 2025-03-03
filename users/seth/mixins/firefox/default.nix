@@ -1,13 +1,12 @@
 {
-  config,
   lib,
-  pkgs,
+  osConfig,
   inputs,
   ...
 }:
 
 let
-  inherit (pkgs.stdenv.hostPlatform) isLinux;
+  usingNvidia = lib.elem "nvidia" osConfig.services.xserver.videoDrivers or [ ];
 in
 
 {
@@ -47,9 +46,19 @@ in
       };
     }
 
-    (lib.mkIf (config.programs.firefox.enable && isLinux) {
+    # Required workarounds for nvidia-vaapi-driver
+    # https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
+    (lib.mkIf usingNvidia {
       home.sessionVariables = {
-        MOZ_ENABLE_WAYLAND = "1";
+        MOZ_DISABLE_RDD_SANDBOX = "1";
+      };
+
+      programs.firefox = {
+        profiles.arkenfox.settings = {
+          "media.av1.enabled" = false;
+          "media.rdd-ffmpeg.enabled" = true;
+          "widget.dmabuf.force-enabled" = true;
+        };
       };
     })
   ];
