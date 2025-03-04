@@ -9,6 +9,10 @@
   outputs =
     inputs:
 
+    let
+      flakeModules = import ./modules/flake;
+    in
+
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -20,6 +24,7 @@
       imports = [
         inputs.getchpkgs.flakeModules.checks
         inputs.getchpkgs.flakeModules.configurations
+        flakeModules.deploy-rs
 
         ./flake
         ./lib
@@ -28,6 +33,8 @@
         ./systems
         ./users
       ];
+
+      flake = { inherit flakeModules; };
     };
 
   inputs = {
@@ -75,6 +82,15 @@
     comin = {
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "lix-module/flake-utils";
+        flake-compat.follows = "";
+      };
     };
 
     determinate = {
