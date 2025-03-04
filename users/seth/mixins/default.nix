@@ -4,7 +4,7 @@
     ./budgie.nix
     ./catppuccin.nix
     ./chromium.nix
-    ./firefox
+    ./firefox.nix
     ./fish.nix
     ./gh.nix
     ./ghostty.nix
