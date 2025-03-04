@@ -1,7 +1,7 @@
-alias b := build
-alias c := check
-alias sw := switch
-alias t := test
+alias r := rebuild
+alias rr := remote-rebuild
+alias e := eval
+alias ea := eval-all
 alias u := update
 alias ui := update-input
 
@@ -10,56 +10,40 @@ rebuild := if os() == "macos" { "darwin-rebuild" } else { "nixos-rebuild" }
 default:
     @just --choose
 
-[private]
-rebuild subcmd *extraArgs="":
+rebuild subcmd *args="":
     {{ rebuild }} \
       {{ subcmd }} \
-      {{ extraArgs }} \
       --use-remote-sudo \
-      --flake .
+      --flake {{ justfile_directory() }} \
+      {{ args }}
 
-remote-rebuild system subcmd *extraArgs="":
+remote-rebuild system subcmd *args="":
     {{ rebuild }} \
       {{ subcmd }} \
-      --build-host root@{{ system }} \
-      --target-host root@{{ system }} \
-      --fast \
+      --build-host 'root@{{ system }}' \
+      --target-host 'root@{{ system }}' \
+      --no-build-nix \
       --use-substitutes \
-      {{ extraArgs }} \
-      --flake '.#{{ system }}'
-
-boot *extraArgs="": (rebuild "boot" extraArgs)
-
-build *extraArgs="": (rebuild "build" extraArgs)
-
-switch *extraArgs="": (rebuild "switch" extraArgs)
-
-test *extraArgs="": (rebuild "test" extraArgs)
-
-check *args="":
-    nix flake check \
-      --print-build-logs \
-      --show-trace \
-      --accept-flake-config \
-      --no-allow-import-from-derivation \
+      --flake '{{ justfile_directory() }}#{{ system }}' \
       {{ args }}
 
 eval system *args="":
     nix eval \
-      --raw \
-      '.#nixosConfigurations.{{ system }}.config.system.build.toplevel' \
       --no-allow-import-from-derivation \
+      '{{ justfile_directory() }}#nixosConfigurations.{{ system }}.config.system.build.toplevel' \
       {{ args }}
+
+eval-all *args="":
+    nix flake check --all-systems --no-build {{ justfile_directory() }} {{ args }}
 
 update:
     nix flake update \
       --commit-lock-file \
-      --commit-lockfile-summary "flake: update all inputs"
+      --commit-lockfile-summary "flake: update all inputs" \
+      {{ justfile_directory() }}
 
 update-input input:
     nix flake update {{ input }} \
       --commit-lock-file \
-      --commit-lockfile-summary "flake: update {{ input }}"
-
-deploy system:
-    @just remote-rebuild {{ system }} "switch"
+      --commit-lockfile-summary "flake: update {{ input }}" \
+      {{ justfile_directory() }}
