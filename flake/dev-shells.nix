@@ -45,6 +45,7 @@
               nixos-rebuild
 
               inputs'.agenix.packages.agenix
+              inputs'.deploy-rs.packages.deploy-rs
             ];
         };
       };

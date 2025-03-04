@@ -23,4 +23,12 @@
       };
     };
   };
+
+  deploy = {
+    settings = {
+      nodes.atlas = {
+        remoteBuild = true;
+      };
+    };
+  };
 }
