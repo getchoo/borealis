@@ -1,3 +1,4 @@
+# NOTE: Unused
 {
   config,
   lib,

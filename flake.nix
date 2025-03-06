@@ -77,14 +77,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nix.follows = "";
-      };
-    };
-
     getchpkgs = {
       url = "github:getchoo/getchpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
