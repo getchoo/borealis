@@ -43,12 +43,12 @@ in
           options = lib.mkDefault "--delete-older-than 5d";
         };
 
-        registry = lib.mapAttrs (lib.const (flake: {
-          to = lib.mkDefault {
-            type = "path";
-            path = lib.mkForce flake.outPath;
-          };
-        })) inputs;
+        registry = lib.mapAttrs (lib.const (
+          flake:
+          lib.mkForce {
+            inherit flake;
+          }
+        )) inputs;
 
         nixPath = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs;
       };
