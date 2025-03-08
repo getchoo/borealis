@@ -28,10 +28,7 @@ in
         ];
 
         profiles.arkenfox = {
-          arkenfox = {
-            enable = true;
-            version = "133.0";
-          };
+          arkenfox.enable = true;
 
           isDefault = true;
 
