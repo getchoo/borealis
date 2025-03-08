@@ -36,14 +36,17 @@ in
           isDefault = true;
 
           settings = {
+            # Leave me alone
+            "browser.shell.checkDefaultBrowser" = false;
+
             # Disable Firefox Accounts & Pocket
             "extensions.pocket.enabled" = false;
             "identity.fxaccounts.enabled" = false;
 
-            # Hardware acceleration
+            # Force enable hardware acceleration
             "media.ffmpeg.vaapi.enabled" = true;
 
-            # Widevine drm
+            # Enable Widevine DRM
             "media.gmp-widevinecdm.enabled" = true;
 
             # ===
@@ -58,6 +61,14 @@ in
 
             # 5003: I use Bitwarden
             "signon.rememberSignons" = true;
+
+            # 5004: Only persist site permissions for session
+            "permissions.memory_only" = true;
+
+            # 5017: Don't auto-fill forms
+            "extensions.formautofill.addresses.enabled" = false;
+            "extensions.formautofill.creditCards.enabled" = false;
+
             # 5021: Enable search from URL bar by default
             "keyword.enabled" = true;
           };
