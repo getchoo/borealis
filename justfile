@@ -40,10 +40,10 @@ update:
     nix flake update \
       --commit-lock-file \
       --commit-lockfile-summary "flake: update all inputs" \
-      {{ justfile_directory() }}
+      --flake {{ justfile_directory() }}
 
 update-input input:
     nix flake update {{ input }} \
       --commit-lock-file \
       --commit-lockfile-summary "flake: update {{ input }}" \
-      {{ justfile_directory() }}
+      --flake {{ justfile_directory() }}
