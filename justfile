@@ -22,7 +22,7 @@ remote-rebuild system subcmd *args="":
       {{ subcmd }} \
       --build-host 'root@{{ system }}' \
       --target-host 'root@{{ system }}' \
-      --no-build-nix \
+      --fast \
       --use-substitutes \
       --flake 'git+file://{{ justfile_directory() }}#{{ system }}' \
       {{ args }}
