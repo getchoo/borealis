@@ -9,7 +9,7 @@
     }:
 
     let
-      inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
+      inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
       nix = inputs'.lix-module.packages.default;
 
@@ -36,15 +36,14 @@
 
               pkgs.just
               pkgs.opentofu
-            ]
-            ++ lib.optionals isDarwin [
-              inputs'.nix-darwin.packages.darwin-rebuild
-            ]
-            ++ lib.optionals isLinux [
+
               # See above comment about Nix
               nixos-rebuild
-
               inputs'.agenix.packages.agenix
+            ]
+            ++ lib.optionals isDarwin [
+              # Ditto
+              inputs'.nix-darwin.packages.darwin-rebuild
             ];
         };
       };
