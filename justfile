@@ -14,7 +14,7 @@ rebuild subcmd *args="":
     {{ rebuild }} \
       {{ subcmd }} \
       --use-remote-sudo \
-      --flake {{ justfile_directory() }} \
+      --flake 'git+file://{{ justfile_directory() }}' \
       {{ args }}
 
 remote-rebuild system subcmd *args="":
@@ -24,26 +24,30 @@ remote-rebuild system subcmd *args="":
       --target-host 'root@{{ system }}' \
       --no-build-nix \
       --use-substitutes \
-      --flake '{{ justfile_directory() }}#{{ system }}' \
+      --flake 'git+file://{{ justfile_directory() }}#{{ system }}' \
       {{ args }}
 
 eval system *args="":
     nix eval \
       --no-allow-import-from-derivation \
-      '{{ justfile_directory() }}#nixosConfigurations.{{ system }}.config.system.build.toplevel' \
+      'git+file://{{ justfile_directory() }}#nixosConfigurations.{{ system }}.config.system.build.toplevel' \
       {{ args }}
 
 eval-all *args="":
-    nix flake check --all-systems --no-build {{ justfile_directory() }} {{ args }}
+    nix flake check \
+      --all-systems \
+      --no-build \
+      'git+file://{{ justfile_directory() }}' \
+      {{ args }}
 
 update:
     nix flake update \
       --commit-lock-file \
       --commit-lockfile-summary "flake: update all inputs" \
-      --flake {{ justfile_directory() }}
+      --flake 'git+file://{{ justfile_directory() }}'
 
 update-input input:
     nix flake update {{ input }} \
       --commit-lock-file \
       --commit-lockfile-summary "flake: update {{ input }}" \
-      --flake {{ justfile_directory() }}
+      --flake 'git+file://{{ justfile_directory() }}'
