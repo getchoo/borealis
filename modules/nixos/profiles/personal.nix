@@ -31,9 +31,5 @@ in
     services = {
       tailscale.enable = lib.mkDefault true;
     };
-
-    system = {
-      switch.enableNg = lib.mkDefault true;
-    };
   };
 }
