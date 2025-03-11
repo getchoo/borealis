@@ -14,7 +14,7 @@
       nix = inputs'.lix-module.packages.default;
 
       overrideNix = p: p.override { inherit nix; };
-      nixos-rebuild = overrideNix pkgs.nixos-rebuild;
+      nixos-rebuild = overrideNix pkgs.nixos-rebuild-ng;
     in
 
     {
