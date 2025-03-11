@@ -32,7 +32,7 @@ in
       }))
 
       # Matrix client
-      pkgs.element
+      pkgs.element-desktop
 
       pkgs.prismlauncher
 
