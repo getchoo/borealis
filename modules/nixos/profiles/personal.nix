@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   inputs,
   ...
 }:
@@ -24,6 +25,8 @@ in
         seth.enable = lib.mkDefault true;
       };
     };
+
+    environment.systemPackages = [ pkgs.nixos-rebuild-ng ];
 
     services = {
       tailscale.enable = lib.mkDefault true;
