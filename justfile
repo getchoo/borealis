@@ -5,7 +5,7 @@ alias ea := eval-all
 alias u := update
 alias ui := update-input
 
-rebuild := if os() == "macos" { "darwin-rebuild" } else { "nixos-rebuild" }
+rebuild := if os() == "macos" { "darwin-rebuild" } else { "nixos-rebuild-ng" }
 
 default:
     @just --choose
@@ -13,7 +13,7 @@ default:
 rebuild subcmd *args="":
     {{ rebuild }} \
       {{ subcmd }} \
-      --use-remote-sudo \
+      --sudo \
       --flake 'git+file://{{ justfile_directory() }}' \
       {{ args }}
 
@@ -22,7 +22,7 @@ remote-rebuild system subcmd *args="":
       {{ subcmd }} \
       --build-host 'root@{{ system }}' \
       --target-host 'root@{{ system }}' \
-      --fast \
+      --no-reexec \
       --use-substitutes \
       --flake 'git+file://{{ justfile_directory() }}#{{ system }}' \
       {{ args }}
