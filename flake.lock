@@ -141,11 +141,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741437562,
-        "narHash": "sha256-brWe3l3LQ7/t/XzO9+yJ2cdG+GRq5G9/8KIe83OYTVE=",
+        "lastModified": 1741744110,
+        "narHash": "sha256-I/Z38JSMNu6HoMwRSt4nmjW4Tpdf1r9liCApv3lfABI=",
         "owner": "getchoo",
         "repo": "getchpkgs",
-        "rev": "f08ec7d04c1fa83da90f9b051057df735bdcf2ef",
+        "rev": "f384280d62075bec033494d2e97e64d79599b23b",
         "type": "github"
       },
       "original": {
