@@ -5,7 +5,7 @@ resource "cloudflare_pages_project" "getchoo_website" {
 
   build_config {
     build_caching   = true
-    build_command   = "./build-site.sh"
+    build_command   = "./build.sh"
     destination_dir = "/dist"
   }
 
