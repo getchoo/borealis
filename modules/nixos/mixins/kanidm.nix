@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   kanidmCfg = config.services.kanidm;
@@ -12,6 +12,8 @@ in
   config = lib.mkMerge [
     {
       services.kanidm = {
+        package = pkgs.kanidm_1_5;
+
         clientSettings = {
           uri = lib.mkDefault kanidmCfg.serverSettings.origin;
         };
