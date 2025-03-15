@@ -34,6 +34,7 @@ in
 
           settings = {
             # Leave me alone
+            "browser.ml.chat.enabled" = false;
             "browser.shell.checkDefaultBrowser" = false;
 
             # Disable Firefox Accounts & Pocket
