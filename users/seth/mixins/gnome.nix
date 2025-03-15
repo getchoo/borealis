@@ -43,8 +43,8 @@ in
         };
 
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          name = "ptyxis";
-          command = "ptyxis";
+          name = "ghostty";
+          command = "ghostty";
           binding = "<Control><Alt>t";
         };
       };
