@@ -20,7 +20,7 @@ in
           enabled-extensions = [ "caffeine@patapon.info" ];
 
           favorite-apps = [
-            "chromium-browser.desktop"
+            "firefox.desktop"
             "org.gnome.Nautilus.desktop"
             "discord-canary.desktop"
           ];

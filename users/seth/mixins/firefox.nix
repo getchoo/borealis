@@ -57,7 +57,7 @@ in
             "browser.download.useDownloadDir" = true;
 
             # 5003: I use Bitwarden
-            "signon.rememberSignons" = true;
+            "signon.rememberSignons" = false;
 
             # 5004: Only persist site permissions for session
             "permissions.memory_only" = true;
