@@ -60,7 +60,8 @@ in
             "signon.rememberSignons" = false;
 
             # 5004: Only persist site permissions for session
-            "permissions.memory_only" = true;
+            # WARN: This includes sanitization exemptions!
+            # "permissions.memory_only" = true;
 
             # 5017: Don't auto-fill forms
             "extensions.formautofill.addresses.enabled" = false;
