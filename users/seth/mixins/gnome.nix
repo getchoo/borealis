@@ -51,6 +51,9 @@ in
     };
 
     home.packages = [
+      # Matrix client
+      pkgs.fractal
+
       # Torrent client
       pkgs.fragments
 
