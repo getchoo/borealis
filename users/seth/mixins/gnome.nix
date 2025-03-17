@@ -22,7 +22,7 @@ in
           favorite-apps = [
             "firefox.desktop"
             "org.gnome.Nautilus.desktop"
-            "discord-canary.desktop"
+            "discord.desktop"
           ];
         };
 

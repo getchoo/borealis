@@ -13,7 +13,7 @@ in
           pinned-launchers = [
             "firefox.desktop"
             "nemo.desktop"
-            "discord-canary.desktop"
+            "discord.desktop"
           ];
         };
       };

@@ -23,7 +23,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      (pkgs.discord-canary.overrideAttrs (old: {
+      (pkgs.discord.overrideAttrs (old: {
         # Discord currently uses Chromium 130
         # https://github.com/elFarto/nvidia-vaapi-driver/issues/5#issuecomment-2421082537
         preInstall =
