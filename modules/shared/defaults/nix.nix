@@ -11,7 +11,10 @@ let
   # TODO: Remove this nonsense when all implementations remove repl-flake
   hasReplFlake =
     lib.versionOlder config.nix.package.version "2.22.0" # repl-flake was removed in nix 2.22.0
-    || lib.versionAtLeast config.nix.package.version "2.90.0"; # but not in lix (yet, https://gerrit.lix.systems/c/lix/+/2147)
+    || (
+      lib.versionAtLeast config.nix.package.version "2.90.0" # but not in Lix
+      && lib.versionOlder config.nix.package.version "2.93.0" # until 2.93
+    );
 
   hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
 in
