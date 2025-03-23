@@ -33,7 +33,7 @@ in
 
           extra-trusted-substituters = [
             "https://getchoo.cachix.org"
-            "https://nix-community.cachix.org"
+            "https://nix-community.cachix.org?priority=50"
           ];
 
           extra-trusted-public-keys = [
