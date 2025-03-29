@@ -23,8 +23,8 @@
         };
 
         signing = {
-          sign-all = true;
           backend = "gpg";
+          behavior = "own";
           key = "D31BD0D494BBEE86";
         };
       };
