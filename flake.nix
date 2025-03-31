@@ -138,7 +138,6 @@
       url = "github:getchoo/nixpkgs-tracker-bot";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        nix-filter.follows = "getchvim/nix-filter";
         treefmt-nix.follows = "";
       };
     };

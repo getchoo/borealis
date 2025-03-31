@@ -156,17 +156,16 @@
     },
     "getchvim": {
       "inputs": {
-        "nix-filter": "nix-filter",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1742606428,
-        "narHash": "sha256-flEGulo/W/CD03i4vDh+fUpzKOK8FRVyh5egwfgu/eA=",
+        "lastModified": 1743386948,
+        "narHash": "sha256-vG4CRYMLhn6vGaYsYm6P5pItdAjI9Q3ozB7RrHoFi2E=",
         "owner": "getchoo",
         "repo": "getchvim",
-        "rev": "22b376b1bb1739e58c06e2bb120d9c0f4c3fbc9a",
+        "rev": "fb01fd764b73372bdf91b9fb1ae2d02e469f0216",
         "type": "github"
       },
       "original": {
@@ -319,21 +318,6 @@
         "type": "github"
       }
     },
-    "nix-filter": {
-      "locked": {
-        "lastModified": 1731533336,
-        "narHash": "sha256-oRam5PS1vcrr5UPgALW0eo1m/5/pls27Z/pabHNy2Ms=",
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "rev": "f7653272fd234696ae94229839a99b73c9ab7de0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -409,21 +393,17 @@
     },
     "nixpkgs-tracker-bot": {
       "inputs": {
-        "nix-filter": [
-          "getchvim",
-          "nix-filter"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ],
         "treefmt-nix": []
       },
       "locked": {
-        "lastModified": 1742855454,
-        "narHash": "sha256-xnspZUuDh0wl38/DeQIFdDbJ+9L9TsWje+vlJOli/zQ=",
+        "lastModified": 1743386885,
+        "narHash": "sha256-3Y3z7ZqRzzUHYM6Sg/hkIzECzN9dfukXVSzkXjPdRrs=",
         "owner": "getchoo",
         "repo": "nixpkgs-tracker-bot",
-        "rev": "c2b5fdf271170f1fd8b65dc15ee94173afc382a4",
+        "rev": "f13e56b26633e9da9896da36a75becc850480bc8",
         "type": "github"
       },
       "original": {
