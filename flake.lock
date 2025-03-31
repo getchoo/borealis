@@ -61,26 +61,6 @@
         "url": "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz"
       }
     },
-    "comin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1742729530,
-        "narHash": "sha256-RHZlqatnXQxpDfAHNmkAjTTISM6AYJK/c2Iigq2rpaU=",
-        "owner": "nlewo",
-        "repo": "comin",
-        "rev": "5d14c2ebac25d74bb1acd90b2a9a96677fc55526",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nlewo",
-        "repo": "comin",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1741148495,
@@ -444,7 +424,6 @@
         "agenix": "agenix",
         "catppuccin": "catppuccin",
         "codeberg-infra": "codeberg-infra",
-        "comin": "comin",
         "flake-parts": "flake-parts",
         "getchpkgs": "getchpkgs",
         "getchvim": "getchvim",

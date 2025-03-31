@@ -4,7 +4,6 @@
     ./agenix.nix
     ./budgie.nix
     ./catppuccin.nix
-    ./comin.nix
     ./forgejo.nix
     ./gnome.nix
     ./grafana.nix

@@ -56,14 +56,20 @@ in
         };
 
         services = {
-          comin.enable = true;
-
           tailscale = {
             enable = true;
 
             authKeyFile = config.age.secrets.tailscaleAuthKey.path;
             extraUpFlags = [ "--ssh" ];
           };
+        };
+
+        system.autoUpgrade = {
+          enable = true;
+
+          dates = "hourly";
+          flake = "github:getchoo/borealis#${config.networking.hostName}";
+          flags = [ "--refresh" ];
         };
 
         # I use exclusively Tailscale auth on some machines
