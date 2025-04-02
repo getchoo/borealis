@@ -14,6 +14,10 @@
       enable = lib.mkDefault config.programs.git.enable;
 
       settings = {
+        ui = {
+          pager = "less -FRX";
+        };
+
         user = {
           name = "Seth Flynn";
           email = "getchoo@tuta.io";
