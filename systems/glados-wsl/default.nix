@@ -24,6 +24,11 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   services = {
+    guix = {
+      enable = true;
+      gc.enable = true;
+    };
+
     tailscale.enable = false;
   };
 
