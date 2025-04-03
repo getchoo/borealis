@@ -32,6 +32,7 @@ in
         };
 
         age.secrets = {
+          discordWebhookURL.file = "${secretsDir}/discordWebhookURL.age";
           tailscaleAuthKey.file = "${secretsDir}/tailscaleAuthKey.age";
         };
 
@@ -56,6 +57,17 @@ in
         };
 
         services = {
+          systemd-discord-notifier = {
+            enable = true;
+
+            content = ''
+              # 🚨 %i.service failed! 🚨
+              <@746501080409702461>
+            '';
+
+            webhookURLFile = config.age.secrets.discordWebhookURL.path;
+          };
+
           tailscale = {
             enable = true;
 
