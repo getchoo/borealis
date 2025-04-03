@@ -1,4 +1,10 @@
-{ modulesPath, inputs, ... }:
+{
+  config,
+  modulesPath,
+  inputs,
+  ...
+}:
+
 {
   imports = [
     (modulesPath + "/profiles/minimal.nix")
@@ -10,16 +16,22 @@
   ];
 
   borealis = {
+    github-mirror = {
+      enable = true;
+
+      hostname = "git." + config.networking.domain;
+      mirroredUsers = [
+        "getchoo"
+        "getchoo-archive"
+      ];
+    };
+
     profiles.server.enable = true;
   };
 
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-  };
-
-  catppuccin = {
-    forgejo.enable = true;
   };
 
   networking = {
@@ -35,8 +47,6 @@
   nixpkgs.hostPlatform = "aarch64-linux";
 
   services = {
-    forgejo.enable = true;
-
     hedgedoc.enable = true;
 
     kanidm = {
