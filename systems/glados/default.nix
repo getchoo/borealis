@@ -67,11 +67,6 @@
     fstrim.enable = true;
     fwupd.enable = true;
 
-    guix = {
-      enable = true;
-      gc.enable = true;
-    };
-
     xserver = {
       enable = true;
       desktopManager.gnome.enable = true;
