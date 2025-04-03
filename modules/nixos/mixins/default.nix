@@ -6,16 +6,13 @@
     ./catppuccin.nix
     ./forgejo.nix
     ./gnome.nix
-    ./grafana.nix
     ./hedgedoc.nix
     ./home-manager.nix
-    ./journal-upload.nix
     ./kanidm.nix
     ./lanzaboote.nix
     ./miniflux.nix
     ./nginx.nix
     ./niri.nix
-    ./node-exporter.nix
     ./nvidia.nix
     ./pipewire.nix
     ./plasma.nix

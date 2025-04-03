@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix
-    ./victoria-metrics.nix
 
     inputs.self.nixosModules.default
   ];
@@ -37,8 +36,6 @@
 
   services = {
     forgejo.enable = true;
-
-    grafana.enable = true;
 
     hedgedoc.enable = true;
 

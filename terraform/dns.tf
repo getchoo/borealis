@@ -60,11 +60,6 @@ locals {
       content = resource.oci_core_instance.atlas.public_ip
     },
     {
-      name    = "grafana"
-      type    = "A"
-      content = resource.oci_core_instance.atlas.public_ip
-    },
-    {
       name    = "hedgedoc"
       type    = "A"
       content = resource.oci_core_instance.atlas.public_ip
