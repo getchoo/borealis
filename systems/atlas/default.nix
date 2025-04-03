@@ -44,12 +44,7 @@
       enableServer = true;
     };
 
-    miniflux = {
-      enable = true;
-      config = {
-        METRICS_COLLECTOR = 1;
-      };
-    };
+    miniflux.enable = true;
 
     nginx.enable = true;
   };

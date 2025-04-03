@@ -28,10 +28,6 @@ in
             DISABLE_SSH = lib.mkDefault true;
           };
 
-          metrics = {
-            ENABLED = true;
-          };
-
           oauth2_client = {
             ENABLE_AUTO_REGISTRATION = lib.mkDefault true;
           };
