@@ -2,18 +2,33 @@
   config,
   lib,
   pkgs,
+  utils,
   ...
 }:
 
 let
   cfg = config.services.systemd-discord-notifier;
 
-  # Add our template unit to each service by default if enabled
-  systemdServicesSubmodule = {
-    config = lib.mkIf cfg.enable {
-      onFailure = lib.mkDefault [ "discord-notify-failure@%N.service" ];
-    };
-  };
+  unitFormat = pkgs.formats.systemd;
+  systemVendorDir = "lib/systemd/system";
+
+  systemdPackage = pkgs.linkFarm "systemd-discord-notifier-unit-overrides" (
+    {
+      # Base override for all services
+      "${systemVendorDir}/service.d/discord-notify-failure.conf" =
+        unitFormat.generate "systemd-discord-notifier.conf"
+          {
+            Unit = {
+              OnFailure = [ "discord-notify-failure@%N.service" ];
+            };
+          };
+    }
+    // lib.listToAttrs (
+      map (
+        name: lib.nameValuePair "${systemVendorDir}/${name}.d/discord-notify-failure.conf" pkgs.emptyFile
+      ) cfg.excludeServices
+    )
+  );
 in
 
 {
@@ -25,6 +40,12 @@ in
         type = lib.types.str;
         default = "# 🚨 %i.service failed! 🚨";
         description = "String template for webhook message content.";
+      };
+
+      excludeServices = lib.mkOption {
+        type = lib.types.listOf utils.systemdUtils.lib.unitNameType;
+        default = [ ];
+        description = "List of service names to exclude from notifications.";
       };
 
       webhookURLFile = lib.mkOption {
@@ -39,36 +60,40 @@ in
         example = "/run/secrets/discordWebhookURL";
       };
     };
-
-    systemd.services = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule systemdServicesSubmodule);
-    };
   };
 
   config = lib.mkIf cfg.enable {
-    systemd.services."discord-notify-failure@" = {
-      description = "Notify of service failures on Discord.";
+    services.systemd-discord-notifier = {
+      excludeServices = [ "discord-notify-failure@.service" ];
+    };
 
-      after = [ "network.target" ];
+    systemd = {
+      packages = [ systemdPackage ];
 
-      path = [ pkgs.curl ];
+      services."discord-notify-failure@" = {
+        description = "Notify of service failures on Discord.";
 
-      script = ''
-        systemd-creds cat webhook-url | xargs curl -X POST -F "content=$CONTENT"
-      '';
+        after = [ "network.target" ];
 
-      enableStrictShellChecks = true;
+        path = [ pkgs.curl ];
 
-      environment = {
-        CONTENT = cfg.content;
-      };
+        script = ''
+          systemd-creds cat webhook-url | xargs curl -X POST -F "content=$CONTENT"
+        '';
 
-      serviceConfig = {
-        Type = "oneshot";
-        # TODO: Why doesn't AssertCredential work with this?
-        LoadCredential = lib.mkIf (cfg.webhookURLFile != null) "webhook-url:${cfg.webhookURLFile}";
-        # TODO: Harden
-        DynamicUser = true;
+        enableStrictShellChecks = true;
+
+        environment = {
+          CONTENT = cfg.content;
+        };
+
+        serviceConfig = {
+          Type = "oneshot";
+          # TODO: Why doesn't AssertCredential work with this?
+          LoadCredential = lib.mkIf (cfg.webhookURLFile != null) "webhook-url:${cfg.webhookURLFile}";
+          # TODO: Harden
+          DynamicUser = true;
+        };
       };
     };
   };
