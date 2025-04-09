@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   modulesPath,
   inputs,
   secretsDir,
@@ -15,6 +14,7 @@
     ./moyai.nix
     ./navidrome.nix
     ./nixpkgs-tracker-bot.nix
+    ./slskd.nix
 
     inputs.self.nixosModules.default
   ];
@@ -73,25 +73,6 @@
     };
 
     nginx.enable = true;
-
-    slskd = {
-      enable = true;
-
-      openFirewall = true;
-      domain = null;
-
-      environmentFile = pkgs.emptyFile; # Dumb hack because I manage this locally
-
-      settings = {
-        shares = {
-          directories = [ config.services.navidrome.settings.MusicFolder ];
-        };
-
-        soulseek = {
-          description = "getchoo uh huh";
-        };
-      };
-    };
   };
 
   system.stateVersion = "23.05";
