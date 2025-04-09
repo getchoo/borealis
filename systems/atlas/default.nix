@@ -2,6 +2,7 @@
   config,
   modulesPath,
   inputs,
+  secretsDir,
   ...
 }:
 
@@ -9,6 +10,7 @@
   imports = [
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
+    ./kanidm.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix
 
@@ -29,6 +31,10 @@
     profiles.server.enable = true;
   };
 
+  age.secrets = {
+    miniflux.file = secretsDir + "/miniflux.age";
+  };
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -47,14 +53,22 @@
   nixpkgs.hostPlatform = "aarch64-linux";
 
   services = {
-    hedgedoc.enable = true;
+    hedgedoc = {
+      enable = true;
 
-    kanidm = {
-      enableClient = true;
-      enableServer = true;
+      settings = {
+        domain = "hedgedoc." + config.networking.domain;
+      };
     };
 
-    miniflux.enable = true;
+    miniflux = {
+      enable = true;
+
+      adminCredentialsFile = config.age.secrets.miniflux.path;
+      config = {
+        BASE_URL = "https://miniflux.${config.networking.domain}";
+      };
+    };
 
     nginx.enable = true;
   };

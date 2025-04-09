@@ -22,14 +22,9 @@ in
         settings = {
           server = {
             PROTOCOL = "http";
-            DOMAIN = lib.mkDefault ("git." + config.networking.domain);
             ROOT_URL = "https://" + forgejoCfg.settings.server.DOMAIN + "/";
 
             DISABLE_SSH = lib.mkDefault true;
-          };
-
-          oauth2_client = {
-            ENABLE_AUTO_REGISTRATION = lib.mkDefault true;
           };
 
           service = {
@@ -59,6 +54,7 @@ in
           argument = inputs.codeberg-infra + "/etc/gitea/public/robots.txt";
         };
 
+        # Required for safe directory traversal
         ${dirOf robotsTxtPath}.d = {
           inherit (forgejoCfg) user group;
         };
