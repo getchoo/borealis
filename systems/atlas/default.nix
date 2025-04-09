@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
     ./kanidm.nix
     ./moyai.nix
+    ./navidrome.nix
     ./nixpkgs-tracker-bot.nix
 
     inputs.self.nixosModules.default
@@ -88,7 +89,7 @@
 
       settings = {
         shares = {
-          directories = [ "/srv/music" ];
+          directories = [ config.services.navidrome.settings.MusicFolder ];
         };
 
         soulseek = {
