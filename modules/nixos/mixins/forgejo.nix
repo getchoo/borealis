@@ -21,15 +21,10 @@ in
 
         settings = {
           server = {
-            PROTOCOL = "http";
-            DOMAIN = lib.mkDefault ("git." + config.networking.domain);
+            PROTOCOL = "http+unix";
             ROOT_URL = "https://" + forgejoCfg.settings.server.DOMAIN + "/";
 
             DISABLE_SSH = lib.mkDefault true;
-          };
-
-          oauth2_client = {
-            ENABLE_AUTO_REGISTRATION = lib.mkDefault true;
           };
 
           service = {
@@ -50,7 +45,7 @@ in
     (lib.mkIf forgejoCfg.enable {
       services.nginx.virtualHosts.${forgejoCfg.settings.server.DOMAIN} = {
         locations."/" = {
-          proxyPass = "http://${forgejoCfg.settings.server.HTTP_ADDR}:${toString forgejoCfg.settings.server.HTTP_PORT}";
+          proxyPass = "http://unix:${forgejoCfg.settings.server.HTTP_ADDR}";
         };
       };
 
@@ -59,6 +54,7 @@ in
           argument = inputs.codeberg-infra + "/etc/gitea/public/robots.txt";
         };
 
+        # Required for safe directory traversal
         ${dirOf robotsTxtPath}.d = {
           inherit (forgejoCfg) user group;
         };

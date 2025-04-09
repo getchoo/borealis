@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let
-  kanidmCfg = config.services.kanidm;
+  cfg= config.services.kanidm;
 
-  inherit (kanidmCfg.serverSettings) domain;
+  inherit (cfg.serverSettings) domain;
   certDirectory = config.security.acme.certs.${domain}.directory;
   certGroup = config.users.groups.nginx-kanidm;
 in
@@ -15,13 +15,12 @@ in
         package = pkgs.kanidm_1_5;
 
         clientSettings = {
-          uri = lib.mkDefault kanidmCfg.serverSettings.origin;
+          uri = lib.mkDefault cfg.serverSettings.origin;
         };
 
         serverSettings = {
           tls_chain = certDirectory + "/fullchain.pem";
           tls_key = certDirectory + "/key.pem";
-          domain = lib.mkDefault ("auth." + config.networking.domain);
           origin = lib.mkDefault ("https://" + domain);
 
           online_backup = {
@@ -31,14 +30,14 @@ in
       };
     }
 
-    (lib.mkIf kanidmCfg.enableServer {
+    (lib.mkIf cfg.enableServer {
       security.acme.certs.${domain} = {
         group = config.users.groups.nginx-kanidm.name;
       };
 
       services.nginx.virtualHosts.${domain} = {
         locations."/" = {
-          proxyPass = "https://" + kanidmCfg.serverSettings.bindaddress;
+          proxyPass = "https://" + cfg.serverSettings.bindaddress;
         };
       };
 

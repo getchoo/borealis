@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   secretsDir,
   inputs,
   inputs',
@@ -45,7 +46,13 @@ in
         # We don't need it here
         documentation.enable = false;
 
-        environment.defaultPackages = lib.mkForce [ ];
+        environment = {
+          defaultPackages = lib.mkForce [ ];
+          systemPackages = with pkgs; [
+            ghostty.terminfo
+            rsync
+          ];
+        };
 
         nix.gc = {
           dates = "*:0/30"; # Every 30 minutes
