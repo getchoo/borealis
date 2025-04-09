@@ -65,11 +65,6 @@ locals {
       content = resource.oci_core_instance.atlas.public_ip
     },
     {
-      name    = "slskd"
-      type    = "A"
-      content = resource.oci_core_instance.atlas.public_ip
-    },
-    {
       name    = "music"
       type    = "A"
       content = resource.oci_core_instance.atlas.public_ip

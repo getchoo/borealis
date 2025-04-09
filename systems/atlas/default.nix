@@ -78,14 +78,9 @@
       enable = true;
 
       openFirewall = true;
-      domain = "slskd." + config.networking.domain;
+      domain = null;
 
       environmentFile = pkgs.emptyFile; # Dumb hack because I manage this locally
-
-      nginx = {
-        enableACME = true;
-        forceSSL = true;
-      };
 
       settings = {
         shares = {
