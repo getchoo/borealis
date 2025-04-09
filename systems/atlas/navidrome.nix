@@ -15,7 +15,7 @@ in
     };
 
     nginx = {
-      virtualHosts."navidrome.${config.networking.domain}" = {
+      virtualHosts."music.${config.networking.domain}" = {
         locations."/" = {
           proxyPass = "http://${
             lib.concatStringsSep ":" [
