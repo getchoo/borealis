@@ -6,8 +6,6 @@
 }:
 
 let
-  cfg = config.services.slskd;
-
   beetsConfigFormat = pkgs.formats.yaml { };
   beetsSettings = {
     directory = "/srv/music";
@@ -34,7 +32,7 @@ let
     ];
 
     text = ''
-      jq --raw-output '"${cfg.settings.directories.downloads}/" + .localFilename' <<< "$SLSKD_SCRIPT_DATA" \
+      jq --raw-output '.localFilename' <<< "$SLSKD_SCRIPT_DATA" \
         | xargs beet --config ${beetsConfigFile} import --noautotag
     '';
   };
