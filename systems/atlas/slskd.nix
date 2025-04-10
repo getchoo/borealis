@@ -56,7 +56,7 @@ in
       openFirewall = true;
       domain = null;
 
-      environmentFile = pkgs.emptyFile; # Dumb hack because I manage this locally
+      environmentFile = "/etc/slskd.conf";
 
       settings = {
         directories = {
