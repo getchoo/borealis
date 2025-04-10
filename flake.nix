@@ -72,6 +72,11 @@
       flake = false;
     };
 
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     getchpkgs = {
       url = "github:getchoo/getchpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
