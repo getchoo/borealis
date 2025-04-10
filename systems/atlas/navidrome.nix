@@ -27,4 +27,10 @@ in
       };
     };
   };
+
+  systemd.services.navidrome = {
+    serviceConfig = {
+      EnvironmentFile = "/etc/navidrome.conf";
+    };
+  };
 }
