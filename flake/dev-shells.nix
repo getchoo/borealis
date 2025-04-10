@@ -11,7 +11,7 @@
     let
       inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
-      nix = inputs'.lix-module.packages.default;
+      nix = pkgs.nixVersions.nix_2_28;
 
       overrideNix = p: p.override { inherit nix; };
       nixos-rebuild = overrideNix pkgs.nixos-rebuild-ng;

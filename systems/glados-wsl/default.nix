@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.self.nixosModules.default
-    inputs.lix-module.nixosModules.default
   ];
 
   borealis = {
