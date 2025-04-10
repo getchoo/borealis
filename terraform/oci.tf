@@ -80,4 +80,16 @@ resource "oci_core_security_list" "borealis_global" {
       max = 443
     }
   }
+
+  ingress_security_rules {
+    description = "Allow traffic"
+
+    protocol = "6"
+    source   = "0.0.0.0/0"
+
+    tcp_options {
+      min = 50300
+      max = 50300
+    }
+  }
 }
