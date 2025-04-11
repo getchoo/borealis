@@ -28,8 +28,6 @@ in
 
     environment.systemPackages = [ (pkgs.nixos-rebuild-ng.override { nix = config.nix.package; }) ];
 
-    nix.package = pkgs.nixVersions.nix_2_28;
-
     services = {
       tailscale.enable = lib.mkDefault true;
     };
