@@ -5,25 +5,17 @@ let
 in
 
 {
+  borealis.reverseProxies."music.${config.networking.domain}" = {
+    socket = lib.removePrefix "unix:" cfg.settings.Address;
+  };
+
   services = {
     navidrome = {
       enable = true;
 
       settings = {
+        Address = "unix:/run/navidrome/navidrome.sock";
         MusicFolder = "/srv/music";
-      };
-    };
-
-    nginx = {
-      virtualHosts."music.${config.networking.domain}" = {
-        locations."/" = {
-          proxyPass = "http://${
-            lib.concatStringsSep ":" [
-              cfg.settings.Address
-              (toString cfg.settings.Port)
-            ]
-          }";
-        };
       };
     };
   };
@@ -32,5 +24,10 @@ in
     serviceConfig = {
       EnvironmentFile = "/etc/navidrome.conf";
     };
+  };
+
+  # Required for NGINX to access the Unix socket
+  users.groups.${config.services.navidrome.group} = {
+    members = [ config.services.nginx.user ];
   };
 }
