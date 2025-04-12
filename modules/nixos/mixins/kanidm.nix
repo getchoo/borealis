@@ -1,11 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  cfg= config.services.kanidm;
+  cfg = config.services.kanidm;
 
   inherit (cfg.serverSettings) domain;
   certDirectory = config.security.acme.certs.${domain}.directory;
-  certGroup = config.users.groups.nginx-kanidm;
 in
 
 {
@@ -40,13 +44,11 @@ in
       };
 
       # Create a group for Kanidm and NGINX so they can share the domain's SSL certificate
-      users = {
-        groups.nginx-kanidm = { };
-
-        users = {
-          kanidm.extraGroups = [ certGroup.name ];
-          ${config.services.nginx.user}.extraGroups = [ certGroup.name ];
-        };
+      users.groups.nginx-kanidm = {
+        members = [
+          config.services.nginx.user
+          "kanidm"
+        ];
       };
     })
   ];
