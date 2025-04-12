@@ -14,7 +14,7 @@ in
       services = {
         hedgedoc = {
           settings = {
-            port = 4000;
+            path = "/run/hedgedoc/hedgedoc.sock";
 
             allowOrigin = [
               cfg.settings.domain
@@ -35,11 +35,13 @@ in
       services = {
         nginx.virtualHosts.${cfg.settings.domain} = {
           locations."/" = {
-            proxyPass = "http://${cfg.settings.host}:${toString cfg.settings.port}";
+            proxyPass = "http://unix:" + cfg.settings.path;
             proxyWebsockets = true;
           };
         };
       };
+
+      users.groups.hedgedoc.members = [ config.services.nginx.user ];
     })
   ];
 }

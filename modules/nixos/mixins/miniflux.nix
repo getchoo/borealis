@@ -14,8 +14,6 @@
       };
     };
 
-    # Create the socket manually to ensure NGINX has permission for the socket's parent directory
-    # ...since for some reason Miniflux will not give it the same `0777` permission as the socket itself
     systemd = {
       services.miniflux = {
         requires = [ "miniflux.socket" ];
