@@ -14,7 +14,7 @@ in
       services = {
         hedgedoc = {
           settings = {
-            port = 4000;
+            path = "/run/hedgedoc/hedgedoc.sock";
 
             allowOrigin = [
               cfg.settings.domain
@@ -32,14 +32,12 @@ in
     }
 
     (lib.mkIf cfg.enable {
-      services = {
-        nginx.virtualHosts.${cfg.settings.domain} = {
-          locations."/" = {
-            proxyPass = "http://${cfg.settings.host}:${toString cfg.settings.port}";
-            proxyWebsockets = true;
-          };
-        };
+      borealis.reverseProxies.${cfg.settings.domain} = {
+        socket = cfg.settings.path;
       };
+
+      # Required to access the above socket
+      users.groups.hedgedoc.members = [ config.services.nginx.user ];
     })
   ];
 }
