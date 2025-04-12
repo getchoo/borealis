@@ -4,14 +4,14 @@
   ...
 }:
 
+let
+  domain = lib.removePrefix "https://" config.services.miniflux.config.BASE_URL;
+in
+
 {
   config = lib.mkIf config.services.miniflux.enable {
-    services = {
-      nginx.virtualHosts.${lib.removePrefix "https://" config.services.miniflux.config.BASE_URL} = {
-        locations."/" = {
-          proxyPass = "http://unix:${lib.head config.systemd.sockets.miniflux.listenStreams}";
-        };
-      };
+    borealis.reverseProxies.${domain} = {
+      socket = lib.head config.systemd.sockets.miniflux.listenStreams;
     };
 
     systemd = {

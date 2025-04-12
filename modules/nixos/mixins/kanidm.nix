@@ -31,14 +31,12 @@ in
     }
 
     (lib.mkIf cfg.enableServer {
-      security.acme.certs.${domain} = {
-        group = config.users.groups.nginx-kanidm.name;
+      borealis.reverseProxies.${domain} = {
+        address = cfg.serverSettings.bindaddress;
       };
 
-      services.nginx.virtualHosts.${domain} = {
-        locations."/" = {
-          proxyPass = "https://" + cfg.serverSettings.bindaddress;
-        };
+      security.acme.certs.${domain} = {
+        group = config.users.groups.nginx-kanidm.name;
       };
 
       # Create a group for Kanidm and NGINX so they can share the domain's SSL certificate

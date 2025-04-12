@@ -32,15 +32,11 @@ in
     }
 
     (lib.mkIf cfg.enable {
-      services = {
-        nginx.virtualHosts.${cfg.settings.domain} = {
-          locations."/" = {
-            proxyPass = "http://unix:" + cfg.settings.path;
-            proxyWebsockets = true;
-          };
-        };
+      borealis.reverseProxies.${cfg.settings.domain} = {
+        socket = cfg.settings.path;
       };
 
+      # Required to access the above socket
       users.groups.hedgedoc.members = [ config.services.nginx.user ];
     })
   ];

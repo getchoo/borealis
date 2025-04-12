@@ -43,10 +43,8 @@ in
     }
 
     (lib.mkIf forgejoCfg.enable {
-      services.nginx.virtualHosts.${forgejoCfg.settings.server.DOMAIN} = {
-        locations."/" = {
-          proxyPass = "http://unix:${forgejoCfg.settings.server.HTTP_ADDR}";
-        };
+      borealis.reverseProxies.${forgejoCfg.settings.server.DOMAIN} = {
+        socket = forgejoCfg.settings.server.HTTP_ADDR;
       };
 
       systemd.tmpfiles.settings."forgejo-settings" = {
