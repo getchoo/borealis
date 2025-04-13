@@ -64,6 +64,8 @@
       };
     };
 
+    lidarr.enable = true;
+
     miniflux = {
       enable = true;
 
