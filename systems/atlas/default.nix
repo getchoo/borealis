@@ -10,6 +10,7 @@
   imports = [
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
+    ./beets.nix
     ./kanidm.nix
     ./moyai.nix
     ./navidrome.nix
