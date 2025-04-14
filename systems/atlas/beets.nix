@@ -8,6 +8,53 @@ let
     directory = "/srv/music";
     library = "/var/lib/beets.db";
 
+    aunique = {
+      disambiguators = toString [
+        "albumtype"
+        "releasegroupdisambig"
+        "albumdisambig"
+        "year"
+        "label"
+        "catalognum"
+      ];
+    };
+
+    plugins = toString [
+      "badfiles"
+      "duplicates"
+      "fetchart"
+      "info"
+      "lyrics"
+      "mbsync"
+      "scrub"
+    ];
+
+    badfiles = {
+      check_on_import = true;
+    };
+
+    duplicates = {
+      delete = true;
+      full = true;
+      merge = true;
+      tiebreak.items = [
+        "bitrate"
+        "samplerate"
+      ];
+    };
+
+    fetchart = {
+      auto = true;
+    };
+
+    lyrics = {
+      auto = true;
+    };
+
+    scrub = {
+      auto = true;
+    };
+
     import = {
       move = true;
       resume = true;
