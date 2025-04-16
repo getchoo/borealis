@@ -6,6 +6,5 @@
     ./nvk.nix
     ./proxies.nix
     ./remote-builders.nix
-    ./systemd-discord-notifier.nix
   ];
 }

@@ -18,6 +18,10 @@ let
 in
 
 {
+  imports = [ 
+    inputs.getchpkgs.nixosModules.systemd-discord-notifier
+  ];
+
   options.borealis.profiles.server = {
     enable = lib.mkEnableOption "the Server profile";
   };
