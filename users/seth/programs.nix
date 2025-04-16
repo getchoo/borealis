@@ -14,19 +14,7 @@
     catppuccin.enable = true;
 
     home.packages = with pkgs; [
-      (
-        let
-          getchvim = inputs'.getchvim.packages.default;
-        in
-        # remove desktop file
-        pkgs.symlinkJoin {
-          name = "${getchvim.name}-nodesktop";
-          paths = [ getchvim ];
-          postBuild = ''
-            rm -rf $out/share/{applications,icons}
-          '';
-        }
-      )
+      inputs'.getchvim.packages.default
 
       hydra-check
       nixfmt-rfc-style
