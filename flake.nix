@@ -20,12 +20,14 @@
       imports = [
         inputs.getchpkgs.flakeModules.checks
         inputs.getchpkgs.flakeModules.configurations
+        inputs.terranix.flakeModule
 
         ./flake
         ./lib
         ./modules
         ./openwrt
         ./systems
+        # ./tf
         ./users
       ];
     };
@@ -144,6 +146,15 @@
 
     openwrt-imagebuilder = {
       url = "github:astro/nix-openwrt-imagebuilder";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "agenix/systems";
+      };
+    };
+
+    terranix = {
+      url = "github:terranix/terranix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";

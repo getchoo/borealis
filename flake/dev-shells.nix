@@ -33,7 +33,7 @@
               self'.formatter
 
               pkgs.just
-              pkgs.opentofu
+              # config.terraform.terraformConfigurations.borealis.result.terraformWrapper
 
               # See above comment about Nix
               nixos-rebuild

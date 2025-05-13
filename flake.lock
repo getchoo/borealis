@@ -460,7 +460,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
-        "openwrt-imagebuilder": "openwrt-imagebuilder"
+        "openwrt-imagebuilder": "openwrt-imagebuilder",
+        "terranix": "terranix"
       }
     },
     "rust-overlay": {
@@ -496,6 +497,33 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "terranix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "agenix",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745783272,
+        "narHash": "sha256-BPGEM7RN58GFI6+y9GhG3E/7DEfNo9GvvYM3PJ/x5wU=",
+        "owner": "terranix",
+        "repo": "terranix",
+        "rev": "81d8ff31bb1f5329180068ab450bc06ecbd4683c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "terranix",
+        "repo": "terranix",
         "type": "github"
       }
     }

@@ -1,0 +1,7 @@
+{
+  borealis.tailscale.tailnets = {
+    "" = {
+
+    };
+  };
+}
