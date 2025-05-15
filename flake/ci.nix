@@ -45,11 +45,6 @@
             script = "deadnix --fail ${self}";
           };
 
-          hclfmt = {
-            dependencies = [ pkgs.hclfmt ];
-            script = "hclfmt -require-no-change ${self}/terraform/*.tf";
-          };
-
           just = {
             dependencies = [ pkgs.just ];
             script = ''
@@ -67,13 +62,6 @@
           statix = {
             dependencies = [ pkgs.statix ];
             script = "statix check ${self}";
-          };
-
-          tflint = {
-            dependencies = [ pkgs.tflint ];
-            script = ''
-              tflint --chdir=${self}/terraform --format=sarif |& tee $out || true
-            '';
           };
         };
       })
