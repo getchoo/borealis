@@ -8,6 +8,8 @@
 let
   inherit (pkgs.stdenv.hostPlatform) isLinux;
 
+  hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
+
   # TODO: Remove this nonsense when all implementations remove repl-flake
   hasReplFlake =
     lib.versionOlder config.nix.package.version "2.22.0" # repl-flake was removed in nix 2.22.0
@@ -16,7 +18,7 @@ let
       && lib.versionOlder config.nix.package.version "2.93.0" # until 2.93
     );
 
-  hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
+  hasLixSubcommand = lib.versionAtLeast config.nix.package.version "2.93.0";
 in
 {
   config = lib.mkMerge [
@@ -65,12 +67,16 @@ in
       };
     }
 
+    (lib.mkIf hasAlwaysAllowSubstitutes {
+      nix.settings.always-allow-substitutes = true;
+    })
+
     (lib.mkIf hasReplFlake {
       nix.settings.experimental-features = [ "repl-flake" ];
     })
 
-    (lib.mkIf hasAlwaysAllowSubstitutes {
-      nix.settings.always-allow-substitutes = true;
+    (lib.mkIf hasLixSubcommand {
+      nix.settings.experimental-features = [ "lix-custom-sub-commands" ];
     })
   ];
 }

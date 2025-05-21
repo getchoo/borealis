@@ -6,7 +6,7 @@ let
 in
 
 {
-      age.secrets = {
+  age.secrets = {
     hedgedocClientSecret.file = secretsDir + "/hedgedocClientSecret.age";
   };
 
@@ -16,14 +16,14 @@ in
       enableServer = true;
 
       serverSettings = {
-          domain = "auth." + config.networking.domain;
+        domain = "auth." + config.networking.domain;
       };
     };
 
     hedgedoc = {
-        environmentFile = config.age.secrets.hedgedocClientSecret.path;
+      environmentFile = config.age.secrets.hedgedocClientSecret.path;
       settings = {
-          email = false;
+        email = false;
 
         oauth2 = {
           clientID = "hedgedoc";
