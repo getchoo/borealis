@@ -30,7 +30,6 @@
         };
 
         systemPackages = [
-          inputs'.krunner-nix.packages.default # Thank you Leah
           pkgs.ghostty
           pkgs.haruna # MPV frontend
         ];

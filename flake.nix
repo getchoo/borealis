@@ -31,8 +31,8 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs-stable.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -40,7 +40,7 @@
     };
 
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -87,11 +87,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    krunner-nix = {
-      url = "github:pluiedev/krunner-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {
@@ -119,6 +114,13 @@
     moyai-bot = {
       url = "github:getchoo/moyai-bot";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     nix-index-database = {

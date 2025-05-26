@@ -11,6 +11,7 @@
     ./home-manager.nix
     ./kanidm.nix
     ./lanzaboote.nix
+    ./lix.nix
     ./miniflux.nix
     ./nginx.nix
     ./niri.nix

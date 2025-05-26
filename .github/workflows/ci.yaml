@@ -7,37 +7,38 @@ on:
   workflow_dispatch:
 
 jobs:
+  evaluate:
+    name: Evaluate Nix matrix
+
+    runs-on: ubuntu-24.04-arm
+
+    outputs:
+      matrix: ${{ steps.evaluate-matrix.outputs.matrix }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Evaluate matrix
+        id: evaluate-matrix
+        run: |
+          echo "matrix=$(nix eval --json '.#githubActions.matrix')" >> "$GITHUB_OUTPUT"
+
   build:
-    name: Build outputs (${{ matrix.system }})
+    name: Build (${{ matrix.attr }})
+
+    needs: [ evaluate ]
 
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - system: x86_64-linux
-            os: ubuntu-latest
-
-          - system: aarch64-linux
-            os: ubuntu-22.04-arm
+      matrix: ${{ fromJSON(needs.evaluate.outputs.matrix) }}
 
     runs-on: ${{ matrix.os }}
 
     steps:
-        # https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
-      - name: Clear disk space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-
-        # Only required for building Lix
-        # TODO: Remove after https://git.lix.systems/lix-project/lix/issues/545 is fixed
-      - name: Loosen AppArmor Restrictions
-        run: |
-          sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
-          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -50,14 +51,21 @@ jobs:
           name: getchoo
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: Run checks
+        # Only required for building Lix
+        # TODO: Remove after https://git.lix.systems/lix-project/lix/issues/545 is fixed
+      - name: Loosen AppArmor Restrictions
         run: |
-          nix flake check \
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
+      - name: Build attribute
+        env:
+          ATTR: ${{ matrix.attr }}
+        run: |
+          nix build ".#$ATTR" \
             --fallback \
             --no-allow-import-from-derivation \
-            --no-update-lock-file \
-            --print-build-logs \
-            --show-trace
+            --print-build-logs
 
   build-gate:
     name: Build gate
