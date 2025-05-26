@@ -42,11 +42,14 @@ in
     programs = {
       alacritty.enable = true;
       fuzzel.enable = true;
-      mako.enable = true;
       ncspot.enable = true; # Official Spotify has ugly CSD
       swaylock.enable = true;
       yazi.enable = true;
       zellij.enable = true;
+    };
+
+    services = {
+      mako.enable = true;
     };
 
     seth = {
