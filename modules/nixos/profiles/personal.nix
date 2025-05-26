@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -26,12 +25,12 @@ in
       };
     };
 
-    environment.systemPackages = [ (pkgs.nixos-rebuild-ng.override { nix = config.nix.package; }) ];
-
     lix.enable = true;
 
     services = {
       tailscale.enable = lib.mkDefault true;
     };
+
+    system.rebuild.enableNg = true;
   };
 }

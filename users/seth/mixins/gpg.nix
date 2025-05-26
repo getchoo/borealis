@@ -15,7 +15,7 @@ in
     (lib.mkIf isLinux {
       services.gpg-agent = {
         enable = lib.mkDefault config.programs.gpg.enable;
-        pinentryPackage = osConfig.programs.gnupg.agent.pinentryPackage or pkgs.pinentry-curses;
+        pinentry.package = osConfig.programs.gnupg.agent.pinentryPackage or pkgs.pinentry-curses;
       };
     })
   ];
