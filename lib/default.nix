@@ -76,5 +76,52 @@ in
           attrName: value: lib.nameValuePair "${attrType}-${attrName}" (self.derivationFrom value)
         ) (lib.filterAttrs (lib.const (self.isCompatibleWith system)) values)
       ) { };
+
+    /**
+      Merge a list of attribute sets, recursively
+
+      This is what you probably expect the base mergeAttrsList to do
+
+      # Example
+
+      ```nix
+      mergeAttrsList' [ { foo = { bar = true; }; } { foo = { baz = false; }; } ]
+      => { foo = { bar = true; baz = false; }; }
+      ```
+
+      # Type
+
+      ```
+      mergeAttrsList' :: List -> AttrSet
+      ```
+
+      # Arguments
+
+      - [list] List of attribute sets to merge
+    */
+    mergeAttrsList' = lib.foldl' lib.recursiveUpdate { };
+
+    /**
+      Make the names of attributes in a set unqiue from those in another by adding a prefix
+
+      # Example
+
+      ```nix
+      makeUniqueAttrNames "foo" { bar = true; baz = false; }
+      => { "foo-bar" = true; "foo-baz" = false; }
+      ```
+
+      # Type
+
+      ```
+      makeUniqueAttrNames :: String -> AttrSet -> AttrSet
+      ```
+
+      # Arguments
+
+      - [prefix] Prefix to add to attribute names
+      - [attrset] Attribute set to operate on
+    */
+    makeUniqueAttrNames = prefix: lib.mapAttrs' (name: lib.nameValuePair "${prefix}-${name}");
   };
 }

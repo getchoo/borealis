@@ -1,81 +1,88 @@
-{ self, ... }:
+{
+  config,
+  lib,
+  inputs,
+  self,
+  ...
+}:
+
+let
+  ciSystems = lib.intersectLists lib.platforms.linux config.systems;
+
+  configurationsFor = lib.genAttrs ciSystems (
+    lib.flip self.lib.collectNestedDerivationsFor {
+      inherit (self) nixosConfigurations homeConfigurations darwinConfigurations;
+    }
+  );
+
+  mapUniqueAttrNames = prefix: lib.mapAttrs (lib.const (self.lib.makeUniqueAttrNames prefix));
+in
 
 {
+  flake = {
+    githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
+      checks = self.lib.mergeAttrsList' [
+        configurationsFor
+
+        (mapUniqueAttrNames "checks" { inherit (self.checks) x86_64-linux; })
+        (mapUniqueAttrNames "devShells" { inherit (self.devShells) x86_64-linux; })
+      ];
+    };
+  };
+
   perSystem =
     {
       config,
-      lib,
       pkgs,
-      self',
-      system,
       ...
     }:
 
-    let
-      collectNestedDerivations = self.lib.collectNestedDerivationsFor system;
-    in
+    {
+      legacyPackages = {
+        tflint = config.quickChecks.tflint.package;
+      };
 
-    lib.mkMerge [
-      {
-        checks = collectNestedDerivations {
-          inherit (self)
-            nixosConfigurations
-            homeConfigurations
-            darwinConfigurations
-            ;
+      quickChecks = {
+        actionlint = {
+          dependencies = [ pkgs.actionlint ];
+          script = "actionlint ${self}/.github/workflows/**";
         };
 
-        legacyPackages = {
-          tflint = config.quickChecks.tflint.package;
+        deadnix = {
+          dependencies = [ pkgs.deadnix ];
+          script = "deadnix --fail ${self}";
         };
-      }
 
-      # I don't really care to run these on other systems
-      (lib.mkIf (system == "x86_64-linux") {
-        checks = collectNestedDerivations { inherit (self') devShells; };
-
-        quickChecks = {
-          actionlint = {
-            dependencies = [ pkgs.actionlint ];
-            script = "actionlint ${self}/.github/workflows/**";
-          };
-
-          deadnix = {
-            dependencies = [ pkgs.deadnix ];
-            script = "deadnix --fail ${self}";
-          };
-
-          hclfmt = {
-            dependencies = [ pkgs.hclfmt ];
-            script = "hclfmt -require-no-change ${self}/terraform/*.tf";
-          };
-
-          just = {
-            dependencies = [ pkgs.just ];
-            script = ''
-              cd ${self}
-              just --check --fmt --unstable
-              just --summary
-            '';
-          };
-
-          nixfmt = {
-            dependencies = [ pkgs.nixfmt-rfc-style ];
-            script = "nixfmt --check ${self}/**/*.nix";
-          };
-
-          statix = {
-            dependencies = [ pkgs.statix ];
-            script = "statix check ${self}";
-          };
-
-          tflint = {
-            dependencies = [ pkgs.tflint ];
-            script = ''
-              tflint --chdir=${self}/terraform --format=sarif |& tee $out || true
-            '';
-          };
+        hclfmt = {
+          dependencies = [ pkgs.hclfmt ];
+          script = "hclfmt -require-no-change ${self}/terraform/*.tf";
         };
-      })
-    ];
+
+        just = {
+          dependencies = [ pkgs.just ];
+          script = ''
+            cd ${self}
+            just --check --fmt --unstable
+            just --summary
+          '';
+        };
+
+        nixfmt = {
+          dependencies = [ pkgs.nixfmt-rfc-style ];
+          script = "nixfmt --check ${self}/**/*.nix";
+        };
+
+        statix = {
+          dependencies = [ pkgs.statix ];
+          script = "statix check ${self}";
+        };
+
+        tflint = {
+          dependencies = [ pkgs.tflint ];
+          script = ''
+            tflint --chdir=${self}/terraform --format=sarif |& tee $out || true
+          '';
+        };
+      };
+    };
 }
