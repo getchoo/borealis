@@ -3,8 +3,8 @@
 {
   config = lib.mkIf config.homebrew.enable {
     homebrew.casks = [
-      "brave"
-      "ghostty"
+      "brave-browser"
+      "iterm2"
     ];
   };
 }
