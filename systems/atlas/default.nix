@@ -10,12 +10,9 @@
   imports = [
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
-    ./beets.nix
     ./kanidm.nix
     ./moyai.nix
-    ./navidrome.nix
     ./nixpkgs-tracker-bot.nix
-    ./slskd.nix
 
     inputs.self.nixosModules.default
   ];
@@ -63,8 +60,6 @@
         domain = "hedgedoc." + config.networking.domain;
       };
     };
-
-    lidarr.enable = true;
 
     miniflux = {
       enable = true;
