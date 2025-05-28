@@ -36,18 +36,17 @@ in
 
     (lib.mkIf cfg.enableServer {
       borealis.reverseProxies.${domain} = {
-        address = cfg.serverSettings.bindaddress;
+        locations."/".proxyPass = "https://" + cfg.serverSettings.bindaddress;
       };
 
       security.acme.certs.${domain} = {
-        group = config.users.groups.nginx-kanidm.name;
+        group = config.users.groups.kanidm.name;
       };
 
-      # Create a group for Kanidm and NGINX so they can share the domain's SSL certificate
-      users.groups.nginx-kanidm = {
+      # Share the SSL cert with NGINX
+      users.groups.kanidm = {
         members = [
           config.services.nginx.user
-          "kanidm"
         ];
       };
     })

@@ -51,7 +51,7 @@ let
 
             {
               locations."/" = {
-                proxyPass = "http://" + lib.optionalString usingUnixSocket "unix:" + config.address;
+                proxyPass = lib.mkDefault ("http://" + lib.optionalString usingUnixSocket "unix:" + config.address);
                 proxyWebsockets = true;
               };
             }
