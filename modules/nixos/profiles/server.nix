@@ -18,7 +18,7 @@ let
 in
 
 {
-  imports = [ 
+  imports = [
     inputs.getchpkgs.nixosModules.systemd-discord-notifier
   ];
 
