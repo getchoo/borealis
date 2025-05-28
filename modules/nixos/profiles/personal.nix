@@ -27,6 +27,10 @@ in
 
     lix.enable = true;
 
+    programs = {
+      nix-ld.enable = true;
+    };
+
     services = {
       tailscale.enable = lib.mkDefault true;
     };
