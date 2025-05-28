@@ -45,7 +45,7 @@ in
       quickChecks = {
         actionlint = {
           dependencies = [ pkgs.actionlint ];
-          script = "actionlint ${self}/.github/workflows/**";
+          script = "find ${self}/.github/workflows -type f -name '*.nix' -exec actionlint {} +";
         };
 
         deadnix = {
@@ -69,7 +69,7 @@ in
 
         nixfmt = {
           dependencies = [ pkgs.nixfmt-rfc-style ];
-          script = "nixfmt --check ${self}/**/*.nix";
+          script = "find ${self} -type f -name '*.nix' -exec nixfmt --check {} +";
         };
 
         statix = {
