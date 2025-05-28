@@ -7,7 +7,7 @@
 }:
 
 let
-  ciSystems = lib.intersectLists lib.platforms.linux config.systems;
+  ciSystems = lib.intersectLists lib.platforms.linux config.systems ++ [ "x86_64-darwin" ];
 
   configurationsFor = lib.genAttrs ciSystems (
     lib.flip self.lib.collectNestedDerivationsFor {
@@ -25,7 +25,7 @@ in
         configurationsFor
 
         (mapUniqueAttrNames "checks" { inherit (self.checks) x86_64-linux; })
-        (mapUniqueAttrNames "devShells" { inherit (self.devShells) x86_64-linux; })
+        (mapUniqueAttrNames "devShells" { inherit (self.devShells) x86_64-linux x86_64-darwin; })
       ];
     };
   };
