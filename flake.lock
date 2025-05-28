@@ -369,7 +369,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+        "url": "https://nixpkgs.dev/channel/nixos-unstable"
       }
     },
     "nixpkgs-stable": {
@@ -382,7 +382,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz"
+        "url": "https://nixpkgs.dev/channel/nixos-25.05"
       }
     },
     "nixpkgs-tracker-bot": {
