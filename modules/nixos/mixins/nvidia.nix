@@ -17,7 +17,7 @@ in
       };
     }
 
-    (lib.mkIf config.virtualisation.podman.enable {
+    (lib.mkIf (isNvidiaEnabled && config.virtualisation.podman.enable) {
       hardware = {
         nvidia-container-toolkit.enable = true;
       };
