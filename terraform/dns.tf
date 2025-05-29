@@ -65,6 +65,11 @@ locals {
       content = resource.oci_core_instance.atlas.public_ip
     },
     {
+      name    = "linkding"
+      type    = "A"
+      content = resource.oci_core_instance.atlas.public_ip
+    },
+    {
       name    = "@"
       content = "'$argon2id$v=19$m=512,t=256,p=1$AlA6W5fP7J14zMsw0W5KFQ$EQz/NCE0/TQpE64r2Eo/yOpjtMZ9WXevHsv3YYP7CXg'"
       type    = "TXT"
