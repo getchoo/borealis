@@ -6,5 +6,6 @@
     ./nvk.nix
     ./proxies.nix
     ./remote-builders.nix
+    ./rime
   ];
 }
