@@ -30,6 +30,16 @@
     };
 
     profiles.server.enable = true;
+
+    rime = {
+      enable = true;
+
+      domain = "rime." + config.networking.domain;
+      nginx = {
+        enableACME = true;
+        forceSSL = true;
+      };
+    };
   };
 
   age.secrets = {
