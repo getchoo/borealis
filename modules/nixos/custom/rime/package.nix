@@ -7,7 +7,7 @@
   pkg-config,
 }:
 
-rustPlatform.buildRustPackage (finalAttrs: {
+rustPlatform.buildRustPackage {
   pname = "rime";
   version = "0.1.8-unstable-2025-05-23";
 
@@ -22,6 +22,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     rev = "b84f6795d0dec05651a315a67f9e76c9b17861e10";
     hash = "sha256-/aMOmUGp8pHK119YwYc6HBL2ZLvSsjjYAVqO3K7ElBc=";
   };
+
+  patches = [ ./0001-feat-support-the-lockable-http-tarball-protocol.patch ];
 
   cargoHash = "sha256-HkQpluiWQo/itU7/hVK6D5pfOD1KBppPPmwYMNHSfmk=";
 
@@ -52,10 +54,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Nix Flake Input Versioning";
     homepage = "https://github.com/cafkafk/rime";
-    changelog = "https://github.com/cafkafk/rime/releases/tag/v0.1.8";
     license = lib.licenses.agpl3Only;
     maintainers = with lib.maintainers; [ getchoo ];
     mainProgram = "rime";
     platforms = lib.platforms.unix;
   };
-})
+}

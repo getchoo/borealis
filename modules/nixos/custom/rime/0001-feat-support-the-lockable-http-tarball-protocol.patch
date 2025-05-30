@@ -1,0 +1,110 @@
+From 4144dc9e1bb381c69eabbc672c6a9883affc6576 Mon Sep 17 00:00:00 2001
+From: Seth Flynn <getchoo@tuta.io>
+Date: Fri, 30 May 2025 06:12:27 -0400
+Subject: [PATCH] feat: support the "lockable http tarball" protocol
+
+---
+ src/api/v1/forge/error.rs    |  8 ++++++++
+ src/api/v1/forge/handlers.rs | 27 ++++++++++++++++++++++-----
+ 2 files changed, 30 insertions(+), 5 deletions(-)
+
+diff --git a/src/api/v1/forge/error.rs b/src/api/v1/forge/error.rs
+index 3fb988f..52bdb22 100644
+--- a/src/api/v1/forge/error.rs
++++ b/src/api/v1/forge/error.rs
+@@ -21,6 +21,7 @@ pub enum ForgeError {
+     BadRequest(String),
+     NoTarGz(String),
+     NoReleaseFound(String),
++    BadURI(String),
+ }
+ 
+ impl IntoResponse for ForgeError {
+@@ -73,6 +74,13 @@ impl IntoResponse for ForgeError {
+                 StatusCode::NOT_FOUND,
+                 format!("Hi friend, no suitable releases found for {} :(", repo),
+             ),
++            ForgeError::BadURI(uri) => {
++                error!("ForgeError::BadURI: {uri}");
++                (
++                    StatusCode::INTERNAL_SERVER_ERROR,
++                    format!("Hi friend, {} couldn't be converted to a valid URI :(", uri),
++                )
++            }
+         };
+         (status, error_message).into_response()
+     }
+diff --git a/src/api/v1/forge/handlers.rs b/src/api/v1/forge/handlers.rs
+index 7c87230..d29392c 100644
+--- a/src/api/v1/forge/handlers.rs
++++ b/src/api/v1/forge/handlers.rs
+@@ -5,7 +5,7 @@
+ 
+ use axum::{
+     extract::{Extension, OriginalUri, Path, Query},
+-    http::Uri,
++    http::{HeaderValue, Uri},
+     response::{IntoResponse, Redirect, Response},
+ };
+ use serde::Deserialize;
+@@ -78,6 +78,23 @@ where
+     }
+ }
+ 
++pub fn redirect_to(redirect_url: &str) -> Result<Response, ForgeError> {
++    let mut response = Redirect::to(redirect_url).into_response();
++
++    // Support the "Lockable HTTP Tarball" protocol
++    // https://nix.dev/manual/nix/stable/protocols/tarball-fetcher.html
++    //
++    // This allows Nix to lock the URL we're redirecting to instead of the current endpoint (which
++    // may redirect to a different URL at another time)
++    let Ok(header_value) = HeaderValue::from_str(&format!("<{}>; rel=\"immutable\"", redirect_url))
++    else {
++        return Err(ForgeError::BadURI(redirect_url.to_string()));
++    };
++    response.headers_mut().insert("Link", header_value);
++
++    Ok(response)
++}
++
+ pub async fn get_tarball_url_for_latest_release(
+     Path(paths): Path<HashMap<String, String>>,
+     Extension(forge): Extension<DynForge>,
+@@ -101,7 +118,7 @@ pub async fn get_tarball_url_for_latest_release(
+     )
+     .await?;
+     trace!("tarball_url_for_latest_release: {redirect_url:}");
+-    Ok(Redirect::to(&redirect_url).into_response())
++    Ok(redirect_to(&redirect_url)?)
+ }
+ 
+ #[derive(Deserialize, Debug)]
+@@ -142,7 +159,7 @@ pub async fn get_tarball_url_for_semantic_version(
+     )
+     .await?;
+     trace!("tarball_url_for_semantic_version: {redirect_url}");
+-    Ok(Redirect::to(&redirect_url).into_response())
++    Ok(redirect_to(&redirect_url)?)
+ }
+ 
+ pub async fn get_tarball_url_for_branch(
+@@ -156,7 +173,7 @@ pub async fn get_tarball_url_for_branch(
+         .get_tarball_url_for_branch(&host, &user, &repo, &branch)
+         .await?;
+     trace!("tarball_url_for_branch: {url:}");
+-    Ok(Redirect::to(&url).into_response())
++    Ok(redirect_to(&url)?)
+ }
+ 
+ pub async fn get_tarball_url_for_version(
+@@ -170,5 +187,5 @@ pub async fn get_tarball_url_for_version(
+         .get_tarball_url_for_version(&host, &user, &repo, &version)
+         .await?;
+     trace!("tarball_url_for_version: {url:}");
+-    Ok(Redirect::to(&url).into_response())
++    Ok(redirect_to(&url)?)
+ }
+-- 
+2.49.0
+
