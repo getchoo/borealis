@@ -25,5 +25,8 @@
 
   services.tailscale.enable = true;
 
-  system.stateVersion = 4;
+  system = {
+    primaryUser = "seth";
+    stateVersion = 4;
+  };
 }
