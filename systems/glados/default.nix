@@ -13,7 +13,6 @@
   ];
 
   borealis = {
-    nvk.enable = true;
     profiles.personal.enable = true;
 
     remote-builders = {
