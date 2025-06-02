@@ -30,7 +30,7 @@ in
   config = {
     nix = {
       gc = {
-        automatic = lib.mkDefault true;
+        automatic = lib.mkDefault config.nix.enable;
         options = lib.mkDefault "--delete-older-than 5d";
       };
 
