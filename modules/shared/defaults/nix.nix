@@ -7,29 +7,47 @@
 }:
 let
   inherit (pkgs.stdenv.hostPlatform) isLinux;
+  isDix = config.nix.package.pname == "determinate-nix";
+  isLix = config.nix.package.pname == "lix";
+  nixVersion = config.nix.package.version;
 
-  hasAlwaysAllowSubstitutes = lib.versionAtLeast config.nix.package.version "2.19.0";
+  hasAlwaysAllowSubstitutes = lib.versionAtLeast nixVersion "2.19.0";
 
   # TODO: Remove this nonsense when all implementations remove repl-flake
   hasReplFlake =
-    lib.versionOlder config.nix.package.version "2.22.0" # repl-flake was removed in nix 2.22.0
+    lib.versionOlder nixVersion "2.22.0" # repl-flake was removed in Nix 2.22.0
     || (
-      lib.versionAtLeast config.nix.package.version "2.90.0" # but not in Lix
-      && lib.versionOlder config.nix.package.version "2.93.0" # until 2.93
+      lib.versionAtLeast nixVersion "2.90.0" # but not in Lix
+      && lib.versionOlder nixVersion "2.93.0" # until 2.93
     );
 
-  hasLixSubcommand = lib.versionAtLeast config.nix.package.version "2.93.0";
+  hasFlakesByDefault = isDix;
+  hasLazyTrees = isDix && lib.versionAtLeast nixVersion "3.5.0";
+  hasLixSubcommand = isLix && lib.versionAtLeast nixVersion "2.93.0";
 in
-{
-  config = lib.mkMerge [
-    {
-      nix = {
-        settings = {
-          auto-optimise-store = lib.mkDefault isLinux;
 
+{
+  config = {
+    nix = {
+      gc = {
+        automatic = lib.mkDefault true;
+        options = lib.mkDefault "--delete-older-than 5d";
+      };
+
+      nixPath = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs;
+
+      registry =
+        lib.mapAttrs (lib.const (flake: {
+          inherit flake;
+        })) inputs
+        // {
+          nixpkgs = lib.mkForce { flake = inputs.nixpkgs; };
+        };
+
+      settings = lib.mkMerge [
+        {
+          auto-optimise-store = lib.mkDefault isLinux;
           experimental-features = [
-            "nix-command"
-            "flakes"
             "auto-allocate-uids"
           ];
 
@@ -44,39 +62,35 @@ in
           ];
 
           use-xdg-base-directories = true;
-        };
+        }
 
-        gc = {
-          automatic = lib.mkDefault true;
-          options = lib.mkDefault "--delete-older-than 5d";
-        };
+        (lib.mkIf hasAlwaysAllowSubstitutes {
+          always-allow-substitutes = true;
+        })
 
-        registry =
-          lib.mapAttrs (lib.const (flake: {
-            inherit flake;
-          })) inputs
-          // {
-            nixpkgs = lib.mkForce { flake = inputs.nixpkgs; };
-          };
+        (lib.mkIf (!hasFlakesByDefault) {
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+        })
 
-        nixPath = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs;
-      };
+        (lib.mkIf hasLazyTrees {
+          lazy-trees = true;
+        })
 
-      nixpkgs = {
-        config.allowUnfree = lib.mkDefault true;
-      };
-    }
+        (lib.mkIf hasLixSubcommand {
+          experimental-features = [ "lix-custom-sub-commands" ];
+        })
 
-    (lib.mkIf hasAlwaysAllowSubstitutes {
-      nix.settings.always-allow-substitutes = true;
-    })
+        (lib.mkIf hasReplFlake {
+          experimental-features = [ "repl-flake" ];
+        })
+      ];
+    };
 
-    (lib.mkIf hasReplFlake {
-      nix.settings.experimental-features = [ "repl-flake" ];
-    })
-
-    (lib.mkIf hasLixSubcommand {
-      nix.settings.experimental-features = [ "lix-custom-sub-commands" ];
-    })
-  ];
+    nixpkgs = {
+      config.allowUnfree = lib.mkDefault true;
+    };
+  };
 }

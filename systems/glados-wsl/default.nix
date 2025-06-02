@@ -29,27 +29,16 @@
 
   networking.hostName = "glados-wsl";
 
-  nix = {
-    package = lib.mkForce (
-      inputs'.dix.packages.default.overrideScope (
-        _: prev: {
-          nix-flake = prev.nix-flake.overrideAttrs (old: {
-            patches = old.patches or [ ] ++ [ ./allow-registry-lookups-for-overridden-inputs.patch ];
-            patchFlags = old.patchFlags or [ ] ++ [ "-p3" ];
-          });
-        }
-      )
-    );
-
-    settings = {
-      experimental-features = lib.mkForce [
-        "auto-allocate-uids"
-        "no-url-literals"
-      ];
-
-      lazy-trees = true;
-    };
-  };
+  nix.package = lib.mkForce (
+    inputs'.dix.packages.default.overrideScope (
+      _: prev: {
+        nix-flake = prev.nix-flake.overrideAttrs (old: {
+          patches = old.patches or [ ] ++ [ ./allow-registry-lookups-for-overridden-inputs.patch ];
+          patchFlags = old.patchFlags or [ ] ++ [ "-p3" ];
+        });
+      }
+    )
+  );
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
