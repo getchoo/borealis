@@ -49,6 +49,7 @@ in
           auto-optimise-store = lib.mkDefault isLinux;
           experimental-features = [
             "auto-allocate-uids"
+            "no-url-literals"
           ];
 
           extra-trusted-substituters = [
