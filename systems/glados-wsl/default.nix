@@ -3,8 +3,6 @@
 {
   imports = [
     inputs.self.nixosModules.default
-
-    inputs.determinate.nixosModules.default
   ];
 
   borealis = {
@@ -22,12 +20,7 @@
 
   networking.hostName = "glados-wsl";
 
-  nixpkgs = {
-    hostPlatform = "x86_64-linux";
-    overlays = [
-      (_: prev: { nix = inputs.self.legacyPackages.${prev.stdenv.hostPlatform.system}.dix; })
-    ];
-  };
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   services = {
     tailscale.enable = false;

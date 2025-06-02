@@ -90,7 +90,7 @@
     };
 
     determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      url = "github:DeterminateSystems/determinate";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nix.follows = "dix";

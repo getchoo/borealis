@@ -113,16 +113,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1748060044,
-        "narHash": "sha256-wusmQ7ckk9061PAYla08aucQovObhAHUZn9nDS632nI=",
-        "rev": "071ce9a58e7172055349bb5e1fe5899d198cc382",
-        "revCount": 237,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.6.1/01970082-f815-7d4c-a05e-edb8b0cc65a4/source.tar.gz"
+        "lastModified": 1748901077,
+        "owner": "DeterminateSystems",
+        "repo": "determinate",
+        "rev": "5e706ba009faafba2eb48f92fdbf92719b5d2176",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/determinate/%2A"
+        "owner": "DeterminateSystems",
+        "repo": "determinate",
+        "type": "github"
       }
     },
     "determinate-nixd-aarch64-darwin": {

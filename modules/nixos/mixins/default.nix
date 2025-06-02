@@ -5,6 +5,7 @@
     ./budgie.nix
     ./catppuccin.nix
     ./comin.nix
+    ./dix.nix
     ./forgejo.nix
     ./gnome.nix
     ./hedgedoc.nix
