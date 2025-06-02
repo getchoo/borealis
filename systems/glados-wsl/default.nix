@@ -1,7 +1,7 @@
 {
   lib,
   inputs,
-  inputs',
+  pkgs,
   ...
 }:
 
@@ -29,18 +29,14 @@
 
   networking.hostName = "glados-wsl";
 
-  nix.package = lib.mkForce (
-    inputs'.dix.packages.default.overrideScope (
-      _: prev: {
-        nix-flake = prev.nix-flake.overrideAttrs (old: {
-          patches = old.patches or [ ] ++ [ ./allow-registry-lookups-for-overridden-inputs.patch ];
-          patchFlags = old.patchFlags or [ ] ++ [ "-p3" ];
-        });
-      }
-    )
-  );
+  nix.package = lib.mkForce pkgs.nix;
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs = {
+    hostPlatform = "x86_64-linux";
+    overlays = [
+      (_: prev: { nix = inputs.self.legacyPackages.${prev.stdenv.hostPlatform.system}.dix; })
+    ];
+  };
 
   services = {
     tailscale.enable = false;
