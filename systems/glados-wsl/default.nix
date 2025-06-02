@@ -1,8 +1,15 @@
-{ inputs, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     inputs.self.nixosModules.default
+
+    inputs.determinate.nixosModules.default
   ];
 
   borealis = {
@@ -18,9 +25,18 @@
     };
   };
 
+  lix.enable = lib.mkForce false;
+
   networking.hostName = "glados-wsl";
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nix.package = lib.mkForce pkgs.nix;
+
+  nixpkgs = {
+    hostPlatform = "x86_64-linux";
+    overlays = [
+      (_: prev: { nix = inputs.self.legacyPackages.${prev.stdenv.hostPlatform.system}.dix; })
+    ];
+  };
 
   services = {
     tailscale.enable = false;
