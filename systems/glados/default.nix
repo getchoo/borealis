@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
 
     inputs.self.nixosModules.default
+    inputs.determinate.nixosModules.default
   ];
 
   borealis = {
@@ -48,6 +49,7 @@
   };
 
   nixpkgs.overlays = [
+    (_: prev: { nix = inputs.self.legacyPackages.${prev.stdenv.hostPlatform.system}.dix; })
     # TODO: Remove when `programs.chromium.package` exists
     (_: prev: {
       chromium = prev.chromium.override {

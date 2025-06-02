@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   inputs,
   ...
 }:
@@ -25,7 +26,7 @@ in
       };
     };
 
-    lix.enable = true;
+    nix.package = lib.mkForce pkgs.nix;
 
     programs = {
       nix-ld.enable = true;

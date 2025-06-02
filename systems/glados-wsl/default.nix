@@ -25,11 +25,7 @@
     };
   };
 
-  lix.enable = lib.mkForce false;
-
   networking.hostName = "glados-wsl";
-
-  nix.package = lib.mkForce pkgs.nix;
 
   nixpkgs = {
     hostPlatform = "x86_64-linux";
