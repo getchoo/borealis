@@ -1,8 +1,22 @@
-{ lib, inputs, ... }:
+{ config, lib, ... }:
+
+let
+  cfg = config.determinate;
+in
 
 {
-  imports = [ inputs.determinate.darwinModules.default ];
+  options.determinate = {
+    enable = lib.mkEnableOption "Determinate Nix";
+  };
 
-  # I prefer this to be opt-in for my systems
-  determinate.enable = lib.mkDefault false;
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !config.nix.enable;
+        message = "`nix.enable` must be `false`. Determinate Nix will manage itself.";
+      }
+    ];
+
+    nix.enable = false;
+  };
 }
