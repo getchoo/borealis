@@ -16,7 +16,7 @@ in
   config = lib.mkMerge [
     {
       services.kanidm = {
-        package = pkgs.kanidm_1_5;
+        package = pkgs.kanidm_1_6;
 
         clientSettings = {
           uri = lib.mkDefault cfg.serverSettings.origin;
