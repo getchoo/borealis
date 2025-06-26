@@ -11,7 +11,6 @@
     (modulesPath + "/profiles/minimal.nix")
     ./hardware-configuration.nix
     ./kanidm.nix
-    ./linkding.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix
 
@@ -82,12 +81,6 @@
     };
 
     nginx.enable = true;
-  };
-
-  virtualisation = {
-    containers.enable = true;
-    oci-containers.backend = "podman";
-    podman.enable = true;
   };
 
   system.stateVersion = "23.05";

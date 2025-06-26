@@ -65,11 +65,6 @@ locals {
       content = resource.oci_core_instance.atlas.public_ip
     },
     {
-      name    = "linkding"
-      type    = "A"
-      content = resource.oci_core_instance.atlas.public_ip
-    },
-    {
       name    = "rime"
       type    = "A"
       content = resource.oci_core_instance.atlas.public_ip
