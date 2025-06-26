@@ -11,22 +11,11 @@
     let
       inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
-      nix = self'.legacyPackages.dix;
+      nix = inputs'.dix.packages.default;
       nixos-rebuild = pkgs.nixos-rebuild-ng.override { inherit nix; };
     in
 
     {
-      legacyPackages = {
-        dix = inputs'.dix.packages.default.overrideScope (
-          _: prev: {
-            nix-flake = prev.nix-flake.overrideAttrs (old: {
-              patches = old.patches or [ ] ++ [ ./allow-registry-lookups-for-overridden-inputs.patch ];
-              patchFlags = old.patchFlags or [ ] ++ [ "-p3" ];
-            });
-          }
-        );
-      };
-
       devShells = {
         default = pkgs.mkShellNoCC {
           packages =

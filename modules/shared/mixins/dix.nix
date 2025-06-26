@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  inputs,
+  inputs',
   ...
 }:
 
@@ -11,7 +11,7 @@
     nix.package = lib.mkForce pkgs.nix;
 
     nixpkgs.overlays = [
-      (_: prev: { nix = inputs.self.legacyPackages.${prev.stdenv.hostPlatform.system}.dix; })
+      (_: _: { nix = inputs'.dix.packages.default; })
     ];
   };
 }
