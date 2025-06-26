@@ -80,7 +80,13 @@
       };
     };
 
-    nginx.enable = true;
+    nginx = {
+      enable = true;
+
+      virtualHosts."static.${config.networking.domain}" = {
+        root = "/var/www";
+      };
+    };
   };
 
   system.stateVersion = "23.05";
