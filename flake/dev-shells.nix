@@ -9,7 +9,7 @@
     }:
 
     let
-      inherit (pkgs.stdenv.hostPlatform) isDarwin;
+      inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
 
       nix = inputs'.dix.packages.default;
       nixos-rebuild = pkgs.nixos-rebuild-ng.override { inherit nix; };
@@ -35,9 +35,11 @@
               pkgs.just
               pkgs.opentofu
 
+              inputs'.agenix.packages.agenix
+            ]
+            ++ lib.optionals isLinux [
               # See above comment about Nix
               nixos-rebuild
-              inputs'.agenix.packages.agenix
             ]
             ++ lib.optionals isDarwin [
               # Ditto
