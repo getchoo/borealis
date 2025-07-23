@@ -27,13 +27,12 @@ in
     glados-wsl = "age1ffqfq3azqfwxwtxnfuzzs0y566a7ydgxce4sqxjqzw8yexc2v4yqfr55vr";
   };
 
-  secrets =
-    [
-      {
-        regex = toAgeRegex "personal";
-        recipients = { inherit (config.recipients) glados glados-wsl; };
-      }
-    ]
-    # Map system recipients to secrets in their subdirectory (i.e., `atlas` imports `atlas/*.age`)
-    ++ lib.mapAttrsToList secretsForSystemRecipient { inherit (config.recipients) atlas; };
+  secrets = [
+    {
+      regex = toAgeRegex "personal";
+      recipients = { inherit (config.recipients) glados glados-wsl; };
+    }
+  ]
+  # Map system recipients to secrets in their subdirectory (i.e., `atlas` imports `atlas/*.age`)
+  ++ lib.mapAttrsToList secretsForSystemRecipient { inherit (config.recipients) atlas; };
 }
