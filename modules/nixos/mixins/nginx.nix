@@ -24,7 +24,6 @@
         recommendedOptimisation = true;
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
-        recommendedZstdSettings = true;
       };
     }
 
