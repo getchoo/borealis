@@ -68,7 +68,7 @@ in
         };
 
         nixfmt = {
-          dependencies = [ pkgs.nixfmt-rfc-style ];
+          dependencies = [ pkgs.nixfmt ];
           script = "find ${self} -type f -name '*.nix' -exec nixfmt --check {} +";
         };
 

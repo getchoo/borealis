@@ -17,7 +17,7 @@
       inputs'.getchvim.packages.default
 
       hydra-check
-      nixfmt-rfc-style
+      nixfmt
       nurl
     ];
 
