@@ -17,6 +17,10 @@ in
 
   config = lib.mkMerge [
     {
+      catppuccin.firefox.profiles = {
+        arkenfox.enable = false;
+      };
+
       programs.firefox = {
         addons = [
           # uBlock Origin
