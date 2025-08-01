@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -26,9 +24,5 @@
         userName = "Seth Flynn";
       };
     }
-
-    (lib.mkIf config.programs.git.enable {
-      home.packages = [ pkgs.git-branchless ];
-    })
   ];
 }

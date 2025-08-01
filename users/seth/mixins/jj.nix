@@ -11,8 +11,6 @@
 
   programs = {
     jujutsu = {
-      enable = lib.mkDefault config.programs.git.enable;
-
       settings = {
         ui = {
           pager = "less -FRX";
