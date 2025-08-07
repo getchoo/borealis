@@ -1,9 +1,0 @@
-{
-	"nix.serverSettings": {
-		"nixd": {
-			"formatting": {
-				"command": ["nix", "fmt"]
-			},
-		}
-	}
-}
