@@ -25,8 +25,7 @@ in
       };
     };
 
-    # Use latest Nix
-    nixpkgs.overlays = [ (_: prev: { nix = prev.nixVersions.latest; }) ];
+    determinate.enable = true;
 
     programs = {
       nix-ld.enable = true;
