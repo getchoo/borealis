@@ -2,7 +2,7 @@ variable "cloudflare_account_id" {
   type = string
 }
 
-variable "cloudflare_getchoo_com_zone_id" {
+variable "cloudflare_zone_id" {
   type = string
 }
 

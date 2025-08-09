@@ -1,4 +1,4 @@
-resource "cloudflare_ruleset" "getchoo_com_redirects" {
+resource "cloudflare_ruleset" "tick_tock_redirect" {
   kind  = "zone"
   name  = "funny redirects"
   phase = "http_request_dynamic_redirect"
@@ -21,6 +21,6 @@ resource "cloudflare_ruleset" "getchoo_com_redirects" {
     enabled     = true
   }
 
-  zone_id = var.cloudflare_getchoo_com_zone_id
+  zone_id = var.cloudflare_zone_id
 }
 
