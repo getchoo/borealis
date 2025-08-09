@@ -17,10 +17,6 @@ terraform {
       source  = "registry.opentofu.org/oracle/oci"
       version = "~> 6"
     }
-    hcp = {
-      source  = "registry.opentofu.org/hashicorp/hcp"
-      version = "~> 0.102"
-    }
     tailscale = {
       source  = "registry.opentofu.org/tailscale/tailscale"
       version = "~> 0.17"

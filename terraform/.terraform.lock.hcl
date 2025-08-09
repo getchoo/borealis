@@ -24,23 +24,6 @@ provider "registry.opentofu.org/cloudflare/cloudflare" {
   ]
 }
 
-provider "registry.opentofu.org/hashicorp/hcp" {
-  version = "0.102.0"
-  hashes = [
-    "h1:n9D80QmSmLSTnUGhkNUbsL/FH8iLEWyfnnvlxWWeux8=",
-    "zh:3b23832b85d448a427f8c56ae544af231e042a9e57e681101f97f42a830f125c",
-    "zh:401d625cc3c0b1d11caf7c0086b543d4634c3a956186c4b7dbf890682991991a",
-    "zh:52f459de8d42403dd0cc6fec7952f8ffe6e02e5e6f666063cf23abf13a00445b",
-    "zh:5687289b3185cd150704865fc82ef397322a44e18105b8d422ff7612f1cb7ee3",
-    "zh:60f6d0823403e23d47a16346132bd6ce3f463d5e40c77586e8629d21d624840b",
-    "zh:8c7845c69dc78ce9d86431f60ef2a6da2c98ee3c40e06b569166a77382016fbc",
-    "zh:8cd21be016d569b9180eb92a2f0bec43c3b6862bd57415f2414d9276bf1fd67d",
-    "zh:bc0ede64a5873ffe0dd6d9ea631457a946af80379b71d2fbc58ec158a97ed85a",
-    "zh:f454df339b14cd5a4bbe216f68ef332113e7ce0ea1312ef4553fe2988466e4f9",
-    "zh:fe35e3f6791e397ba02ab0082fec0fdc7993d858736c4d7b737e2dbb212c4e91",
-  ]
-}
-
 provider "registry.opentofu.org/oracle/oci" {
   version     = "6.25.0"
   constraints = "~> 6.0"
@@ -65,7 +48,8 @@ provider "registry.opentofu.org/oracle/oci" {
 }
 
 provider "registry.opentofu.org/tailscale/tailscale" {
-  version = "0.17.2"
+  version     = "0.17.2"
+  constraints = "~> 0.17"
   hashes = [
     "h1:0bZpffptYi/bXOXEnFjUYD6UwaR4vqUdMULdeeBhz84=",
     "zh:13d21db507bfb17018005c5c4f19314591a5734c76bcd51ab6e80984164c2a71",
