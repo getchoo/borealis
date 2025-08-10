@@ -48,10 +48,12 @@
   };
 
   nixpkgs.overlays = [
-    # TODO: Remove when `programs.chromium.package` exists
     (_: prev: {
       chromium = prev.chromium.override {
-        commandLineArgs = [ "--enable-features=VaapiOnNvidiaGPUs,AcceleratedVideoDecodeLinuxGL" ];
+        # NOTE: If this breaks, look at https://github.com/elFarto/nvidia-vaapi-driver/issues/5
+        commandLineArgs = [
+          "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
+        ];
       };
     })
   ];
