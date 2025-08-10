@@ -1,5 +1,3 @@
-# Create everything from an existing tenancy
-
 resource "oci_identity_compartment" "borealis" {
   compartment_id = var.oracle_tenancy_ocid
   description    = "For my personal infra"
@@ -8,10 +6,6 @@ resource "oci_identity_compartment" "borealis" {
 
 data "oci_identity_availability_domains" "borealis" {
   compartment_id = oci_identity_compartment.borealis.id
-}
-
-output "borealis-first-availability-domain" {
-  value = data.oci_identity_availability_domains.borealis.availability_domains[0].name
 }
 
 resource "oci_core_vcn" "borealis" {

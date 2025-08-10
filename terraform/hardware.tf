@@ -1,6 +1,5 @@
 resource "oci_core_instance" "atlas" {
-  # availability_domain = data.oci_identity_availability_domains.borealis.availability_domains[0].name
-  availability_domain = "kMzJ:US-CHICAGO-1-AD-1"
+  availability_domain = data.oci_identity_availability_domains.borealis.availability_domains[0].name
   compartment_id      = oci_identity_compartment.borealis.id
   shape               = "VM.Standard.A1.Flex"
 
