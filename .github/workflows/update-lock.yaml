@@ -37,7 +37,10 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
+        uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          determinate: true
+          diagnostic-endpoint: ""
 
       - name: Update flake.lock
         run: |

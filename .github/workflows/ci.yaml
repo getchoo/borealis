@@ -36,7 +36,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
+        uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          determinate: true
+          diagnostic-endpoint: ""
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v16
