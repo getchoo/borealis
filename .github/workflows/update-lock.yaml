@@ -42,6 +42,10 @@ jobs:
           determinate: true
           diagnostic-endpoint: ""
 
+      - name: Print Nix version
+        run: |
+          nix --version
+
       - name: Update flake.lock
         run: |
           nix flake update ${{ inputs.flake-inputs }}

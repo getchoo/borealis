@@ -25,6 +25,8 @@ jobs:
       # https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
       - name: Clear disk space
         run: |
+          df -h
+
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf /opt/ghc
           sudo rm -rf "/usr/local/share/boost"
@@ -40,6 +42,10 @@ jobs:
         with:
           determinate: true
           diagnostic-endpoint: ""
+
+      - name: Print Nix version
+        run: |
+          nix --version
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v16
