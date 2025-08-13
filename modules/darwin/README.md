@@ -1,17 +1,13 @@
 # ./modules/darwin/
 
-## defaults
+## custom
 
-Defaults (mostly) shared across all configurations
+Home-made modules I might want to upstream somewhere
 
-## desktop
+## mixins 
 
-Installs cool GUI stuff for desktops...or laptops too I guess
+Defaults and extra side effects for modules; meant to be "mixed in" with the originals
 
 ## profiles
 
-The high-level "type" of a machine (i.e., `personal` or `server`)
-
-## traits
-
-Small, reusable aspects of a machine - like users
+The high-level "type" of a machine (i.e., `desktop` or `server`)

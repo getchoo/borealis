@@ -1,43 +1,40 @@
-{
-  config,
-  lib,
-  inputs,
-  self,
-  ...
-}:
+{ lib, self, ... }:
 
 let
-  ciSystems = lib.intersectLists lib.platforms.linux config.systems ++ [ "x86_64-darwin" ];
-
-  configurationsFor = lib.genAttrs ciSystems (
-    lib.flip self.lib.collectNestedDerivationsFor {
-      inherit (self) nixosConfigurations homeConfigurations darwinConfigurations;
-    }
+  # NOTE: This only flattens one level of attrs. It should probably be recursive
+  flattenAttrs = lib.concatMapAttrs (
+    prefix: lib.mapAttrs' (name: lib.nameValuePair "${prefix}-${name}")
   );
 
-  mapUniqueAttrNames = prefix: lib.mapAttrs (lib.const (self.lib.makeUniqueAttrNames prefix));
+  mapCfgsToDrvs = lib.mapAttrs (lib.const (v: v.config.system.build.toplevel or v.activationPackage));
+  filterCompatibleCfgs =
+    system: lib.filterAttrs (lib.const (v: v.pkgs.stdenv.hostPlatform.system == system));
 in
 
 {
-  flake = {
-    githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-      checks = self.lib.mergeAttrsList' [
-        configurationsFor
-
-        (mapUniqueAttrNames "checks" { inherit (self.checks) x86_64-linux; })
-        (mapUniqueAttrNames "devShells" { inherit (self.devShells) x86_64-linux x86_64-darwin; })
-      ];
-    };
-  };
-
   perSystem =
     {
       config,
       pkgs,
+      system,
+      self',
       ...
     }:
 
+    let
+      configurations = lib.mapAttrs (lib.const (v: mapCfgsToDrvs (filterCompatibleCfgs system v))) {
+        inherit (self) nixosConfigurations homeConfigurations darwinConfigurations;
+      };
+    in
+
     {
+      checks = flattenAttrs (
+        configurations
+        // {
+          inherit (self') devShells;
+        }
+      );
+
       legacyPackages = {
         tflint = config.quickChecks.tflint.package;
       };

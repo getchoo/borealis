@@ -4,7 +4,6 @@
       imports = [
         ../shared
         ./custom
-        ./defaults
         ./mixins
         ./profiles
       ];

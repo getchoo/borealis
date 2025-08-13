@@ -5,7 +5,19 @@
   ...
 }:
 
+let
+  cfg = config.services.desktopManager.gnome or config.services.xserver.desktopManager.gnome;
+in
+
 {
+  # TODO: Remove when 25.11 is stable
+  imports = lib.optionals (lib.versionOlder lib.version "25.11pre") [
+    (lib.mkAliasOptionModule
+      [ "services" "displayManager" "gdm" "enable" ]
+      [ "services" "xserver" "displayManager" "gdm" "enable" ]
+    )
+  ];
+
   config = lib.mkMerge [
     {
       environment = {
@@ -17,7 +29,7 @@
       };
     }
 
-    (lib.mkIf config.services.xserver.desktopManager.gnome.enable {
+    (lib.mkIf cfg.enable {
       environment = {
         sessionVariables = {
           NIXOS_OZONE_WL = "1";
@@ -49,7 +61,7 @@
         ];
       };
 
-      services.xserver.displayManager.gdm = {
+      services.displayManager.gdm = {
         enable = lib.mkDefault true;
       };
     })

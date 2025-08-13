@@ -1,9 +1,13 @@
 # ./modules/shared/
 
-## defaults
+## custom
 
-Defaults (mostly) shared across all configurations
+Home-made modules I might want to upstream somewhere
 
-## traits
+## mixins 
 
-Small, reusable aspects of a machine - like users
+Defaults and extra side effects for modules; meant to be "mixed in" with the originals
+
+## users
+
+User-specific configurations for the system

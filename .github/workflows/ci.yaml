@@ -7,43 +7,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  evaluate:
-    name: Evaluate Nix matrix
-
-    runs-on: ubuntu-24.04-arm
-
-    outputs:
-      matrix: ${{ steps.evaluate-matrix.outputs.matrix }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v31
-
-      - name: Evaluate matrix
-        id: evaluate-matrix
-        run: |
-          echo "matrix=$(nix eval --json '.#githubActions.matrix')" >> "$GITHUB_OUTPUT"
-
   build:
-    name: Build (${{ matrix.attr }})
-
-    needs: [ evaluate ]
+    name: Build (${{ matrix.system }})
 
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.evaluate.outputs.matrix) }}
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            system: x86_64-linux
+          - os: ubuntu-24.04-arm
+            system: aarch64-linux
 
     runs-on: ${{ matrix.os }}
 
     steps:
+      # https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
+      - name: Clear disk space
+        run: |
+          df -h
+
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+          df -h
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
+        uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          determinate: true
+          diagnostic-endpoint: ""
+
+      - name: Print Nix version
+        run: |
+          nix --version
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v16
@@ -59,14 +61,11 @@ jobs:
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
-      - name: Build attribute
-        env:
-          ATTR: ${{ matrix.attr }}
+      - name: Run flake checks
         run: |
-          nix build ".#$ATTR" \
-            --fallback \
-            --no-allow-import-from-derivation \
-            --print-build-logs
+          nix flake check \
+            --print-build-logs \
+            --show-trace
 
   build-gate:
     name: Build gate
@@ -74,7 +73,7 @@ jobs:
     if: ${{ always() }}
     needs: [ build ]
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
 
     steps:
       - name: Exit with error

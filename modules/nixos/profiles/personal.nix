@@ -28,7 +28,7 @@ in
     determinate.enable = true;
 
     programs = {
-      nix-ld.enable = true;
+      nix-ld.enable = lib.mkDefault true;
     };
 
     services = {
