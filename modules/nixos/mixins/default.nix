@@ -6,6 +6,7 @@
     ./catppuccin.nix
     ./comin.nix
     ./dix.nix
+    ./fonts.nix
     ./forgejo.nix
     ./gnome.nix
     ./hedgedoc.nix
@@ -16,12 +17,16 @@
     ./miniflux.nix
     ./nginx.nix
     ./niri.nix
+    ./nix.nix
     ./nvidia.nix
     ./pipewire.nix
     ./plasma.nix
     ./resolved.nix
+    ./security.nix
     ./tailscale.nix
+    ./users.nix
     ./wsl.nix
+    ./xserver.nix
     ./zram.nix
   ];
 }

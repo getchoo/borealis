@@ -17,7 +17,5 @@ in
     };
 
     determinate.enable = true;
-
-    homebrew.enable = true;
   };
 }

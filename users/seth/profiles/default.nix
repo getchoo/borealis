@@ -1,5 +1,5 @@
 {
   imports = [
-    ./nixos.nix
+    ./desktop.nix
   ];
 }

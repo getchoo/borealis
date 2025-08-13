@@ -1,25 +1,17 @@
 # ./modules/nixos/
 
-## defaults
+## custom
 
-Defaults (mostly) shared across all configurations
+Home-made modules I might want to upstream somewhere
 
-## desktop
+## mixins 
 
-Installs cool GUI stuff for desktops and laptops
-
-## mixins
-
-Small modules that add onto existing ones; mean to be "mixed in" with your regular configurations
+Defaults and extra side effects for modules; meant to be "mixed in" with the originals
 
 ## profiles
 
-The high-level "type" of a machine (i.e., `personal` or `server`)
+The high-level "type" of a machine (i.e., `desktop` or `server`)
 
-## services
+## users
 
-Custom service modules
-
-## traits
-
-Small, reusable aspects of a machine - like users
+User-specific configurations for the system

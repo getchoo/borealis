@@ -7,21 +7,22 @@
 }:
 
 let
-  cfg = config.seth.profiles.nixos;
+  cfg = config.seth.profiles.desktop;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 
-  isNixOSDesktop = osConfig.services.xserver.enable or false;
+  isDesktop = osConfig.borealis.profiles.desktop.enable or false;
   hasSteam = osConfig.programs.steam.enable or false;
 in
 
 {
-  options.seth.profiles.nixos = {
-    enable = lib.mkEnableOption "NixOS profile" // {
-      default = isNixOSDesktop;
-      defaultText = lib.literalExpression "osConfig.services.xserver.enable or false";
+  options.seth.profiles.desktop = {
+    enable = lib.mkEnableOption "desktop profile" // {
+      default = isDesktop;
+      defaultText = lib.literalExpression "osConfig.borealis.profiles.desktop.enable or false";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && isLinux) {
     home.packages = [
       (pkgs.discord.overrideAttrs (old: {
         # Discord currently uses Chromium 130
