@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -14,6 +14,10 @@
   };
 
   documentation.nixos.enable = lib.mkDefault false;
+
+  environment.systemPackages = [
+    pkgs.dust
+  ];
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
