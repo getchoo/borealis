@@ -67,13 +67,14 @@
   };
 
   services = {
+    desktopManager.gnome.enable = true;
+
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
 
     xserver = {
       enable = true;
-      desktopManager.gnome.enable = true;
 
       videoDrivers = [ "nvidia" ];
     };
