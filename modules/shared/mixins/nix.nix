@@ -24,6 +24,8 @@ let
   hasFlakesByDefault = isDix;
   hasLazyTrees = isDix && lib.versionAtLeast nixVersion "3.5.0";
   hasLixSubcommand = isLix && lib.versionAtLeast nixVersion "2.93.0";
+  hasPipeOperators = !isLix && lib.versionAtLeast nixVersion "2.24.0";
+  hasPipeOperator = isLix && lib.versionAtLeast nixVersion "2.91.0";
 in
 
 {
@@ -81,6 +83,14 @@ in
 
       (lib.mkIf hasLixSubcommand {
         experimental-features = [ "lix-custom-sub-commands" ];
+      })
+
+      (lib.mkIf hasPipeOperator {
+        experimental-features = [ "pipe-operator" ];
+      })
+
+      (lib.mkIf hasPipeOperators {
+        experimental-features = [ "pipe-operators" ];
       })
 
       (lib.mkIf hasReplFlake {
