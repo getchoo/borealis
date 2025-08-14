@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   inputs',
@@ -14,7 +15,9 @@
     catppuccin.enable = true;
 
     home.packages = with pkgs; [
-      inputs'.getchvim.packages.default
+      (inputs'.getchvim.packages.default.override (prev: {
+        nil = prev.nil.override { nix = config.nix.package; };
+      }))
 
       hydra-check
       nixfmt

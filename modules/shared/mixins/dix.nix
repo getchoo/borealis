@@ -11,7 +11,11 @@
     nix.package = lib.mkForce pkgs.nix;
 
     nixpkgs.overlays = [
-      (_: _: { nix = inputs'.dix.packages.default; })
+      (final: _: {
+        nix = inputs'.dix.packages.default;
+        # Dix should be API compatible with upstream Nix
+        nixForLinking = final.nix;
+      })
     ];
   };
 }
