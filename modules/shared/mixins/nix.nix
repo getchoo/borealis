@@ -5,27 +5,26 @@
   inputs,
   ...
 }:
+
 let
   inherit (pkgs.stdenv.hostPlatform) isLinux;
   isDix = config.nix.package.pname == "determinate-nix";
   isLix = config.nix.package.pname == "lix";
+
   nixVersion = config.nix.package.version;
+  nixAtLeast = lib.versionAtLeast nixVersion;
+  nixOlder = lib.versionOlder nixVersion;
 
-  hasAlwaysAllowSubstitutes = lib.versionAtLeast nixVersion "2.19.0";
-
-  # TODO: Remove this nonsense when all implementations remove repl-flake
-  hasReplFlake =
-    lib.versionOlder nixVersion "2.22.0" # repl-flake was removed in Nix 2.22.0
-    || (
-      lib.versionAtLeast nixVersion "2.90.0" # but not in Lix
-      && lib.versionOlder nixVersion "2.93.0" # until 2.93
-    );
+  hasAlwaysAllowSubstitutes = nixAtLeast "2.19.0";
 
   hasFlakesByDefault = isDix;
-  hasLazyTrees = isDix && lib.versionAtLeast nixVersion "3.5.0";
-  hasLixSubcommand = isLix && lib.versionAtLeast nixVersion "2.93.0";
-  hasPipeOperators = !isLix && lib.versionAtLeast nixVersion "2.24.0";
-  hasPipeOperator = isLix && lib.versionAtLeast nixVersion "2.91.0";
+  hasLazyTrees = isDix && nixAtLeast "3.5.0";
+  hasLixSubcommand = isLix && nixAtLeast "2.93.0";
+  hasPipeOperator = isLix && nixAtLeast "2.91.0";
+  hasPipeOperators = !isLix && nixAtLeast "2.24.0";
+  hasReplFlake =
+    nixOlder "2.22.0" # repl-flake was removed in Nix 2.22.0
+    || (isLix && nixOlder "2.93.0"); # but not in Lix until 2.93
 in
 
 {
