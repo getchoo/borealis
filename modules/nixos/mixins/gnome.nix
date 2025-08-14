@@ -40,8 +40,9 @@ in
         systemPackages = [
           # Make GTK3 apps look good
           pkgs.adw-gtk3
-          # Media player
+          # Media player(s)
           pkgs.celluloid
+          pkgs.showtime
           # Checksum verifier
           pkgs.collision
           # Audio player
