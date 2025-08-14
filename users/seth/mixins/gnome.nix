@@ -73,7 +73,5 @@ in
       # Mastodon client
       pkgs.tuba
     ];
-
-    seth.adw-gtk3.enable = true;
   };
 }

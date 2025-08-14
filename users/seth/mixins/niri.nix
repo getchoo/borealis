@@ -51,9 +51,5 @@ in
     services = {
       mako.enable = true;
     };
-
-    seth = {
-      adw-gtk3.enable = true;
-    };
   };
 }

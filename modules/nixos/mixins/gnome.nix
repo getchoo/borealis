@@ -62,6 +62,19 @@ in
         ];
       };
 
+      # Enable adw-gtk3
+      programs = {
+        dconf.profiles.user.databases = [
+          {
+            settings = {
+              "org.gnome.desktop.interface" = {
+                gtk-theme = "adw-gtk3-dark";
+              };
+            };
+          }
+        ];
+      };
+
       services.displayManager.gdm = {
         enable = lib.mkDefault true;
       };
