@@ -18,7 +18,6 @@
 
       hydra-check
       nixfmt
-      nurl
     ];
 
     programs = {
