@@ -3,7 +3,6 @@
 {
   imports = [
     ./desktop.nix
-    ./personal.nix
   ];
 
   ## Common settings
