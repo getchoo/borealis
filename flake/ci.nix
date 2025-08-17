@@ -14,8 +14,6 @@ in
 {
   perSystem =
     {
-      config,
-      pkgs,
       system,
       self',
       ...
@@ -34,52 +32,5 @@ in
           inherit (self') devShells;
         }
       );
-
-      legacyPackages = {
-        tflint = config.quickChecks.tflint.package;
-      };
-
-      quickChecks = {
-        actionlint = {
-          dependencies = [ pkgs.actionlint ];
-          script = "find ${self}/.github/workflows -type f -name '*.nix' -exec actionlint {} +";
-        };
-
-        deadnix = {
-          dependencies = [ pkgs.deadnix ];
-          script = "deadnix --fail ${self}";
-        };
-
-        hclfmt = {
-          dependencies = [ pkgs.hclfmt ];
-          script = "hclfmt -require-no-change ${self}/terraform/*.tf";
-        };
-
-        just = {
-          dependencies = [ pkgs.just ];
-          script = ''
-            cd ${self}
-            just --check --fmt --unstable
-            just --summary
-          '';
-        };
-
-        nixfmt = {
-          dependencies = [ pkgs.nixfmt ];
-          script = "find ${self} -type f -name '*.nix' -exec nixfmt --check {} +";
-        };
-
-        statix = {
-          dependencies = [ pkgs.statix ];
-          script = "statix check ${self}";
-        };
-
-        tflint = {
-          dependencies = [ pkgs.tflint ];
-          script = ''
-            tflint --chdir=${self}/terraform --format=sarif |& tee $out || true
-          '';
-        };
-      };
     };
 }

@@ -432,7 +432,6 @@
           "nixpkgs"
         ],
         "treefmt-nix": [
-          "nixpkgs-tracker-bot",
           "treefmt-nix"
         ]
       },
@@ -502,7 +501,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": []
       },
       "locked": {
         "lastModified": 1751931043,
@@ -568,7 +567,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
-        "openwrt-imagebuilder": "openwrt-imagebuilder"
+        "openwrt-imagebuilder": "openwrt-imagebuilder",
+        "treefmt-nix": "treefmt-nix"
       }
     },
     "rust-overlay": {
@@ -610,7 +610,6 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs-tracker-bot",
           "nixpkgs"
         ]
       },
