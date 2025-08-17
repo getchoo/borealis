@@ -8,6 +8,7 @@ in
   imports = [
     ./custom
     ./mixins
+    ./sanity-checks.nix
     ./users
   ];
 
