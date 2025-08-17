@@ -13,6 +13,7 @@ default:
 rebuild subcmd *args="":
     {{ rebuild }} \
       {{ subcmd }} \
+      --accept-flake-config \
       --sudo \
       --flake 'git+file://{{ justfile_directory() }}' \
       {{ args }}
