@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -11,9 +12,19 @@ in
 
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
+    _module.args = {
+      secretsDir = inputs.self + "/secrets/personal";
+    };
+
+    environment.systemPackages = lib.mkIf config.services.xserver.enable [
       pkgs.chromium
       pkgs.wl-clipboard
     ];
+
+    programs = {
+      nix-ld.enable = lib.mkDefault true;
+    };
+
+    system.rebuild.enableNg = true;
   };
 }

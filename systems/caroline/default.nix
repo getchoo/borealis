@@ -5,10 +5,7 @@
   ];
 
   borealis = {
-    profiles = {
-      desktop.enable = true;
-      personal.enable = true;
-    };
+    profiles.desktop.enable = true;
   };
 
   homebrew.casks = [

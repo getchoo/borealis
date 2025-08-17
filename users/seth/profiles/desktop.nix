@@ -10,19 +10,19 @@ let
   cfg = config.seth.profiles.desktop;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
 
-  isDesktop = osConfig.borealis.profiles.desktop.enable or false;
+  hasGui = osConfig.services.xserver.enable or false;
   hasSteam = osConfig.programs.steam.enable or false;
 in
 
 {
   options.seth.profiles.desktop = {
     enable = lib.mkEnableOption "desktop profile" // {
-      default = isDesktop;
+      default = osConfig.borealis.profiles.desktop.enable or false;
       defaultText = lib.literalExpression "osConfig.borealis.profiles.desktop.enable or false";
     };
   };
 
-  config = lib.mkIf (cfg.enable && isLinux) {
+  config = lib.mkIf (cfg.enable && isLinux && hasGui) {
     home.packages = [
       (pkgs.discord.overrideAttrs (old: {
         # Discord currently uses Chromium 130
@@ -55,7 +55,7 @@ in
       chromium.enable = true;
       firefox.enable = true;
       ghostty.enable = true;
-      mangohud.enable = hasSteam;
+      mangohud.enable = lib.mkIf hasSteam true;
     };
   };
 }

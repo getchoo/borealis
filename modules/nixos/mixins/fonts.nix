@@ -6,12 +6,12 @@
 }:
 
 let
-  isDesktop = config.borealis.profiles.desktop.enable;
+  isGuiDesktop = config.borealis.profiles.desktop.enable && config.services.xserver.enable;
 in
 
 {
   fonts = {
-    enableDefaultPackages = lib.mkDefault isDesktop;
+    enableDefaultPackages = lib.mkDefault isGuiDesktop;
 
     packages = with pkgs; [
       noto-fonts
@@ -22,7 +22,7 @@ in
     ];
 
     fontconfig = {
-      enable = lib.mkDefault isDesktop;
+      enable = lib.mkDefault isGuiDesktop;
       defaultFonts = lib.mkDefault {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Noto Sans" ];

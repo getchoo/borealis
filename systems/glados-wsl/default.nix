@@ -6,7 +6,7 @@
   ];
 
   borealis = {
-    profiles.personal.enable = true;
+    profiles.desktop.enable = true;
 
     remote-builders = {
       enable = true;
