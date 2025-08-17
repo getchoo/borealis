@@ -18,10 +18,6 @@ greasy taco i love
 
 Pieces meant for maintaining this flake
 
-## lib/
-
-Small functions I like to use around here
-
 ## modules/
 
 Sets of modules meant for NixOS and

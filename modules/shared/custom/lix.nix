@@ -15,6 +15,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nix.package = lib.mkForce inputs'.lix-module.packages.default;
+    nix.package = inputs'.lix-module.packages.default;
   };
 }

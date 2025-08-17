@@ -1,12 +1,5 @@
-{
-  config,
-  lib,
-  inputs',
-  ...
-}:
+{ lib, ... }:
 
 {
-  config = lib.mkIf config.determinate.enable {
-    nix.package = lib.mkForce inputs'.dix.packages.default;
-  };
+  determinate.enable = lib.mkDefault false;
 }
