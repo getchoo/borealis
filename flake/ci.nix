@@ -14,15 +14,13 @@ in
 {
   perSystem =
     {
-      config,
-      pkgs,
       system,
       self',
       ...
     }:
 
     let
-      configurations = lib.mapAttrs (lib.const (v: mapCfgsToDrvs (filterCompatibleCfgs system v))) {
+      configurations = lib.mapAttrs (lib.const (v: filterCompatibleCfgs system v |> mapCfgsToDrvs)) {
         inherit (self) nixosConfigurations homeConfigurations darwinConfigurations;
       };
     in
@@ -34,52 +32,5 @@ in
           inherit (self') devShells;
         }
       );
-
-      legacyPackages = {
-        tflint = config.quickChecks.tflint.package;
-      };
-
-      quickChecks = {
-        actionlint = {
-          dependencies = [ pkgs.actionlint ];
-          script = "find ${self}/.github/workflows -type f -name '*.nix' -exec actionlint {} +";
-        };
-
-        deadnix = {
-          dependencies = [ pkgs.deadnix ];
-          script = "deadnix --fail ${self}";
-        };
-
-        hclfmt = {
-          dependencies = [ pkgs.hclfmt ];
-          script = "hclfmt -require-no-change ${self}/terraform/*.tf";
-        };
-
-        just = {
-          dependencies = [ pkgs.just ];
-          script = ''
-            cd ${self}
-            just --check --fmt --unstable
-            just --summary
-          '';
-        };
-
-        nixfmt = {
-          dependencies = [ pkgs.nixfmt ];
-          script = "find ${self} -type f -name '*.nix' -exec nixfmt --check {} +";
-        };
-
-        statix = {
-          dependencies = [ pkgs.statix ];
-          script = "statix check ${self}";
-        };
-
-        tflint = {
-          dependencies = [ pkgs.tflint ];
-          script = ''
-            tflint --chdir=${self}/terraform --format=sarif |& tee $out || true
-          '';
-        };
-      };
     };
 }

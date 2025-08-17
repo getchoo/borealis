@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755392861,
-        "narHash": "sha256-fwHD6kcEWeVuBNdHO3Ovs9uC3Wcb3KbEIjzyf4SV6X8=",
+        "lastModified": 1755455676,
+        "narHash": "sha256-RFJ4hM1Ahf2IUvT+cK6Doy9sCCNs13FwrdjNniNhMVI=",
         "owner": "getchoo",
         "repo": "getchvim",
-        "rev": "ca9d65205ff040194ee648f314cfb91f60e4ff8b",
+        "rev": "ebf65aec2a8077a9e552784ed81bf0b986542571",
         "type": "github"
       },
       "original": {
@@ -432,7 +432,6 @@
           "nixpkgs"
         ],
         "treefmt-nix": [
-          "nixpkgs-tracker-bot",
           "treefmt-nix"
         ]
       },
@@ -502,7 +501,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": []
       },
       "locked": {
         "lastModified": 1751931043,
@@ -568,7 +567,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
-        "openwrt-imagebuilder": "openwrt-imagebuilder"
+        "openwrt-imagebuilder": "openwrt-imagebuilder",
+        "treefmt-nix": "treefmt-nix"
       }
     },
     "rust-overlay": {
@@ -610,7 +610,6 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs-tracker-bot",
           "nixpkgs"
         ]
       },

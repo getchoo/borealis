@@ -64,6 +64,7 @@ jobs:
       - name: Run flake checks
         run: |
           nix flake check \
+            --accept-flake-config \
             --print-build-logs \
             --show-trace
 

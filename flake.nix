@@ -4,6 +4,12 @@
   nixConfig = {
     extra-substituters = [ "https://getchoo.cachix.org" ];
     extra-trusted-public-keys = [ "getchoo.cachix.org-1:ftdbAUJVNaFonM0obRGgR5+nUmdLMM+AOvDOSx0z5tE=" ];
+
+    extra-experimental-features = [
+      # lol
+      "pipe-operator"
+      "pipe-operators"
+    ];
   };
 
   outputs =
@@ -18,7 +24,6 @@
       ];
 
       imports = [
-        inputs.getchpkgs.flakeModules.checks
         inputs.getchpkgs.flakeModules.configurations
 
         ./flake
@@ -145,7 +150,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "nixpkgs-tracker-bot/treefmt-nix";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -161,6 +166,7 @@
       url = "github:getchoo/nixpkgs-tracker-bot";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "";
       };
     };
 
@@ -171,6 +177,11 @@
         flake-parts.follows = "flake-parts";
         systems.follows = "agenix/systems";
       };
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
