@@ -147,6 +147,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixd = {
+      url = "github:nix-community/nixd";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "nixpkgs-tracker-bot/treefmt-nix";
+      };
+    };
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs = {
@@ -159,7 +168,6 @@
       url = "github:getchoo/nixpkgs-tracker-bot";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "";
       };
     };
 

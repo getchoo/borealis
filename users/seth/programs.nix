@@ -18,11 +18,16 @@ in
   config = {
     catppuccin.enable = true;
 
-    home.packages = with pkgs; [
-      inputs'.getchvim.packages.default
+    home.packages = [
+      (inputs'.getchvim.packages.default.override {
+        nixd = inputs'.nixd.packages.nixd.override (prev: {
+          # Use user's nix if possible
+          nixComponents = config.nix.package.libs or prev.nixComponents;
+        });
+      })
 
-      hydra-check
-      nixfmt
+      pkgs.hydra-check
+      pkgs.nixfmt
 
       # TODO: `programs.nix-index-database.comma.package` should probably exist
       (inputs'.nix-index-database.packages.comma-with-db.override (prev: {
