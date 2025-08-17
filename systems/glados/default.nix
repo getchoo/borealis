@@ -41,14 +41,15 @@
 
   environment.systemPackages = [
     # Enable VAAPI for Chromium with my NVIDIA card
-    (lib.hiPrio (
+    (
       pkgs.chromium.override {
         # NOTE: If this breaks, look at https://github.com/elFarto/nvidia-vaapi-driver/issues/5
         commandLineArgs = [
           "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
         ];
       }
-    ))
+      |> lib.hiPrio
+    )
   ];
 
   hardware.nvidia = {

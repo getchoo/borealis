@@ -4,6 +4,12 @@
   nixConfig = {
     extra-substituters = [ "https://getchoo.cachix.org" ];
     extra-trusted-public-keys = [ "getchoo.cachix.org-1:ftdbAUJVNaFonM0obRGgR5+nUmdLMM+AOvDOSx0z5tE=" ];
+
+    extra-experimental-features = [
+      # lol
+      "pipe-operator"
+      "pipe-operators"
+    ];
   };
 
   outputs =

@@ -20,7 +20,7 @@ in
     }:
 
     let
-      configurations = lib.mapAttrs (lib.const (v: mapCfgsToDrvs (filterCompatibleCfgs system v))) {
+      configurations = lib.mapAttrs (lib.const (v: filterCompatibleCfgs system v |> mapCfgsToDrvs)) {
         inherit (self) nixosConfigurations homeConfigurations darwinConfigurations;
       };
     in
