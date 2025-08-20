@@ -27,6 +27,8 @@ in
         home-manager.users.seth = {
           imports = [ (inputs.self + "/users/seth") ];
         };
+
+        nixpkgs.overlays = import (inputs.self + "/users/seth/overlays.nix") inputs;
       }
 
       (lib.mkIf isDarwin {

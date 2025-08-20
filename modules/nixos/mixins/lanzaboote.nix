@@ -11,6 +11,8 @@ let
 in
 
 {
+  # WARN: Don't use the overlay from here!!
+  # For some reason it *really* bloats the memory footprint of evaluation
   imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
   config = lib.mkMerge [

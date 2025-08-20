@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ options, inputs, ... }:
 
 {
   imports = [
@@ -10,5 +10,7 @@
     flavor = "mocha";
 
     chromium.enable = false;
+
+    sources = options.catppuccin.sources.default;
   };
 }

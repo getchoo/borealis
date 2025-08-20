@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ options, inputs, ... }:
 
 {
   imports = [
@@ -11,5 +11,7 @@
 
     # Don't use modules with IFD by default
     tty.enable = false;
+
+    sources = options.catppuccin.sources.default;
   };
 }
