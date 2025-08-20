@@ -8,15 +8,15 @@
 
 let
   inherit (pkgs.stdenv.hostPlatform) isLinux;
-  isDix = config.nix.package.pname == "determinate-nix";
-  isLix = config.nix.package.pname == "lix";
 
   nixVersion = config.nix.package.version;
   nixAtLeast = lib.versionAtLeast nixVersion;
   nixOlder = lib.versionOlder nixVersion;
 
-  hasAlwaysAllowSubstitutes = nixAtLeast "2.19.0";
+  isDix = config.nix.package.pname == "determinate-nix" || nixAtLeast "3.0.0";
+  isLix = config.nix.package.pname == "lix";
 
+  hasAlwaysAllowSubstitutes = nixAtLeast "2.19.0";
   hasFlakesByDefault = isDix;
   hasLazyTrees = isDix && nixAtLeast "3.5.0";
   hasLixSubcommand = isLix && nixAtLeast "2.93.0";
