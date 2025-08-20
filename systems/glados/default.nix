@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -36,19 +35,6 @@
     };
   };
 
-  environment.systemPackages = [
-    # Enable VAAPI for Chromium with my NVIDIA card
-    (
-      pkgs.chromium.override {
-        # NOTE: If this breaks, look at https://github.com/elFarto/nvidia-vaapi-driver/issues/5
-        commandLineArgs = [
-          "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
-        ];
-      }
-      |> lib.hiPrio
-    )
-  ];
-
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
@@ -60,6 +46,17 @@
     hostName = "glados";
     networkmanager.enable = true;
   };
+
+  nixpkgs.overlays = [
+    (_: prev: {
+      chromium = prev.chromium.override (prev': {
+        # NOTE: If this breaks, look at https://github.com/elFarto/nvidia-vaapi-driver/issues/5
+        commandLineArgs = prev'.commandLineArgs or [ ] ++ [
+          "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
+        ];
+      });
+    })
+  ];
 
   security.tpm2 = {
     enable = true;
