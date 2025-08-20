@@ -28,7 +28,7 @@ in
         # Discord currently uses Chromium 130
         # https://github.com/elFarto/nvidia-vaapi-driver/issues/5#issuecomment-2421082537
         preInstall = old.preInstall or "" + ''
-          gappsWrapperArgs+=(--add-flags "--enable-features=VaapiOnNvidiaGPUs,VaapiVideoDecodeLinuxGL,VaapiVideoDecodeLinuxZeroCopyGL")
+          gappsWrapperArgs+=(--add-flags "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks")
         '';
       }))
 
