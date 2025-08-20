@@ -1,14 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  inputs',
-  ...
-}:
-
-let
-  overrideNix = pkg: pkg.override { nix = config.nix.package; };
-in
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -19,20 +9,10 @@ in
     catppuccin.enable = true;
 
     home.packages = [
-      (inputs'.getchvim.packages.default.override {
-        nixd = inputs'.nixd.packages.nixd.override (prev: {
-          # Use user's nix if possible
-          nixComponents = config.nix.package.libs or prev.nixComponents;
-        });
-      })
+      pkgs.getchvim
 
       pkgs.hydra-check
       pkgs.nixfmt
-
-      # TODO: `programs.nix-index-database.comma.package` should probably exist
-      (inputs'.nix-index-database.packages.comma-with-db.override (prev: {
-        comma = overrideNix prev.comma;
-      }))
     ];
 
     programs = {
@@ -42,10 +22,7 @@ in
 
       direnv = {
         enable = true;
-        nix-direnv = {
-          enable = true;
-          package = overrideNix pkgs.nix-direnv;
-        };
+        nix-direnv.enable = true;
       };
 
       eza = {
@@ -58,6 +35,7 @@ in
       git.enable = true;
       gpg.enable = true;
       nix-index.enable = true;
+      nix-index-database.comma.enable = true;
       ripgrep.enable = true;
       ssh.enable = true;
       vim.enable = true;

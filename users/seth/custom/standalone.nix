@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -32,5 +33,7 @@ in
     nix = {
       package = lib.mkDefault pkgs.nix;
     };
+
+    nixpkgs.overlays = import ../overlays.nix inputs;
   };
 }
