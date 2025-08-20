@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  inputs,
-  ...
-}:
+{ config, inputs, ... }:
 
 {
   imports = [
@@ -37,9 +32,6 @@
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;
-
-    # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/693
-    open = lib.mkForce false;
   };
 
   networking = {
