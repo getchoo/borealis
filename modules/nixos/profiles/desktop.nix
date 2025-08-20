@@ -24,7 +24,5 @@ in
     programs = {
       nix-ld.enable = lib.mkDefault true;
     };
-
-    system.rebuild.enableNg = true;
   };
 }
