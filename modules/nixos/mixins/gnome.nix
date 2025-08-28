@@ -75,8 +75,12 @@ in
         ];
       };
 
-      services.displayManager.gdm = {
-        enable = lib.mkDefault true;
+      services = {
+        displayManager.gdm = {
+          enable = lib.mkDefault true;
+        };
+
+        tuned.enable = true;
       };
     })
   ];
