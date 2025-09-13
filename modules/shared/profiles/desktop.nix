@@ -16,8 +16,6 @@ in
       };
     };
 
-    determinate.enable = true;
-
     nix.settings = {
       extra-trusted-substituters = [
         "https://nix-community.cachix.org"
@@ -27,6 +25,9 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
+
+    # Use latest Nix by default
+    nixpkgs.overlays = [ (final: _: { nix = final.nixVersions.latest; }) ];
 
     services = {
       tailscale.enable = lib.mkDefault true;

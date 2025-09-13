@@ -4,7 +4,6 @@
     ./agenix.nix
     ./budgie.nix
     ./comin.nix
-    ./dix.nix
     ./fonts.nix
     ./forgejo.nix
     ./gnome.nix
