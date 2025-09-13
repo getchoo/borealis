@@ -20,6 +20,7 @@ let
   hasFlakesByDefault = isDix;
   hasLazyTrees = isDix && nixAtLeast "3.5.0";
   hasLixSubcommand = isLix && nixAtLeast "2.93.0";
+  hasParallelEval = isDix && nixAtLeast "3.11.1";
   hasPipeOperator = isLix && nixAtLeast "2.91.0";
   hasPipeOperators = !isLix && nixAtLeast "2.24.0";
   hasReplFlake =
@@ -72,6 +73,11 @@ in
 
       (lib.mkIf hasLixSubcommand {
         experimental-features = [ "lix-custom-sub-commands" ];
+      })
+
+      (lib.mkIf hasParallelEval {
+        experimental-features = [ "parallel-eval" ];
+        eval-cores = 0;
       })
 
       (lib.mkIf hasPipeOperator {
