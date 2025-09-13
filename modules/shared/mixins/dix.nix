@@ -21,7 +21,8 @@
         (final: prev: {
           nixVersions = prev.nixVersions.extend (
             _: _: {
-              nixComponents_2_30 = final.nixComponents2;
+              nixComponents_2_30 = final.nix.libs;
+              nixComponents_2_31 = final.nix.libs;
             }
           );
         })
