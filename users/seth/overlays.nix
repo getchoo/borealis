@@ -7,7 +7,10 @@ inputs: [
     final: prev:
 
     let
-      nixComponents = final.nixVersions.nixComponents_2_30;
+      inherit (final) lib;
+      latestNixVersionSuffix =
+        lib.versions.majorMinor final.nixVersions.latest.version |> lib.replaceStrings [ "." ] [ "_" ];
+      nixComponents = final.nixVersions."nixComponents_${latestNixVersionSuffix}";
     in
 
     {
