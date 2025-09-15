@@ -9,7 +9,7 @@
   ## Common options
 
   borealis = {
-    nvd-diff.enable = true;
+    activation-diff.enable = true;
   };
 
   documentation.nixos.enable = lib.mkDefault false;
