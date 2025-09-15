@@ -16,7 +16,7 @@ in
       };
     };
 
-    determinate.enable = true;
+    lix.enable = true;
 
     nix.settings = {
       extra-trusted-substituters = [
