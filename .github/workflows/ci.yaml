@@ -38,10 +38,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v19
-        with:
-          determinate: true
-          diagnostic-endpoint: ""
+        uses: ./.github/actions/install-nix-action
 
       - name: Print Nix version
         run: |
