@@ -37,10 +37,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
 
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v19
-        with:
-          determinate: true
-          diagnostic-endpoint: ""
+        uses: ./.github/actions/install-nix-action
 
       - name: Print Nix version
         run: |
