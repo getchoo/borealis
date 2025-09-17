@@ -434,7 +434,7 @@
         "narHash": "sha256-rmyZ6B4DtU9MwkBSEf63NU4czFoM0budKcAtlhjaGEc=",
         "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre861038.c23193b943c6/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre861038.c23193b943c6/nixexprs.tar.xz?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1"
       },
       "original": {
         "type": "tarball",
@@ -447,7 +447,7 @@
         "narHash": "sha256-mvTtxYIyANBRVxruLSUeuQOp7rV3kzygbRTfeTNY0Yk=",
         "rev": "9a094440e02a699be5c57453a092a8baf569bdad",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.05/nixos-25.05.809873.9a094440e02a/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/25.05/nixos-25.05.809873.9a094440e02a/nixexprs.tar.xz?rev=9a094440e02a699be5c57453a092a8baf569bdad"
       },
       "original": {
         "type": "tarball",
