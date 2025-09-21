@@ -140,6 +140,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix = {
+      url = "github:NixOS/nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-regression.follows = "";
+        nixpkgs-23-11.follows = "";
+
+        flake-compat.follows = "";
+        flake-parts.follows = "";
+        git-hooks-nix.follows = "";
+      };
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
