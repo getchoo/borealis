@@ -5,7 +5,7 @@ alias ea := eval-all
 alias u := update
 alias ui := update-input
 
-rebuild := if os() == "macos" { "darwin-rebuild" } else { "nixos-rebuild-ng" }
+rebuild := if os() == "macos" { "darwin-rebuild" } else { "nixos-rebuild" }
 
 default:
     @just --choose
