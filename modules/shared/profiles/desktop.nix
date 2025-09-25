@@ -33,17 +33,6 @@ in
 
     nixpkgs.overlays = [
       inputs.nix.overlays.default
-
-      (final: prev: {
-        nix = prev.nix.appendPatches [
-          # https://github.com/NixOS/nix/pull/14041
-          (final.fetchpatch2 {
-            name = "avoid-re-copying-substituted-inputs.patch";
-            url = "https://github.com/NixOS/nix/commit/5e90b64add409edcf774cb1e1807ab931b7ac296.patch";
-            hash = "sha256-JrLi2ahEhriMt/qB+9Zx8NQilUBBnvvn8rYsUICYrxE=";
-          })
-        ];
-      })
     ];
 
     services = {
