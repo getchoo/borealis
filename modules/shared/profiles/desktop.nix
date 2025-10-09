@@ -33,6 +33,17 @@ in
 
     nixpkgs.overlays = [
       inputs.nix.overlays.default
+
+      # TODO: Remove this!
+      # Un-vendor toml11 to fix build failures with the Nix flake's override
+      # https://github.com/NixOS/nix/pull/14199
+      (final: prev: {
+        nix = prev.nix.overrideScope (
+          _: _: {
+            inherit (final) toml11;
+          }
+        );
+      })
     ];
 
     services = {
