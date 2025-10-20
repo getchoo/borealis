@@ -76,26 +76,6 @@
       flake = false;
     };
 
-    dix = {
-      url = "https://flakehub.com/f/DeterminateSystems/nix-src/*";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-regression.follows = "";
-        nixpkgs-23-11.follows = "";
-
-        flake-parts.follows = "";
-        git-hooks-nix.follows = "";
-      };
-    };
-
-    determinate = {
-      url = "github:DeterminateSystems/determinate";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nix.follows = "dix";
-      };
-    };
-
     getchpkgs = {
       url = "github:getchoo/getchpkgs";
       inputs.nixpkgs.follows = "nixpkgs";

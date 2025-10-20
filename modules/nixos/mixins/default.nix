@@ -3,7 +3,6 @@
     ./acme.nix
     ./agenix.nix
     ./budgie.nix
-    ./dix.nix
     ./fonts.nix
     ./forgejo.nix
     ./gnome.nix
