@@ -68,8 +68,6 @@ in
         };
 
         services = {
-          comin.enable = true;
-
           systemd-discord-notifier = {
             enable = true;
 
@@ -87,6 +85,14 @@ in
             authKeyFile = config.age.secrets.tailscaleAuthKey.path;
             extraUpFlags = [ "--ssh" ];
           };
+        };
+
+        system.autoUpgrade = {
+          enable = true;
+
+          dates = "minutely";
+          flake = "github:getchoo/borealis#${config.networking.hostName}";
+          flags = [ "--refresh" ];
         };
 
         # I use exclusively Tailscale auth on some machines

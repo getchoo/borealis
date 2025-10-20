@@ -76,11 +76,6 @@
       flake = false;
     };
 
-    comin = {
-      url = "github:nlewo/comin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dix = {
       url = "https://flakehub.com/f/DeterminateSystems/nix-src/*";
       inputs = {
