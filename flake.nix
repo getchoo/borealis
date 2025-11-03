@@ -93,6 +93,7 @@
         flake-parts.follows = "flake-parts";
         flake-compat.follows = "";
         pre-commit-hooks-nix.follows = "";
+        rust-overlay.follows = "rust-overlay";
       };
     };
 
@@ -156,6 +157,13 @@
         flake-parts.follows = "flake-parts";
         systems.follows = "agenix/systems";
       };
+    };
+
+    # TODO: Don't pin here
+    # https://github.com/nix-community/lanzaboote/issues/485
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     treefmt-nix = {
