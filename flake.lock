@@ -427,33 +427,6 @@
         "type": "github"
       }
     },
-    "openwrt-imagebuilder": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "agenix",
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763886825,
-        "narHash": "sha256-rDrtIu/KGlbCSKGeRj8ogcrihwlh2tHyjg0u0Iw03hE=",
-        "owner": "astro",
-        "repo": "nix-openwrt-imagebuilder",
-        "rev": "d53be393e82a97954893529ded57a7055c81d377",
-        "type": "github"
-      },
-      "original": {
-        "owner": "astro",
-        "repo": "nix-openwrt-imagebuilder",
-        "type": "github"
-      }
-    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -497,7 +470,6 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
-        "openwrt-imagebuilder": "openwrt-imagebuilder",
         "rust-overlay": "rust-overlay",
         "treefmt-nix": "treefmt-nix"
       }

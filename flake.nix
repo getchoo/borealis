@@ -28,7 +28,6 @@
 
         ./flake
         ./modules
-        ./openwrt
         ./systems
         ./users
       ];
@@ -147,15 +146,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "";
-      };
-    };
-
-    openwrt-imagebuilder = {
-      url = "github:astro/nix-openwrt-imagebuilder";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "agenix/systems";
       };
     };
 
