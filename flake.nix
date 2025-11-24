@@ -28,7 +28,6 @@
 
         ./flake
         ./modules
-        ./openwrt
         ./systems
         ./users
       ];
@@ -90,9 +89,7 @@
       url = "github:nix-community/lanzaboote";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "";
-        pre-commit-hooks-nix.follows = "";
+        pre-commit.follows = "";
         rust-overlay.follows = "rust-overlay";
       };
     };
@@ -147,15 +144,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "";
-      };
-    };
-
-    openwrt-imagebuilder = {
-      url = "github:astro/nix-openwrt-imagebuilder";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        systems.follows = "agenix/systems";
       };
     };
 

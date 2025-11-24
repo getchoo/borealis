@@ -23,11 +23,6 @@ Pieces meant for maintaining this flake
 Sets of modules meant for NixOS and
 [nix-darwin](https://github.com/LnL7/nix-darwin)
 
-## openwrt/
-
-Configurations for
-[nix-openwrt-imagebuilder](https://github.com/astro/nix-openwrt-imagebuilder)
-
 ## secrets/
 
 Configuration secrets managed by the wonderful

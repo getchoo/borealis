@@ -20,6 +20,7 @@ let
   hasFlakesByDefault = isDix;
   hasLazyTrees = isDix && nixAtLeast "3.5.0";
   hasLixSubcommand = isLix && nixAtLeast "2.93.0";
+  hasNoURLLiterals = isLix && nixOlder "2.94.0";
   hasParallelEval = isDix && nixAtLeast "3.11.1";
   hasPipeOperator = isLix && nixAtLeast "2.91.0";
   hasPipeOperators = !isLix && nixAtLeast "2.24.0";
@@ -50,7 +51,6 @@ in
         auto-optimise-store = lib.mkDefault isLinux;
         experimental-features = [
           "auto-allocate-uids"
-          "no-url-literals"
         ];
 
         use-xdg-base-directories = true;
@@ -78,6 +78,10 @@ in
       (lib.mkIf hasParallelEval {
         experimental-features = [ "parallel-eval" ];
         eval-cores = 0;
+      })
+
+      (lib.mkIf hasNoURLLiterals {
+        experimental-features = [ "no-url-literals" ];
       })
 
       (lib.mkIf hasPipeOperator {
