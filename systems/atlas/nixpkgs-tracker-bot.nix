@@ -10,7 +10,7 @@
   age.secrets.nixpkgs-tracker-bot.file = secretsDir + "/nixpkgs-tracker-bot.age";
 
   services.nixpkgs-tracker-bot = {
-    enable = true;
+    enable = false;
     environmentFile = config.age.secrets.nixpkgs-tracker-bot.path;
   };
 }
