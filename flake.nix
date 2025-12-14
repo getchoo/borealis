@@ -35,7 +35,7 @@
 
   inputs = {
     nixpkgs.url = "https://nixpkgs.dev/channel/nixos-unstable";
-    nixpkgs-stable.url = "https://nixpkgs.dev/channel/nixos-25.05";
+    nixpkgs-stable.url = "https://nixpkgs.dev/channel/nixos-25.11";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
