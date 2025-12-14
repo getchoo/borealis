@@ -27,9 +27,11 @@ in
       (pkgs.discord.overrideAttrs (old: {
         # Discord currently uses Chromium 130
         # https://github.com/elFarto/nvidia-vaapi-driver/issues/5#issuecomment-2421082537
-        preInstall = old.preInstall or "" + ''
-          gappsWrapperArgs+=(--add-flags "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks")
-        '';
+        preInstall =
+          (lib.replaceString " --enable-features=WaylandWindowDecorations" "" old.preInstall or "")
+          + ''
+            gappsWrapperArgs+=(--add-flags "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks")
+          '';
       }))
 
       # Matrix client
