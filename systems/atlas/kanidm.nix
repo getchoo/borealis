@@ -1,4 +1,9 @@
-{ config, secretsDir, ... }:
+{
+  config,
+  pkgs,
+  secretsDir,
+  ...
+}:
 
 let
   cfg = config.services.kanidm;
@@ -12,6 +17,7 @@ in
 
   services = {
     kanidm = {
+      package = pkgs.kanidm_1_8;
       enableClient = true;
       enableServer = true;
 
