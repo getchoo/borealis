@@ -10,14 +10,6 @@ let
 in
 
 {
-  # TODO: Remove when 25.11 is stable
-  imports = lib.optionals (lib.versionOlder lib.version "25.11pre") [
-    (lib.mkAliasOptionModule
-      [ "services" "displayManager" "gdm" "enable" ]
-      [ "services" "xserver" "displayManager" "gdm" "enable" ]
-    )
-  ];
-
   config = lib.mkMerge [
     {
       environment = {

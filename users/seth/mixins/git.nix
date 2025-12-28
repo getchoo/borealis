@@ -1,28 +1,26 @@
 {
-  lib,
-  ...
-}:
-
-{
-  config = lib.mkMerge [
-    {
-      programs.git = {
-        riff.enable = true;
-
-        extraConfig = {
-          init = {
-            defaultBranch = "main";
-          };
+  programs = {
+    git = {
+      settings = {
+        init = {
+          defaultBranch = "main";
         };
 
-        signing = {
-          key = "D31BD0D494BBEE86";
-          signByDefault = true;
+        user = {
+          email = "getchoo@tuta.io";
+          name = "Seth Flynn";
         };
-
-        userEmail = "getchoo@tuta.io";
-        userName = "Seth Flynn";
       };
-    }
-  ];
+
+      signing = {
+        key = "D31BD0D494BBEE86";
+        signByDefault = true;
+      };
+    };
+
+    riff = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+  };
 }

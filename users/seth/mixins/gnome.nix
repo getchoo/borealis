@@ -6,12 +6,7 @@
 }:
 
 let
-  # TODO: Remove when 25.11 is stable
-  inherit
-    (osConfig.services.desktopManager.gnome or osConfig.services.xserver.desktopManager.gnome or {
-      enable = false;
-    }
-    )
+  inherit (osConfig.services.desktopManager.gnome or { enable = false; })
     enable
     ;
 in

@@ -15,6 +15,8 @@ in
       programs.ssh = {
         package = pkgs.openssh;
 
+        enableDefaultConfig = false;
+
         matchBlocks =
           let
             sshDir = "${config.home.homeDirectory}/.ssh";
