@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, inputs, ... }:
 
 {
   imports = [
@@ -51,10 +45,6 @@
     hostName = "glados";
     networkmanager.enable = true;
   };
-
-  lix.enable = lib.mkForce false;
-
-  nix.package = pkgs.nixVersions.latest;
 
   nixpkgs.overlays = [
     (_: prev: {
