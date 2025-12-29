@@ -62,6 +62,9 @@ in
       # Keep my screen awake
       pkgs.gnomeExtensions.caffeine
 
+      # Give me a real clipboard manager
+      pkgs.gnomeExtensions.copyous
+
       # Terminal emulator
       pkgs.ptyxis
 
