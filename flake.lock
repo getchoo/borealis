@@ -256,31 +256,6 @@
         "type": "github"
       }
     },
-    "nix": {
-      "inputs": {
-        "flake-compat": [],
-        "flake-parts": [],
-        "git-hooks-nix": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-23-11": [],
-        "nixpkgs-regression": []
-      },
-      "locked": {
-        "lastModified": 1766933175,
-        "narHash": "sha256-cDmZa6Z9Q0XXdES0+cQnzjDaqkqLa6OZgQgAVjHzkKI=",
-        "owner": "NixOS",
-        "repo": "nix",
-        "rev": "b17034ba59df14730168f415d968e0525aff63c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nix",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -402,7 +377,6 @@
         "lix": "lix",
         "lix-module": "lix-module",
         "moyai-bot": "moyai-bot",
-        "nix": "nix",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-wsl": "nixos-wsl",
