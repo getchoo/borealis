@@ -18,16 +18,6 @@
   ];
 
   borealis = {
-    github-mirror = {
-      enable = true;
-
-      hostname = "git." + config.networking.domain;
-      mirroredUsers = [
-        "getchoo"
-        "getchoo-archive"
-      ];
-    };
-
     profiles.server.enable = true;
 
     rime = {
