@@ -90,7 +90,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         pre-commit.follows = "";
-        rust-overlay.follows = "rust-overlay";
       };
     };
 
@@ -132,13 +131,6 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "";
       };
-    };
-
-    # TODO: Don't pin here
-    # https://github.com/nix-community/lanzaboote/issues/485
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     treefmt-nix = {
