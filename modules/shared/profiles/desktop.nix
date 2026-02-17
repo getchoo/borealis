@@ -22,8 +22,6 @@ in
     };
 
     nix = {
-      package = pkgs.nixVersions.latest;
-
       settings = {
         extra-trusted-substituters = [
           "https://nix-community.cachix.org"
@@ -34,6 +32,16 @@ in
         ];
       };
     };
+
+    nixpkgs.overlays = [
+      (_: prev: {
+        nixVersions = prev.nixVersions.extend (
+          _: prev': {
+            stable = prev'.latest;
+          }
+        );
+      })
+    ];
 
     services = {
       tailscale.enable = lib.mkDefault true;
