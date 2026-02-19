@@ -23,10 +23,10 @@ in
 
       programs.firefox = {
         addons = [
+          # 1Password
+          { id = "{d634138d-c276-4fc8-924b-40a0ea21d284}"; }
           # uBlock Origin
           { id = "uBlock0@raymondhill.net"; }
-          # Bitwarden
-          { id = "{446900e4-71c2-419f-a6a7-df9c091e268b}"; }
           # Floccus
           { id = "floccus@handmadeideas.org"; }
         ];
@@ -61,7 +61,7 @@ in
             # 2651: Download to my downloads
             "browser.download.useDownloadDir" = true;
 
-            # 5003: I use Bitwarden
+            # 5003: I use an external password manager
             "signon.rememberSignons" = false;
 
             # 5004: Only persist site permissions for session

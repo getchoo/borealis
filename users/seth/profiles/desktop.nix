@@ -24,6 +24,8 @@ in
 
   config = lib.mkIf (cfg.enable && isLinux && hasGui) {
     home.packages = [
+      pkgs._1password-gui
+
       (pkgs.discord.overrideAttrs (old: {
         # Discord currently uses Chromium 130
         # https://github.com/elFarto/nvidia-vaapi-driver/issues/5#issuecomment-2421082537
