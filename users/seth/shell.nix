@@ -9,8 +9,10 @@
   home = {
     sessionVariables = {
       EDITOR = "nvim";
-      PAGER = lib.getExe pkgs.moor;
       VISUAL = config.home.sessionVariables.EDITOR;
+
+      PAGER = lib.getExe pkgs.moor;
+      MOOR = "-quit-if-one-screen -terminal-fg";
 
       # Force XDG spec on some apps
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
