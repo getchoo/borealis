@@ -34,6 +34,9 @@ in
       package = lib.mkDefault pkgs.nix;
     };
 
-    nixpkgs.overlays = import ../overlays.nix inputs;
+    nixpkgs = {
+      config.allowUnfree = true;
+      overlays = import ../overlays.nix inputs;
+    };
   };
 }
