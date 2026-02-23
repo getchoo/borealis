@@ -50,9 +50,12 @@
     })
   ];
 
-  security.tpm2 = {
-    enable = true;
-    abrmd.enable = true;
+  security = {
+    audit.enable = false; # TODO: Re-enable after https://github.com/NixOS/nixpkgs/issues/483085
+    tpm2 = {
+      enable = true;
+      abrmd.enable = true;
+    };
   };
 
   services = {
