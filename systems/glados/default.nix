@@ -87,11 +87,7 @@
 
   virtualisation = {
     oci-containers.backend = "podman";
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
-    };
+    podman.enable = true;
   };
 
   zramSwap.enable = true;
