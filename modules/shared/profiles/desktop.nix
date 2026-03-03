@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   ...
 }:
 
@@ -33,6 +34,8 @@ in
     };
 
     nixpkgs.overlays = [
+      inputs.nix-src.overlays.default
+
       (_: prev: {
         nixVersions = prev.nixVersions.extend (
           _: prev': {

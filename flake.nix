@@ -117,6 +117,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-src = {
+      url = "github:NixOS/nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+
+        flake-compat.follows = "";
+        flake-parts.follows = "";
+        git-hooks-nix.follows = "";
+        nixpkgs-23-11.follows = "";
+        nixpkgs-regression.follows = "";
+      };
+    };
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs = {

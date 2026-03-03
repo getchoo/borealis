@@ -294,6 +294,31 @@
         "type": "github"
       }
     },
+    "nix-src": {
+      "inputs": {
+        "flake-compat": [],
+        "flake-parts": [],
+        "git-hooks-nix": [],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-23-11": [],
+        "nixpkgs-regression": []
+      },
+      "locked": {
+        "lastModified": 1772485294,
+        "narHash": "sha256-3IHfxtHmLEo/JBMh+0nLXL1IH5If5KCqyxPnIAHhf48=",
+        "owner": "NixOS",
+        "repo": "nix",
+        "rev": "2d0c5421a59bcc33c38a12cb475df3457cc8957b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": [],
@@ -377,6 +402,7 @@
         "moyai-bot": "moyai-bot",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
+        "nix-src": "nix-src",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
