@@ -13,6 +13,7 @@ let
   nixAtLeast = lib.versionAtLeast nixVersion;
   nixOlder = lib.versionOlder nixVersion;
 
+  isNix = config.nix.package.pname == "nix";
   isDix = config.nix.package.pname == "determinate-nix" || nixAtLeast "3.0.0";
   isLix = config.nix.package.pname == "lix";
 
@@ -27,6 +28,8 @@ let
   hasReplFlake =
     nixOlder "2.22.0" # repl-flake was removed in Nix 2.22.0
     || (isLix && nixOlder "2.93.0"); # but not in Lix until 2.93
+  hasTraceOnIFD = isNix && nixAtLeast "2.30.0";
+  hasWarnOnIFD = isLix && nixAtLeast "2.95.0-pre";
 in
 
 {
@@ -94,6 +97,14 @@ in
 
       (lib.mkIf hasReplFlake {
         experimental-features = [ "repl-flake" ];
+      })
+
+      (lib.mkIf hasTraceOnIFD {
+        trace-import-from-derivation = true;
+      })
+
+      (lib.mkIf hasWarnOnIFD {
+        warn-import-from-derivation = true;
       })
     ];
   };
