@@ -141,11 +141,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772243686,
-        "narHash": "sha256-FmI8XWsKJ1KivP/dui5hVtOIWyyxiYWW4mXVfnk/tXo=",
+        "lastModified": 1773110197,
+        "narHash": "sha256-OUfv0L+vYSDVAtI4abvQMT52hyy+OK7jZSBA9JqU7H8=",
         "owner": "getchoo",
         "repo": "getchvim",
-        "rev": "755587edd5f1e6b56f0bb8d7af68813aed552948",
+        "rev": "fe8f4c8b6e5744736c584c5b19eab3903536a4f1",
         "type": "github"
       },
       "original": {
