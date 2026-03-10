@@ -7,7 +7,7 @@
 
     extra-experimental-features = [
       # lol
-      # "pipe-operator"
+      "pipe-operator"
       "pipe-operators"
     ];
   };
