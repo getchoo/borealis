@@ -54,8 +54,10 @@ in
         auto-optimise-store = lib.mkDefault isLinux;
         experimental-features = [
           "auto-allocate-uids"
+          "cgroups"
         ];
 
+        use-cgroups = true;
         use-xdg-base-directories = true;
       }
 
