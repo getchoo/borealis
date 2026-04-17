@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   inputs,
   ...
 }:
@@ -22,10 +21,6 @@
     }
 
     (lib.mkIf config.wsl.enable {
-      environment.systemPackages = [
-        pkgs.wslu
-      ];
-
       security = {
         # Something, something `resolv.conf` error
         # (nixos-wsl probably doesn't set it)
