@@ -20,8 +20,6 @@ in
       };
     };
 
-    lix.enable = true;
-
     nix = {
       settings = {
         extra-trusted-substituters = [
@@ -33,6 +31,16 @@ in
         ];
       };
     };
+
+    nixpkgs.overlays = [
+      (_: prev: {
+        nixVersions = prev.nixVersions.extend (
+          final': _: {
+            stable = final'.latest;
+          }
+        );
+      })
+    ];
 
     services = {
       tailscale.enable = lib.mkDefault true;
