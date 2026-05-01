@@ -40,13 +40,15 @@
   };
 
   nixpkgs.overlays = [
-    (_: prev: {
+    (final: prev: {
       chromium = prev.chromium.override (prev': {
         # NOTE: If this breaks, look at https://github.com/elFarto/nvidia-vaapi-driver/issues/5
         commandLineArgs = prev'.commandLineArgs or [ ] ++ [
           "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
         ];
       });
+
+      yt-dlp = prev.yt-dlp.override { deno = final.nodejs; };
     })
   ];
 
