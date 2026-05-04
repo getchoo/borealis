@@ -28,6 +28,11 @@
 
   system.stateVersion = "23.11";
 
+  virtualisation = {
+    containers.enable = true;
+    podman.enable = true;
+  };
+
   wsl = {
     enable = true;
     defaultUser = "seth";
