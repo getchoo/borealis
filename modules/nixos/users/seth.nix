@@ -24,6 +24,7 @@ in
 
       users.users.seth = {
         hashedPasswordFile = lib.mkDefault config.age.secrets.sethPassword.path;
+        linger = lib.mkIf config.wsl.enable true;
       };
     })
   ];
