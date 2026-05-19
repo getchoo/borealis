@@ -39,6 +39,12 @@
     networkmanager.enable = true;
   };
 
+  nix = {
+    settings = {
+      system-features = [ "gccarch-x86-64-v3" ];
+    };
+  };
+
   nixpkgs.overlays = [
     (final: prev: {
       chromium = prev.chromium.override (prev': {

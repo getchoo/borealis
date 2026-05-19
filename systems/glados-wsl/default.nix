@@ -20,6 +20,12 @@
 
   networking.hostName = "glados-wsl";
 
+  nix = {
+    settings = {
+      system-features = [ "gccarch-x86-64-v3" ];
+    };
+  };
+
   nixpkgs.hostPlatform = "x86_64-linux";
 
   services = {
