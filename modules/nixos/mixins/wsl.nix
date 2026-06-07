@@ -14,7 +14,6 @@
     {
       wsl = {
         interop = {
-          includePath = false; # this is so annoying
           register = true;
         };
       };
