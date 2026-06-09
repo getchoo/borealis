@@ -17,10 +17,6 @@ in
     systemd = {
       services.miniflux = {
         requires = [ "miniflux.socket" ];
-
-        serviceConfig = {
-          SupplementaryGroups = [ "postgres" ];
-        };
       };
 
       sockets.miniflux = {
