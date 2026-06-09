@@ -14,6 +14,9 @@ in
       socket = lib.head config.systemd.sockets.miniflux.listenStreams;
     };
 
+    # TODO: Re-enable when we aren't denied access to the postgres socket
+    security.apparmor.enable = false;
+
     systemd = {
       services.miniflux = {
         requires = [ "miniflux.socket" ];
