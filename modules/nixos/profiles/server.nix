@@ -66,7 +66,7 @@ in
         ];
       };
 
-      package = pkgs.lixPackageSets.stable.lix;
+      package = pkgs.lixPackageSets.latest.lix;
 
       # Hardening access to `nix` as no other users *should* ever really touch it
       settings.allowed-users = lib.mkIf config.borealis.users.system.enable [
