@@ -67,7 +67,7 @@
   };
 
   services = {
-    desktopManager.gnome.enable = true;
+    desktopManager.plasma6.enable = true;
 
     flatpak.enable = true;
     fstrim.enable = true;
