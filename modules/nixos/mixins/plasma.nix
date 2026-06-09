@@ -14,7 +14,12 @@
           khelpcenter
           konsole
           plasma-browser-integration
+          kwin-x11
         ];
+      };
+
+      services.desktopManager.plasma6 = {
+        enableQt5Integration = lib.mkDefault false;
       };
     }
 
