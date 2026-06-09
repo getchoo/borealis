@@ -16,10 +16,6 @@
           plasma-browser-integration
         ];
       };
-
-      services.displayManager.sddm = {
-        wayland.enable = true;
-      };
     }
 
     (lib.mkIf config.services.desktopManager.plasma6.enable {
@@ -34,7 +30,7 @@
         ];
       };
 
-      services.displayManager.sddm = {
+      services.displayManager.plasma-login-manager = {
         enable = lib.mkDefault true;
       };
     })
