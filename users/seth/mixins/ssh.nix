@@ -39,41 +39,37 @@ in
 
         enableDefaultConfig = false;
 
-        matchBlocks =
+        settings =
           let
             sshDir = "${config.home.homeDirectory}/.ssh";
           in
           {
             # git forges
             "codeberg.org" = {
-              identityFile = "${sshDir}/codeberg";
-              user = "git";
-            };
-
-            "github.com" = {
-              identityFile = "${sshDir}/github";
-              user = "git";
+              Hostname = "codeberg.org";
+              User = "git";
+              IdentityFile = "${sshDir}/codeberg";
             };
 
             # linux packaging
             "aur.archlinux.org" = {
-              identityFile = "${sshDir}/aur";
-              user = "aur";
+              Hostname = "aur.archlinux.org";
+              User = "aur";
+              IdentityFile = "${sshDir}/aur";
             };
 
             "pagure.io" = {
-              identityFile = "${sshDir}/copr";
-              user = "git";
+              Hostname = "pagure.io";
+              User = "git";
+              IdentityFile = "${sshDir}/copr";
             };
 
             # macstadium m1
             "mini.scrumplex.net" = {
-              identityFile = "${sshDir}/macstadium";
-              user = "bob-the-builder";
+              Hostname = "mini.scrumplex.net";
+              User = "bob-the-builder";
+              IdentityFile = "${sshDir}/macstadium";
             };
-
-            # servers
-            "atlas".user = "atlas";
           };
       };
     }
