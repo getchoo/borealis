@@ -3,7 +3,7 @@
 let
   cfg = config.services.kanidm;
 
-  inherit (cfg.serverSettings) domain;
+  inherit (cfg.server.settings) domain;
   certDirectory = config.security.acme.certs.${domain}.directory;
 in
 
@@ -11,11 +11,11 @@ in
   config = lib.mkMerge [
     {
       services.kanidm = {
-        clientSettings = {
-          uri = lib.mkDefault cfg.serverSettings.origin;
+        client.settings = {
+          uri = lib.mkDefault cfg.server.settings.origin;
         };
 
-        serverSettings = {
+        server.settings = {
           tls_chain = certDirectory + "/fullchain.pem";
           tls_key = certDirectory + "/key.pem";
           origin = lib.mkDefault ("https://" + domain);
@@ -27,9 +27,9 @@ in
       };
     }
 
-    (lib.mkIf cfg.enableServer {
+    (lib.mkIf cfg.server.enable {
       borealis.reverseProxies.${domain} = {
-        locations."/".proxyPass = "https://" + cfg.serverSettings.bindaddress;
+        locations."/".proxyPass = "https://" + cfg.server.settings.bindaddress;
       };
 
       security.acme.certs.${domain} = {
