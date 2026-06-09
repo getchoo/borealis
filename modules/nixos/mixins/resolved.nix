@@ -5,7 +5,9 @@
     {
       services.resolved = {
         enable = lib.mkDefault true;
-        dnsovertls = "true";
+        settings = {
+          Resolve.DNSOverTLS = "true";
+        };
       };
     }
 

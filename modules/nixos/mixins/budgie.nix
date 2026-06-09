@@ -25,7 +25,7 @@
         ];
       };
 
-      services.xserver.desktopManager.budgie = {
+      services.desktopManager.budgie = {
         # Make sure we actually use the themes below
         extraGSettingsOverrides = ''
           [org.gnome.desktop.interface:Budgie]
@@ -36,7 +36,7 @@
       };
     }
 
-    (lib.mkIf config.services.xserver.desktopManager.budgie.enable {
+    (lib.mkIf config.services.desktopManager.budgie.enable {
       environment.systemPackages = with pkgs; [
         materia-theme
         papirus-icon-theme

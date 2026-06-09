@@ -1,7 +1,7 @@
 { lib, osConfig, ... }:
 
 let
-  enable = osConfig.services.xserver.desktopManager.budgie.enable or false;
+  enable = osConfig.services.desktopManager.budgie.enable or false;
 in
 
 {

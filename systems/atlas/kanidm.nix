@@ -7,7 +7,7 @@
 
 let
   cfg = config.services.kanidm;
-  oauth2Domain = "https://" + cfg.serverSettings.domain;
+  oauth2Domain = "https://" + cfg.server.settings.domain;
 in
 
 {
@@ -18,11 +18,14 @@ in
   services = {
     kanidm = {
       package = pkgs.kanidm_1_10;
-      enableClient = true;
-      enableServer = true;
+      client.enable = true;
 
-      serverSettings = {
-        domain = "auth." + config.networking.domain;
+      server = {
+        enable = true;
+
+        settings = {
+          domain = "auth." + config.networking.domain;
+        };
       };
     };
 

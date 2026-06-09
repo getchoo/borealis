@@ -6,7 +6,7 @@ inputs:
   variant:
     description: "Nix implementation to install. Either Nix, Lix, or Dix"
     required: true
-    default: "Nix"
+    default: "Lix"
 
 runs:
   using: composite

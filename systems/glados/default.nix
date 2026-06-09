@@ -34,6 +34,11 @@
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
+  home-manager.users.seth = {
+    # TODO: Move to $XDG_CONFIG_HOME
+    programs.firefox.configPath = ".mozilla/firefox";
+  };
+
   networking = {
     hostName = "glados";
     networkmanager.enable = true;
@@ -67,7 +72,7 @@
   };
 
   services = {
-    desktopManager.gnome.enable = true;
+    desktopManager.plasma6.enable = true;
 
     flatpak.enable = true;
     fstrim.enable = true;
