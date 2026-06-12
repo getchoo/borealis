@@ -1,54 +1,43 @@
 alias r := rebuild
 alias rr := remote-rebuild
-alias e := eval
-alias ea := eval-all
 alias u := update
-alias ui := update-input
+alias c := check-all
 
+flake := justfile_directory()
 rebuild := if os() == "macos" { "darwin-rebuild" } else { "nixos-rebuild" }
 
-default:
-    @just --choose
+# Switch to the latest system configuration
+default: rebuild
 
-rebuild subcmd *args="":
+# Re-configure a system configuration
+rebuild +args="switch":
     {{ rebuild }} \
-      {{ subcmd }} \
       --accept-flake-config \
       --sudo \
-      --flake 'git+file://{{ justfile_directory() }}' \
+      --flake '{{ flake }}' \
       {{ args }}
 
-remote-rebuild system subcmd *args="":
+# Re-configure a remote system configuration
+remote-rebuild system *args:
     {{ rebuild }} \
-      {{ subcmd }} \
       --build-host 'root@{{ system }}' \
       --target-host 'root@{{ system }}' \
       --no-reexec \
       --use-substitutes \
-      --flake 'git+file://{{ justfile_directory() }}#{{ system }}' \
+      --flake '{{ flake }}#{{ system }}' \
       {{ args }}
 
-eval system *args="":
-    nix eval \
-      --no-allow-import-from-derivation \
-      'git+file://{{ justfile_directory() }}#nixosConfigurations.{{ system }}.config.system.build.toplevel' \
-      {{ args }}
-
-eval-all *args="":
+# Evaluate the current flake for all systems
+check-all *args:
     nix flake check \
       --all-systems \
       --no-build \
-      'git+file://{{ justfile_directory() }}' \
+      '{{ flake }}' \
       {{ args }}
 
-update:
-    nix flake update \
+# Update the given flake inputs, or all
+update *inputs:
+    nix flake update {{ inputs }} \
       --commit-lock-file \
-      --commit-lockfile-summary "flake: update all inputs" \
-      --flake 'git+file://{{ justfile_directory() }}'
-
-update-input input:
-    nix flake update {{ input }} \
-      --commit-lock-file \
-      --commit-lockfile-summary "flake: update {{ input }}" \
-      --flake 'git+file://{{ justfile_directory() }}'
+      --commit-lockfile-summary "flake: update {{ if inputs == "" { "all inputs" } else { replace(inputs, " ", ", ") } }}" \
+      --flake '{{ flake }}'
