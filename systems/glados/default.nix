@@ -58,8 +58,6 @@
           "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
         ];
       });
-
-      yt-dlp = prev.yt-dlp.override { deno = final.nodejs; };
     })
   ];
 
