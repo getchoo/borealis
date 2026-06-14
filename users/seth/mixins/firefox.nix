@@ -41,8 +41,7 @@ in
             "browser.ml.chat.enabled" = false;
             "browser.shell.checkDefaultBrowser" = false;
 
-            # Disable Firefox Accounts & Pocket
-            "extensions.pocket.enabled" = false;
+            # Disable Firefox Accounts
             "identity.fxaccounts.enabled" = false;
 
             # Force enable hardware acceleration
@@ -51,12 +50,19 @@ in
             # Enable Widevine DRM
             "media.gmp-widevinecdm.enabled" = true;
 
+            # Smooth scrolling
+            # from https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
+            "mousewheel.min_line_scroll_amount" = 10;
+            "general.smoothScroll.mouseWheel.durationMinMS" = 80;
+            "general.smoothScroll.currentVelocityWeighting" = "0.15";
+            "general.smoothScroll.stopDecelerationWeighting" = "0.6";
+
             # ===
             ## Arkenfox overrides
             # ===
 
             # 1201: Fix Hulu
-            "security.ssl.require_safe_negotiation" = false;
+            # "security.ssl.require_safe_negotiation" = false;
 
             # 2651: Download to my downloads
             "browser.download.useDownloadDir" = true;
@@ -72,8 +78,8 @@ in
             "extensions.formautofill.addresses.enabled" = false;
             "extensions.formautofill.creditCards.enabled" = false;
 
-            # 5021: Enable search from URL bar by default
-            "keyword.enabled" = true;
+            # override recipe (0102): enable session restore
+            "browser.startup.page" = 3;
           };
         };
       };
