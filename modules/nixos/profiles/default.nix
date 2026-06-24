@@ -17,6 +17,7 @@
   environment.systemPackages = [
     pkgs.dust
     pkgs.libarchive # My beloved
+    pkgs.xdg-utils
   ];
 
   i18n = {
