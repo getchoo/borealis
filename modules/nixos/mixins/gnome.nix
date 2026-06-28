@@ -15,7 +15,6 @@ in
       environment = {
         gnome.excludePackages = with pkgs; [
           gnome-tour
-          totem # Replaced with celluloid
           seahorse # Replaced with key-rack
         ];
       };
@@ -34,11 +33,8 @@ in
           pkgs.adw-gtk3
           # Media player(s)
           pkgs.celluloid
-          pkgs.showtime
           # Checksum verifier
           pkgs.collision
-          # Audio player
-          pkgs.decibels
           # Screen recorder
           pkgs.kooha
           # Secret manager
