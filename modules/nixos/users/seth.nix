@@ -26,6 +26,8 @@ in
         hashedPasswordFile = lib.mkDefault config.age.secrets.sethPassword.path;
         linger = lib.mkIf config.wsl.enable true;
       };
+
+      programs._1password.enable = true;
     })
   ];
 }

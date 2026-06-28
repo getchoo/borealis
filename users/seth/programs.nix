@@ -10,7 +10,6 @@
 
     home.packages = [
       pkgs.getchvim
-      pkgs._1password-cli
 
       pkgs.hydra-check
       pkgs.nixfmt
