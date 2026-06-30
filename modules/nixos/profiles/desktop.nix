@@ -30,7 +30,9 @@ in
     ];
 
     programs = {
-      _1password-gui.enable = lib.mkDefault config.programs._1password.enable;
+      _1password-gui.enable = lib.mkDefault (
+        config.services.xserver.enable && config.programs._1password.enable
+      );
       nix-ld.enable = lib.mkDefault true;
     };
   };
