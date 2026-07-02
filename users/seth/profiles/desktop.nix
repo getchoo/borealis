@@ -37,20 +37,9 @@ in
       # Matrix client
       pkgs.element-desktop
 
-      (pkgs.prismlauncher.override {
-        jdks = with pkgs; [
-          temurin-bin-8 # TODO: Maybe replace when `jdk8` isn't broken
-          jdk17
-          jdk21
-        ];
-      })
+      pkgs.prismlauncher
 
-      (pkgs.spotify.overrideAttrs {
-        # Spotify doesn't work well on Wayland natively. Don't force it
-        preFixup = ''
-          gappsWrapperArgs+=(--unset NIXOS_OZONE_WL)
-        '';
-      })
+      pkgs.spotify
     ];
 
     programs = {
