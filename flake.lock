@@ -34,11 +34,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782462517,
-        "narHash": "sha256-HPzOASBxx1bAnPREm4syM5oTb8ls2qbudkLW4BTB94s=",
+        "lastModified": 1783068397,
+        "narHash": "sha256-B31MxW5os40h6NlnCUd+8fxresmVJlMnpYv2Kht0uWI=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "3f3b3511f9c433b93f20b24be32de01f675b046d",
+        "rev": "e3adb9b4815a3f934626626e6d6d1d8518717903",
         "type": "github"
       },
       "original": {
@@ -83,11 +83,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778716662,
-        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+        "lastModified": 1782949081,
+        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
         "type": "github"
       },
       "original": {
@@ -121,11 +121,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781922588,
-        "narHash": "sha256-eL46I8/GGqfk+TJCAYx12/hiSI0g204OohXC2PYHg1g=",
+        "lastModified": 1783130656,
+        "narHash": "sha256-BbZ3zJpmfU2cPzMeCh8RgG4S1+DLdYCBlPLMAOFA7vE=",
         "owner": "getchoo",
         "repo": "getchpkgs",
-        "rev": "9aab3d3e8148adf3f5f8dd13aa23b8677b8101ef",
+        "rev": "f4242d8afe70717fb86b86b4101903f163e39802",
         "type": "github"
       },
       "original": {
@@ -141,11 +141,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781928617,
-        "narHash": "sha256-t8r0BD6MjJCyKLoKhfyeXly3XgVyWGRMuttW+tq6Wd8=",
+        "lastModified": 1782530737,
+        "narHash": "sha256-H3L2y1Pi2UVoqivQqfwbjhVa+DZlb0iGfM1EGx7xPag=",
         "owner": "getchoo",
         "repo": "getchvim",
-        "rev": "1eb2c1c5605baa5dbe577db3ec10cc1fe9a4b8aa",
+        "rev": "0c3eb44b655c2c8b188f68dc655a4705a7411736",
         "type": "github"
       },
       "original": {
@@ -161,11 +161,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782423922,
-        "narHash": "sha256-qPNd6lUohHP5gcJhqQ7rLV87RwIx0xYR2A4Frb9Zjc4=",
+        "lastModified": 1783099620,
+        "narHash": "sha256-prQSM9PGnrfSaqknJOZ3DCQKbpMiXAWLVC5SHbjLcJ4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5d320ab301cfaaca7d32514f13815d19d109f5f4",
+        "rev": "b2e4390ff35319c52935d6a700b615da4c0f204d",
         "type": "github"
       },
       "original": {
@@ -200,11 +200,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1782421389,
-        "narHash": "sha256-IbPX4fo8sTjo1baDsw19JdHMlR6a7Jj5DDYLtM/mWfg=",
-        "rev": "fce63f6dbf4d1de8fdabde6531f536529c41ab03",
+        "lastModified": 1783102327,
+        "narHash": "sha256-8eiLyLgBYZ5RqzHfJEHUm482sieMwYf9obkT226dni0=",
+        "rev": "12f10fca7e1e6e7fda6cad9db9fb9237dbcc4df1",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/fce63f6dbf4d1de8fdabde6531f536529c41ab03.tar.gz?rev=fce63f6dbf4d1de8fdabde6531f536529c41ab03"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/12f10fca7e1e6e7fda6cad9db9fb9237dbcc4df1.tar.gz?rev=12f10fca7e1e6e7fda6cad9db9fb9237dbcc4df1"
       },
       "original": {
         "type": "tarball",
@@ -281,11 +281,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782030356,
-        "narHash": "sha256-h4WpMr455AfRub0FXBaon6Vcpe0waUyJ4GivIW6oyd4=",
+        "lastModified": 1783023993,
+        "narHash": "sha256-gaOvvY/lL1eWoSmSRO17pWry8R49AuPMrF4nzu47K5o=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "3017088b49efd404f78e3b104f553b97e4af786b",
+        "rev": "f8ed6cdcb1fd28a6ab7b61f4467a4f67fe2d9074",
         "type": "github"
       },
       "original": {
@@ -306,11 +306,11 @@
         "nixpkgs-regression": []
       },
       "locked": {
-        "lastModified": 1782337899,
-        "narHash": "sha256-Imevyelg3r2N5iDonnGdOKGRiB56m3HgVFAljTB3CLU=",
+        "lastModified": 1783030128,
+        "narHash": "sha256-WfRmwMYdnzwhMrbAy8dGIshMUd/u2UzyiyZrhLKDZig=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "3887a906b178836818a62e8eba666ad652e8a388",
+        "rev": "b41781ed09cc718773b19c04b322601e2c00db1a",
         "type": "github"
       },
       "original": {
@@ -342,11 +342,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1782723713,
-        "narHash": "sha256-T6OhkwGyyGHer1lr4GkbOp//7ii23xLE7HuMmjrdkXI=",
-        "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
+        "lastModified": 1782959384,
+        "narHash": "sha256-l57y2CK9dTSChgb6Edg7kkXu5DA4rucVbNFoQHUBjmw=",
+        "rev": "65179426c83bb3f6bc14898b42ea1c6f01d374b0",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1024265.b5aa0fbd5389/nixexprs.tar.xz?lastModified=1782723713&rev=b5aa0fbd538984f6e3d201be0005b4463d8b09f8"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1026231.65179426c83b/nixexprs.tar.xz?lastModified=1782959384&rev=65179426c83bb3f6bc14898b42ea1c6f01d374b0"
       },
       "original": {
         "type": "tarball",
@@ -355,11 +355,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1783014552,
-        "narHash": "sha256-UckomAbgHAW4WWgU72PolYeDA4aONpqF8GC/qplJlEA=",
-        "rev": "5863b64722a3967028f5ad22f79875b52ce82007",
+        "lastModified": 1783099355,
+        "narHash": "sha256-t3nllATG31iNA+gpGP/3KT9rgkoo/p3wflXyoZ53vtU=",
+        "rev": "ba19688dbea394bc40c49d3a8c8d693235986c62",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05-small/nixos-26.05.4061.5863b64722a3/nixexprs.tar.xz?lastModified=1783014552&rev=5863b64722a3967028f5ad22f79875b52ce82007"
+        "url": "https://releases.nixos.org/nixos/26.05-small/nixos-26.05.4149.ba19688dbea3/nixexprs.tar.xz?lastModified=1783099355&rev=ba19688dbea394bc40c49d3a8c8d693235986c62"
       },
       "original": {
         "type": "tarball",
