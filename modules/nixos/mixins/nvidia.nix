@@ -22,15 +22,5 @@ in
         nvidia-container-toolkit.enable = true;
       };
     })
-
-    (lib.mkIf (isNvidiaEnabled && !config.hardware.nvidia.open) {
-      # Don't use GSP Firmware on proprietary driver
-
-      # TODO: Remove when the following is fixed
-      # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/693
-      boot.kernelParams = [
-        "nvidia.NVreg_EnableGpuFirmware=0"
-      ];
-    })
   ];
 }
