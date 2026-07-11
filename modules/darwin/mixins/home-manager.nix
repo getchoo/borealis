@@ -1,5 +1,5 @@
 { inputs, ... }:
 
 {
-  imports = [ inputs.home-manager.darwinModules.home-manager ];
+  imports = [ inputs.home-manager-stable.darwinModules.home-manager ];
 }
