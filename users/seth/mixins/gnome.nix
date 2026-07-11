@@ -71,5 +71,9 @@ in
       # Mastodon client
       pkgs.tuba
     ];
+
+    programs = {
+      ghostty.enable = true;
+    };
   };
 }

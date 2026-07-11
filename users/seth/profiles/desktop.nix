@@ -45,7 +45,6 @@ in
     programs = {
       chromium.enable = true;
       firefox.enable = true;
-      ghostty.enable = true;
       mangohud.enable = lib.mkIf hasSteam true;
     };
   };
