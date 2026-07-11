@@ -12,7 +12,6 @@
         plasma6.excludePackages = with pkgs.kdePackages; [
           discover
           khelpcenter
-          konsole
           plasma-browser-integration
           kwin-x11
         ];
@@ -30,7 +29,6 @@
         };
 
         systemPackages = [
-          pkgs.ghostty
           pkgs.haruna # MPV frontend
         ];
       };
