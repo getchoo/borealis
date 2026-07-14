@@ -30,6 +30,7 @@
 
         systemPackages = [
           pkgs.haruna # MPV frontend
+          pkgs.yt-dlp # For playing YT videos in Haruna
         ];
       };
 
