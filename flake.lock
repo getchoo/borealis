@@ -377,11 +377,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1785274772,
-        "narHash": "sha256-8L2Lf1SqYONuOpf4apwtlPwLf6qbGLXu9wl5bhHFQU4=",
-        "rev": "37c0c0f9d5b59fbad07f0d3f7fbef70c36adf626",
+        "lastModified": 1785422677,
+        "narHash": "sha256-NA4Gd3NJhrp8xY+FJ8o/fh44nta2Di98t6u2j66mZZA=",
+        "rev": "424477091899edd00863d8a1f48b703790baacb1",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05-small/nixos-26.05.6410.37c0c0f9d5b5/nixexprs.tar.zst?lastModified=1785274772&rev=37c0c0f9d5b59fbad07f0d3f7fbef70c36adf626"
+        "url": "https://releases.nixos.org/nixos/26.05-small/nixos-26.05.6535.424477091899/nixexprs.tar.zst?lastModified=1785422677&rev=424477091899edd00863d8a1f48b703790baacb1"
       },
       "original": {
         "type": "tarball",
