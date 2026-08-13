@@ -74,6 +74,18 @@ in
       ];
     };
 
+    nixpkgs.overlays = [
+      (final: prev: {
+        apparmor-utils = prev.apparmor-utils.overrideAttrs (oldAttrs: {
+          # NOTE: Remove notify2 and psutil to avoid pulling a ton of GUI stuff
+          # Should only break aa-notify, which we don't need on servers anyways lol
+          pythonPath = lib.filter (
+            input: !(lib.attrValues { inherit (final.python3Packages) notify2 psutil; } |> lib.elem input)
+          ) oldAttrs.pythonPath;
+        });
+      })
+    ];
+
     services = {
       systemd-discord-notifier = {
         enable = true;
