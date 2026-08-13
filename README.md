@@ -14,9 +14,9 @@ greasy taco i love
 
 </div>
 
-## flake/
+## dev/
 
-Pieces meant for maintaining this flake
+Pieces meant for maintaining everything
 
 ## modules/
 

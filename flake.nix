@@ -25,7 +25,7 @@
       imports = [
         inputs.getchpkgs.flakeModules.configurations
 
-        ./flake
+        ./dev
         ./modules
         ./systems
         ./users
