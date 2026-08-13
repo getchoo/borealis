@@ -22,7 +22,5 @@ in
 
   nixpkgs.config.allowAliases = false;
 
-  system.extraSystemBuilderCmds = ''
-    ln -s ${flakeInputs} $out/inputs
-  '';
+  system.systemBuilderCommands = "ln -s ${flakeInputs} $out/inputs";
 }
