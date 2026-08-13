@@ -32,10 +32,6 @@ Configuration secrets managed by the wonderful
 
 My NixOS and nix-darwin system configurations
 
-## terraform/
-
-Personal infrastructure defined with [Terraform/OpenTofu](https://opentofu.org/)
-
 ## users/
 
 Home of my [home-manager](https://nix-community.github.io/home-manager/) user

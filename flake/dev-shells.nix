@@ -20,7 +20,6 @@
             self'.formatter
 
             pkgs.just
-            pkgs.opentofu
 
             inputs'.agenix.packages.agenix
           ];
