@@ -12,8 +12,10 @@
         plasma6.excludePackages = with pkgs.kdePackages; [
           discover
           khelpcenter
-          plasma-browser-integration
           kwin-x11
+          plasma-browser-integration
+          plasma-keyboard
+          qtvirtualkeyboard
         ];
       };
 
@@ -34,8 +36,16 @@
         ];
       };
 
-      services.displayManager.plasma-login-manager = {
-        enable = lib.mkDefault true;
+      programs = {
+        kde-pim.enable = false;
+      };
+
+      services = {
+        displayManager.plasma-login-manager = {
+          enable = lib.mkDefault true;
+        };
+
+        orca.enable = false;
       };
     })
   ];
