@@ -17,16 +17,7 @@ in
     };
 
     environment.systemPackages = lib.mkIf config.services.xserver.enable [
-      pkgs.chromium
       pkgs.wl-clipboard
-    ];
-
-    nixpkgs.overlays = lib.mkIf config.services.xserver.enable [
-      (final: prev: {
-        chromium = prev.chromium.override {
-          enableWideVine = final.config.allowUnfree;
-        };
-      })
     ];
 
     programs = {

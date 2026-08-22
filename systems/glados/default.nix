@@ -50,17 +50,6 @@
     };
   };
 
-  nixpkgs.overlays = [
-    (_: prev: {
-      chromium = prev.chromium.override (prev': {
-        # NOTE: If this breaks, look at https://github.com/elFarto/nvidia-vaapi-driver/issues/5
-        commandLineArgs = prev'.commandLineArgs or [ ] ++ [
-          "--enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks"
-        ];
-      });
-    })
-  ];
-
   security = {
     audit.enable = false; # TODO: Re-enable after https://github.com/NixOS/nixpkgs/issues/483085
     tpm2 = {
