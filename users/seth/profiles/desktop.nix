@@ -37,7 +37,11 @@ in
       # Matrix client
       pkgs.element-desktop
 
-      pkgs.prismlauncher
+      (pkgs.prismlauncher.override {
+        jdks = [
+          pkgs.jdk25
+        ];
+      })
 
       pkgs.spotify
     ];
