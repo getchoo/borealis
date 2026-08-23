@@ -34,16 +34,14 @@ in
           '';
       }))
 
-      # Matrix client
-      pkgs.element-desktop
-
-      pkgs.prismlauncher
-
-      pkgs.spotify
+      (pkgs.prismlauncher.override {
+        jdks = [
+          pkgs.jdk25
+        ];
+      })
     ];
 
     programs = {
-      chromium.enable = true;
       firefox.enable = true;
       mangohud.enable = lib.mkIf hasSteam true;
     };

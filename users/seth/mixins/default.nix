@@ -3,7 +3,6 @@
     ./bash.nix
     ./budgie.nix
     ./catppuccin.nix
-    ./chromium.nix
     ./firefox.nix
     ./fish.nix
     ./gh.nix

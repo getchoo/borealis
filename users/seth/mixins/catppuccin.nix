@@ -11,8 +11,6 @@
     accent = "mauve";
     flavor = "mocha";
 
-    chromium.enable = false;
-
     sources = options.catppuccin.sources.default;
   };
 }

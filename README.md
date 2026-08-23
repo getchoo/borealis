@@ -20,8 +20,7 @@ Pieces meant for maintaining everything
 
 ## modules/
 
-Sets of modules meant for NixOS and
-[nix-darwin](https://github.com/LnL7/nix-darwin)
+Sets of modules meant for NixOS and related projects
 
 ## secrets/
 
