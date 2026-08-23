@@ -174,27 +174,6 @@
         "type": "github"
       }
     },
-    "home-manager-stable": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-stable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1787146702,
-        "narHash": "sha256-YbRcLdU/yK4gWsQg7V8WTKZHfXL33g8+wSFUX3wyevs=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "173b7e8d40fdc8c296a9c99854314f17a3a1704c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "release-26.05",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -272,27 +251,6 @@
       "original": {
         "owner": "getchoo",
         "repo": "moyai-bot",
-        "type": "github"
-      }
-    },
-    "nix-darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-stable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783744694,
-        "narHash": "sha256-2cp6N3rrwnGYLTx9l6N+NI+kwrCWxvJUbj5WJhvB29A=",
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
-        "rev": "c3e90c89649b07d1a96e4b9dd6cd0d6e44b91a74",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-darwin",
-        "ref": "nix-darwin-26.05",
-        "repo": "nix-darwin",
         "type": "github"
       }
     },
@@ -418,12 +376,10 @@
         "getchpkgs": "getchpkgs",
         "getchvim": "getchvim",
         "home-manager": "home-manager",
-        "home-manager-stable": "home-manager-stable",
         "lanzaboote": "lanzaboote",
         "lix": "lix",
         "lix-module": "lix-module",
         "moyai-bot": "moyai-bot",
-        "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nix-src": "nix-src",
         "nixos-wsl": "nixos-wsl",
