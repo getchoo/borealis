@@ -16,11 +16,5 @@
         builder = inputs.nixpkgs-stable.lib.nixosSystem;
       };
     };
-
-    darwin = {
-      caroline = {
-        modules = [ ./caroline ];
-      };
-    };
   };
 }
