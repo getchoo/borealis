@@ -26,7 +26,10 @@
   };
 
   programs = {
-    git.enable = lib.mkDefault true;
+    git = {
+      enable = lib.mkDefault true;
+      package = lib.mkDefault pkgs.gitMinimal;
+    };
 
     vim = {
       enable = lib.mkDefault true;
