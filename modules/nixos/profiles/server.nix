@@ -15,6 +15,16 @@ let
   # Why doesn't nix have a `pow`???
   gb = 1024 * 1024 * 1024;
   minimumStorageKb = 15 * gb;
+
+  # FIXME: Remove when Lix 2.96 is in 26.06
+  # Using this to literally just avoid https://git.lix.systems/lix-project/lix/issues/1234
+  lix' = inputs.lix;
+  lix = pkgs.callPackage (lix' + "/package.nix") ({
+    versionSuffix = "pre${builtins.substring 0 8 lix'.lastModifiedDate}-${
+      lix'.shortRev or lix'.dirtyShortRev
+    }";
+    stdenv = pkgs.clangStdenv;
+  });
 in
 
 {
@@ -66,7 +76,7 @@ in
         ];
       };
 
-      package = pkgs.lixPackageSets.latest.lix;
+      package = lix;
 
       # Hardening access to `nix` as no other users *should* ever really touch it
       settings.allowed-users = lib.mkIf config.borealis.users.system.enable [
