@@ -1,6 +1,7 @@
-{
+{ pkgs, ... }: {
   programs = {
     git = {
+      package = pkgs.gitMinimal;
       settings = {
         init = {
           defaultBranch = "main";
