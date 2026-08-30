@@ -1,13 +1,17 @@
+{ inputs, ... }:
+
 {
   imports = [
+    # NixOS-specific imports for ../shared/mixins
+    inputs.home-manager.nixosModules.home-manager
+    inputs.lix-module.nixosModules.default
+
     ./acme.nix
     ./agenix.nix
     ./budgie.nix
     ./fonts.nix
     ./gnome.nix
-    ./home-manager.nix
     ./lanzaboote.nix
-    ./lix.nix
     ./nginx.nix
     ./niri.nix
     ./nix.nix
