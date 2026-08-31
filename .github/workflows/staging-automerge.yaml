@@ -1,0 +1,39 @@
+name: Auto-merge Staging
+
+on:
+  push:
+    branches: [ staging ]
+
+permissions: {}
+
+jobs:
+  auto-merge:
+    name: Create and auto-merge PR
+
+    runs-on: ubuntu-slim
+
+    steps:
+      - name: Generate GitHub App token
+        uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Run gh
+        env:
+          BASE: ${{ github.event.repository.default_branch }}
+          HEAD: ${{ github.ref_name }}
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          set -euo pipefail
+
+          if ! gh pr list --base "$HEAD" --head "$HEAD" | grep -q .; then
+            gh pr create \
+              --base "$BASE" \
+              --head "$HEAD" \
+              --title "staging $(date +'%Y-%m-%d')" \
+              --fill | \
+              xargs gh pr merge --auto --merge
+          fi
