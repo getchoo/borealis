@@ -6,6 +6,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions: {}
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   build:
     name: Build (${{ matrix.system }})
@@ -36,9 +42,11 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Install Nix
-        uses: ./.github/actions/install-nix-action
+        uses: $/.github/actions/install-nix-action
 
       - name: Print Nix version
         run: |

@@ -6,6 +6,10 @@ on:
 
 permissions: {}
 
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   auto-merge:
     name: Create and auto-merge PR
@@ -19,6 +23,10 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+          repositories: |
+            ${{ github.repository }}
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Run gh
         env:

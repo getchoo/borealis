@@ -6,9 +6,11 @@ on:
     - cron: "0 0 * * 6"
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   update:
-    uses: ./.github/workflows/update-lock.yaml
+    uses: $/.github/workflows/update-lock.yaml
     with:
       commit-message: "flake: update all inputs"
     secrets:
