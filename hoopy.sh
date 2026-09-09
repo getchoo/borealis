@@ -94,6 +94,12 @@ h | help)
 	echo "$usage"
 	exit 0
 	;;
+# `rebuild switch` if no args passed
+"")
+	subcommand=rebuild
+	set -- switch "$@"
+	;;
+# Assume everything else is an argument to nixos-rebuild
 *)
 	subcommand=rebuild
 	;;
