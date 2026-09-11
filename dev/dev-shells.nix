@@ -12,7 +12,7 @@
         default = pkgs.mkShellNoCC {
           packages = [
             # For CI
-            pkgs.actionlint
+            pkgs.zizmor
 
             # Nix tools
             pkgs.nil
