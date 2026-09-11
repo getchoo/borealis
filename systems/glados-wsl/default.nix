@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -17,6 +17,9 @@
       };
     };
   };
+
+  # Required for remoting in from VSCode
+  environment.systemPackages = [ pkgs.wget ];
 
   networking.hostName = "glados-wsl";
 
