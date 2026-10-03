@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   secretsDir,
   ...
 }:
@@ -11,13 +12,14 @@ let
   cfg = config.networking.wireguard;
   cfg' = cfg.interfaces.${interface};
 
-  peerToAddress =
-    peer:
-    let
-      removeCIDRPrefix = cidr: lib.substring 0 (lib.stringLength cidr - 3) cidr;
-      ip = lib.head peer.allowedIPs |> removeCIDRPrefix;
-    in
-    "/${peer.name}/${ip}";
+  removeCIDRPrefix = cidr: lib.substring 0 (lib.stringLength cidr - 3) cidr;
+  peerToRecord = peer: {
+    key = {
+      type = 1;
+      name = "${peer.name}.internal";
+    };
+    address = lib.head peer.allowedIPs |> removeCIDRPrefix;
+  };
 in
 
 lib.mkMerge [
@@ -53,17 +55,34 @@ lib.mkMerge [
       allowedUDPPorts = [ cfg'.listenPort ];
 
       interfaces.${interface} = {
-        allowedUDPPorts = lib.mkIf config.services.dnsmasq.enable [ 53 ];
+        allowedUDPPorts = [ 53 ];
         allowedTCPPorts = lib.mkIf config.services.openssh.enable config.services.openssh.ports;
       };
     };
 
     services = {
-      dnsmasq = {
-        enable = true;
+      openssh = {
+        listenAddresses = [ { addr = "${subnet}.1"; } ];
+        ports = [ 420 ];
+      };
 
-        settings = {
-          address = map peerToAddress (
+      resolved.settings = {
+        Resolve = {
+          DNSStubListenerExtra = "${subnet}.1";
+        };
+      };
+    };
+
+    systemd = {
+      # NOTE: Required since WG subnet isn't available at boot
+      services.sshd = lib.mkIf config.services.openssh.enable {
+        wants = [ "network-online.target" ];
+        after = [ "network-online.target" ];
+      };
+
+      tmpfiles.settings.internal-static-records = {
+        "/etc/systemd/resolve/static.d/internal.rr".C = {
+          argument =
             cfg'.peers
             ++ [
               {
@@ -71,28 +90,11 @@ lib.mkMerge [
                 allowedIPs = cfg'.ips;
               }
             ]
-          );
-
-          inherit interface;
-          no-hosts = true;
-          no-resolv = true;
-          server = [
-            "1.1.1.1"
-            "1.0.0.1"
-          ];
+            |> map peerToRecord
+            |> (pkgs.formats.json { }).generate "internal.rr"
+            |> toString;
         };
       };
-
-      openssh = {
-        listenAddresses = [ { addr = "${subnet}.1"; } ];
-        ports = [ 420 ];
-      };
-    };
-
-    # NOTE: Required since WG subnet isn't available at boot
-    systemd.services.sshd = lib.mkIf config.services.openssh.enable {
-      wants = [ "network-online.target" ];
-      after = [ "network-online.target" ];
     };
   })
 ]
