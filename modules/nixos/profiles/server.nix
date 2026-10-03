@@ -46,7 +46,6 @@ in
 
     age.secrets = {
       discordWebhookURL.file = "${secretsDir}/discordWebhookURL.age";
-      tailscaleAuthKey.file = "${secretsDir}/tailscaleAuthKey.age";
     };
 
     boot.tmp.cleanOnBoot = lib.mkDefault true;
@@ -106,13 +105,6 @@ in
         '';
 
         webhookURLFile = config.age.secrets.discordWebhookURL.path;
-      };
-
-      tailscale = {
-        enable = true;
-
-        authKeyFile = config.age.secrets.tailscaleAuthKey.path;
-        extraUpFlags = [ "--ssh" ];
       };
     };
 
