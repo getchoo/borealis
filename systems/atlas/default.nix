@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   modulesPath,
   inputs,
   ...
@@ -11,6 +12,7 @@
     ./hardware-configuration.nix
     ./moyai.nix
     ./nixpkgs-tracker-bot.nix
+    ./wireguard.nix
 
     inputs.self.nixosModules.default
   ];
@@ -54,7 +56,25 @@
         root = "/var/www";
       };
     };
+
+    openssh = {
+      enable = true;
+      openFirewall = false;
+      settings = {
+        KbdInteractiveAuthentication = false;
+        PasswordAuthentication = false;
+      };
+    };
   };
+
+  users.users = lib.genAttrs [ config.networking.hostName "root" ] (
+    lib.const {
+      openssh.authorizedKeys.keys = [
+        # Personal 1Password
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBzp61t3KlcZZorMGzCHJJmiCoAEJsdHgYww80LmwkPd"
+      ];
+    }
+  );
 
   system.stateVersion = "23.05";
 }
