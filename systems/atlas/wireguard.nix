@@ -88,5 +88,11 @@ lib.mkMerge [
         ports = [ 420 ];
       };
     };
+
+    # NOTE: Required since WG subnet isn't available at boot
+    systemd.services.sshd = lib.mkIf config.services.openssh.enable {
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+    };
   })
 ]
