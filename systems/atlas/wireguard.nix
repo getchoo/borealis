@@ -38,6 +38,11 @@ lib.mkMerge [
             publicKey = "j98gcxDnFMhyePogKXlSUqcGdEOMdip4+lnQM/VAmjM=";
             allowedIPs = [ "${subnet}.2/32" ];
           }
+          {
+            name = "iphone";
+            publicKey = "H1TgusyvaXklTkP3f6MjvY//LCGxpSrcUnHp8DbxyHo=";
+            allowedIPs = [ "${subnet}.3/32" ];
+          }
         ];
       };
     };
@@ -63,7 +68,6 @@ lib.mkMerge [
     services = {
       openssh = {
         listenAddresses = [ { addr = "${subnet}.1"; } ];
-        ports = [ 420 ];
       };
 
       resolved.settings = {
