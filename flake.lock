@@ -326,19 +326,6 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1790894198,
-        "narHash": "sha256-A+XJvpM4cZvxxEV7lPFZ6vhPa+77RFTpgxI/PrLgkuw=",
-        "rev": "3f37da4c2abf54eb75955c15650ba46107dfdd37",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05-small/nixos-26.05.11026.3f37da4c2abf/nixexprs.tar.zst?lastModified=1790894198&rev=3f37da4c2abf54eb75955c15650ba46107dfdd37"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-26.05-small/nixexprs.tar.zst"
-      }
-    },
     "nixpkgs-tracker-bot": {
       "inputs": {
         "nixpkgs": [
@@ -377,7 +364,6 @@
         "nix-src": "nix-src",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
         "treefmt-nix": "treefmt-nix"
       }
