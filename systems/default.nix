@@ -1,5 +1,3 @@
-{ inputs, ... }:
-
 {
   configurations = {
     nixos = {
@@ -13,7 +11,6 @@
 
       atlas = {
         modules = [ ./atlas ];
-        builder = inputs.nixpkgs-stable.lib.nixosSystem;
       };
     };
   };

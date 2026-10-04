@@ -39,8 +39,6 @@ in
       options = lib.mkDefault "--delete-older-than 5d";
     };
 
-    nixPath = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs |> lib.mkDefault;
-
     registry =
       lib.mapAttrs (lib.const (flake: {
         inherit flake;
@@ -59,6 +57,7 @@ in
 
         use-cgroups = true;
         use-xdg-base-directories = true;
+        nix-path = lib.mapAttrsToList (name: lib.const "${name}=flake:${name}") inputs |> lib.mkDefault;
       }
 
       (lib.mkIf hasAlwaysAllowSubstitutes {

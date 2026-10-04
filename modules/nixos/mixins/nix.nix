@@ -13,11 +13,13 @@ in
   nix = {
     channel.enable = lib.mkDefault false;
 
-    nixPath = lib.mapAttrsToList (name: lib.const "${name}=/run/current-system/inputs/${name}") inputs;
+    settings = {
+      nix-path = lib.mapAttrsToList (name: lib.const "${name}=/run/current-system/inputs/${name}") inputs;
 
-    settings.trusted-users = [
-      "@wheel"
-    ];
+      trusted-users = [
+        "@wheel"
+      ];
+    };
   };
 
   nixpkgs.config.allowAliases = false;

@@ -34,7 +34,6 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-    nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05-small/nixexprs.tar.zst";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -48,12 +47,7 @@
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        darwin.follows = "";
-        home-manager.follows = "";
-        systems.follows = "lix-module/flake-utils/systems";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin = {
