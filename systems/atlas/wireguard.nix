@@ -20,6 +20,8 @@ let
     };
     address = lib.head peer.allowedIPs |> removeCIDRPrefix;
   };
+
+  iptables = lib.getExe pkgs.iptables;
 in
 
 lib.mkMerge [
@@ -44,6 +46,16 @@ lib.mkMerge [
             allowedIPs = [ "${subnet}.3/32" ];
           }
         ];
+
+        postSetup = ''
+          ${iptables} -A FORWARD -i wg0 -j ACCEPT
+          ${iptables} -t nat -A POSTROUTING -s ${subnet}.1/24 -o eth0 -j MASQUERADE
+        '';
+
+        postShutdown = ''
+          ${iptables} -D FORWARD -i wg0 -j ACCEPT
+          ${iptables} -t nat -D POSTROUTING -s ${subnet}.1/24 -o eth0 -j MASQUERADE
+        '';
       };
     };
   }
@@ -56,12 +68,21 @@ lib.mkMerge [
       };
     };
 
-    networking.firewall = {
-      allowedUDPPorts = [ cfg'.listenPort ];
+    networking = {
+      firewall = {
+        allowedUDPPorts = [ cfg'.listenPort ];
 
-      interfaces.${interface} = {
-        allowedUDPPorts = [ 53 ];
-        allowedTCPPorts = lib.mkIf config.services.openssh.enable config.services.openssh.ports;
+        interfaces.${interface} = {
+          allowedUDPPorts = [ 53 ];
+          allowedTCPPorts = lib.mkIf config.services.openssh.enable config.services.openssh.ports;
+        };
+      };
+
+      nat = {
+        enable = true;
+        enableIPv6 = true;
+        externalInterface = "enp0s6";
+        internalInterfaces = [ interface ];
       };
     };
 
