@@ -18,6 +18,5 @@
     ./spotifyd.nix
     ./ssh.nix
     ./vim.nix
-    ./zsh.nix
   ];
 }
