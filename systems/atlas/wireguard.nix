@@ -7,8 +7,6 @@
 }:
 
 let
-  interface = "wg0";
-  subnet = "10.100.100";
   cfg = config.networking.wireguard;
   cfg' = cfg.interfaces.${interface};
 
@@ -21,41 +19,85 @@ let
     address = lib.head peer.allowedIPs |> removeCIDRPrefix;
   };
 
-  iptables = lib.getExe pkgs.iptables;
+  interface = "wg0";
+  proto = {
+    v4 = {
+      subnet = "10.100.100";
+      addr = "${proto.v4.subnet}.1/24";
+    };
+
+    v6 = {
+      subnet = "fd00";
+      addr = "${proto.v6.subnet}::1/64";
+    };
+  };
+
+  forEachProto = lib.flip lib.mapAttrs proto;
+
+  ipAddrs = forEachProto (lib.getAttr "addr" |> lib.const) |> lib.attrValues;
+  ipAddrsNoCIDR = map removeCIDRPrefix ipAddrs;
+
+  # FIXME: Support other firewall backends
+  iptables = config.networking.firewall.package;
+  iptablesExeFor = forEachProto (
+    proto: lib.getExe' iptables "ip${lib.optionalString (proto == "v6") "6"}tables" |> lib.const
+  );
+  iptablesForEachProto =
+    fn:
+    forEachProto (proto: meta: lib.recursiveUpdate meta { iptables = iptablesExeFor.${proto}; } |> fn)
+    |> lib.attrValues;
 in
 
 lib.mkMerge [
   {
+    assertions = [
+      # See FIXME above
+      {
+        assertion = config.networking.firewall.backend == "iptables";
+        message = "atlas: wireguard stuff only supports iptables for now";
+      }
+    ];
+
     networking.wireguard = {
       enable = true;
 
       interfaces.${interface} = {
         listenPort = 51820;
-        ips = [ "${subnet}.1/24" ];
+        ips = ipAddrs;
         privateKeyFile = config.age.secrets.wireguardKey.path;
 
         peers = [
           {
             name = "glados-windows";
             publicKey = "j98gcxDnFMhyePogKXlSUqcGdEOMdip4+lnQM/VAmjM=";
-            allowedIPs = [ "${subnet}.2/32" ];
+            allowedIPs = [
+              "${proto.v4.subnet}.2/32"
+              "${proto.v6.subnet}::2/128"
+            ];
           }
           {
             name = "iphone";
             publicKey = "H1TgusyvaXklTkP3f6MjvY//LCGxpSrcUnHp8DbxyHo=";
-            allowedIPs = [ "${subnet}.3/32" ];
+            allowedIPs = [
+              "${proto.v4.subnet}.3/32"
+              "${proto.v6.subnet}::3/128"
+            ];
           }
         ];
 
-        postSetup = ''
-          ${iptables} -A FORWARD -i wg0 -j ACCEPT
-          ${iptables} -t nat -A POSTROUTING -s ${subnet}.1/24 -o eth0 -j MASQUERADE
-        '';
+        postSetup = iptablesForEachProto (
+          { iptables, addr, ... }: ''
+            ${iptables} -A FORWARD -i ${interface} -j ACCEPT
+            ${iptables} -t nat -A POSTROUTING -s ${addr} -o eth0 -j MASQUERADE
+          ''
+        );
 
-        postShutdown = ''
-          ${iptables} -D FORWARD -i wg0 -j ACCEPT
-          ${iptables} -t nat -D POSTROUTING -s ${subnet}.1/24 -o eth0 -j MASQUERADE
-        '';
+        postShutdown = iptablesForEachProto (
+          { iptables, addr, ... }: ''
+            ${iptables} -D FORWARD -i ${interface} -j ACCEPT
+            ${iptables} -t nat -D POSTROUTING -s ${addr} -o eth0 -j MASQUERADE
+          ''
+        );
       };
     };
   }
@@ -88,12 +130,12 @@ lib.mkMerge [
 
     services = {
       openssh = {
-        listenAddresses = [ { addr = "${subnet}.1"; } ];
+        listenAddresses = map (addr: { inherit addr; }) ipAddrsNoCIDR;
       };
 
       resolved.settings = {
         Resolve = {
-          DNSStubListenerExtra = "${subnet}.1";
+          DNSStubListenerExtra = ipAddrsNoCIDR;
         };
       };
     };
