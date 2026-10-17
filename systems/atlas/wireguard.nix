@@ -7,6 +7,8 @@
 }:
 
 let
+  interface = "wg0";
+  subnet = "10.100.100";
   cfg = config.networking.wireguard;
   cfg' = cfg.interfaces.${interface};
 
@@ -19,23 +21,7 @@ let
     address = lib.head peer.allowedIPs |> removeCIDRPrefix;
   };
 
-  interface = "wg0";
-  proto = {
-    "v4" = {
-      iptables = lib.getExe pkgs.iptables;
-      subnet = "10.100.100";
-      addr = "${proto.v4.subnet}.1/24";
-    };
-
-    "v6" = {
-      iptables = lib.getExe' pkgs.iptables "iptables6";
-      subnet = "fd00:1234:5678";
-      addr = "${proto.v6.subnet}::1/64";
-    };
-  };
-  ipAddrs = lib.mapAttrsToList (lib.const (lib.getAttr "addr")) proto;
-  ipAddrsNoCIDR = map removeCIDRPrefix ipAddrs;
-  genIptableRules = fn: lib.mapAttrsToList (lib.const fn) proto |> lib.concatLines;
+  iptables = lib.getExe pkgs.iptables;
 in
 
 lib.mkMerge [
@@ -45,41 +31,31 @@ lib.mkMerge [
 
       interfaces.${interface} = {
         listenPort = 51820;
-        ips = ipAddrs;
+        ips = [ "${subnet}.1/24" ];
         privateKeyFile = config.age.secrets.wireguardKey.path;
 
         peers = [
           {
             name = "glados-windows";
             publicKey = "j98gcxDnFMhyePogKXlSUqcGdEOMdip4+lnQM/VAmjM=";
-            allowedIPs = [
-              "${proto.v4.subnet}.2/32"
-              "${proto.v6.subnet}::2/128"
-            ];
+            allowedIPs = [ "${subnet}.2/32" ];
           }
           {
             name = "iphone";
             publicKey = "H1TgusyvaXklTkP3f6MjvY//LCGxpSrcUnHp8DbxyHo=";
-            allowedIPs = [
-              "${proto.v4.subnet}.3/32"
-              "${proto.v6.subnet}::3/128"
-            ];
+            allowedIPs = [ "${subnet}.3/32" ];
           }
         ];
 
-        postSetup = genIptableRules (
-          { iptables, addr, ... }: ''
-            ${iptables} -A FORWARD -i ${interface} -j ACCEPT
-            ${iptables} -t nat -A POSTROUTING -s ${addr} -o eth0 -j MASQUERADE
-          ''
-        );
+        postSetup = ''
+          ${iptables} -A FORWARD -i wg0 -j ACCEPT
+          ${iptables} -t nat -A POSTROUTING -s ${subnet}.1/24 -o eth0 -j MASQUERADE
+        '';
 
-        postShutdown = genIptableRules (
-          { iptables, addr, ... }: ''
-            ${iptables} -D FORWARD -i ${interface} -j ACCEPT
-            ${iptables} -t nat -D POSTROUTING -s ${addr} -o eth0 -j MASQUERADE
-          ''
-        );
+        postShutdown = ''
+          ${iptables} -D FORWARD -i wg0 -j ACCEPT
+          ${iptables} -t nat -D POSTROUTING -s ${subnet}.1/24 -o eth0 -j MASQUERADE
+        '';
       };
     };
   }
@@ -112,12 +88,12 @@ lib.mkMerge [
 
     services = {
       openssh = {
-        listenAddresses = map (addr: { inherit addr; }) ipAddrsNoCIDR;
+        listenAddresses = [ { addr = "${subnet}.1"; } ];
       };
 
       resolved.settings = {
         Resolve = {
-          DNSStubListenerExtra = ipAddrsNoCIDR;
+          DNSStubListenerExtra = "${subnet}.1";
         };
       };
     };
