@@ -19,29 +19,23 @@ let
     address = lib.head peer.allowedIPs |> removeCIDRPrefix;
   };
 
-  # TODO: Support other `networking.firewall` backends
-  iptables4 = "iptables";
-  iptables6 = "iptables6";
-  forEachIptables = lib.flip map [
-    iptables4
-    iptables6
-  ];
-
   interface = "wg0";
-  ipv4Subnet = "10.100.100";
-  ipv6Subnet = "fd00:1234:5678";
-  ipv4Addr = "${ipv4Subnet}.1/24";
-  ipv6Addr = "${ipv6Subnet}::1/64";
-  ipAddrs = [
-    ipv4Addr
-    ipv6Addr
-  ];
-  ipAddrsNoCIDR = map removeCIDRPrefix ipAddrs;
+  proto = {
+    "v4" = {
+      iptables = lib.getExe pkgs.iptables;
+      subnet = "10.100.100";
+      addr = "${proto.v4.subnet}.1/24";
+    };
 
-  iptablesAddrFor = lib.genAttrs [ iptables4 iptables6 ] (
-    name: if name == iptables6 then ipv6Addr else ipv4Addr
-  );
-  genIptableRules = fn: forEachIptables (iptables: fn iptables iptablesAddrFor.${iptables});
+    "v6" = {
+      iptables = lib.getExe' pkgs.iptables "iptables6";
+      subnet = "fd00:1234:5678";
+      addr = "${proto.v6.subnet}::1/64";
+    };
+  };
+  ipAddrs = lib.mapAttrsToList (lib.const (lib.getAttr "addr")) proto;
+  ipAddrsNoCIDR = map removeCIDRPrefix ipAddrs;
+  genIptableRules = fn: lib.mapAttrsToList (lib.const fn) proto |> lib.concatLines;
 in
 
 lib.mkMerge [
@@ -51,10 +45,7 @@ lib.mkMerge [
 
       interfaces.${interface} = {
         listenPort = 51820;
-        ips = [
-          ipv4Addr
-          ipv6Addr
-        ];
+        ips = ipAddrs;
         privateKeyFile = config.age.secrets.wireguardKey.path;
 
         peers = [
@@ -62,30 +53,30 @@ lib.mkMerge [
             name = "glados-windows";
             publicKey = "j98gcxDnFMhyePogKXlSUqcGdEOMdip4+lnQM/VAmjM=";
             allowedIPs = [
-              "${ipv4Subnet}.2/32"
-              "${ipv6Subnet}::2/128"
+              "${proto.v4.subnet}.2/32"
+              "${proto.v6.subnet}::2/128"
             ];
           }
           {
             name = "iphone";
             publicKey = "H1TgusyvaXklTkP3f6MjvY//LCGxpSrcUnHp8DbxyHo=";
             allowedIPs = [
-              "${ipv4Subnet}.3/32"
-              "${ipv6Subnet}::3/128"
+              "${proto.v4.subnet}.3/32"
+              "${proto.v6.subnet}::3/128"
             ];
           }
         ];
 
         postSetup = genIptableRules (
-          iptables: addr: ''
-            ${iptables} -A FORWARD -i wg0 -j ACCEPT
+          { iptables, addr, ... }: ''
+            ${iptables} -A FORWARD -i ${interface} -j ACCEPT
             ${iptables} -t nat -A POSTROUTING -s ${addr} -o eth0 -j MASQUERADE
           ''
         );
 
         postShutdown = genIptableRules (
-          iptables: addr: ''
-            ${iptables} -D FORWARD -i wg0 -j ACCEPT
+          { iptables, addr, ... }: ''
+            ${iptables} -D FORWARD -i ${interface} -j ACCEPT
             ${iptables} -t nat -D POSTROUTING -s ${addr} -o eth0 -j MASQUERADE
           ''
         );
