@@ -12,7 +12,6 @@
         plasma6.excludePackages = with pkgs.kdePackages; [
           discover
           khelpcenter
-          kwin-x11
           plasma-browser-integration
           plasma-keyboard
           qtvirtualkeyboard
