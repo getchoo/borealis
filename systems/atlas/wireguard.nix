@@ -74,6 +74,7 @@ lib.mkMerge [
               "${proto.v4.subnet}.2/32"
               "${proto.v6.subnet}::2/128"
             ];
+            persistentKeepalive = 30;
           }
           {
             name = "iphone";
@@ -82,6 +83,7 @@ lib.mkMerge [
               "${proto.v4.subnet}.3/32"
               "${proto.v6.subnet}::3/128"
             ];
+            persistentKeepalive = 30;
           }
         ];
 
