@@ -197,7 +197,7 @@
         "narHash": "sha256-bpZ2PHj9EKrQ9uMnxx8GRZ7mdPxBFP8eiO3Tz2B40lE=",
         "rev": "96e92932da1171707f52de4123b246685a72f913",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/96e92932da1171707f52de4123b246685a72f913.tar.gz?rev=96e92932da1171707f52de4123b246685a72f913"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/96e92932da1171707f52de4123b246685a72f913.tar.gz"
       },
       "original": {
         "type": "tarball",
