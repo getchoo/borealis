@@ -114,11 +114,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792202802,
-        "narHash": "sha256-XncH8S4wSIv7JU2mXce/wEatxPnEvVtAg9pMW2GDigI=",
+        "lastModified": 1792809373,
+        "narHash": "sha256-zVCgvHd0iPR0PRlhFZzLUlX9LMQGG+8IxXbIOC3GKfE=",
         "owner": "getchoo",
         "repo": "getchpkgs",
-        "rev": "81499630dc520845e49939c3814e998ac5921af4",
+        "rev": "b528913c6b19157d12c9e895d04fb9ca3396d2c9",
         "type": "github"
       },
       "original": {
@@ -154,11 +154,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792703141,
-        "narHash": "sha256-3X34FaSeMJXMx8CK/BN6sZ9knwNauuiJXQhLM+bQQuI=",
+        "lastModified": 1792773325,
+        "narHash": "sha256-bvba9Lts8r8d15MdIDMwJGDxLtJiTlasKtAZyhTDzXk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6750249c69969d09d952efaf3fab88a2bdac7ec6",
+        "rev": "6d9655f76459099b0db2f57b13563729c7022aa7",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1792584289,
-        "narHash": "sha256-5M+lCq9w3THPCY7vXW9oHkO1yhVHCGzcYrRBMfQJkXk=",
-        "rev": "27c8a887d9ed348005d91787e10f9761f547e62b",
+        "lastModified": 1792716936,
+        "narHash": "sha256-EWt88eAeVixW1MB6OoJThr2fQ9z996poZvYwsNkN7t4=",
+        "rev": "a16e8511de98ad1b4d7ef73afd97d995bc32ea28",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/27c8a887d9ed348005d91787e10f9761f547e62b.tar.gz"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/a16e8511de98ad1b4d7ef73afd97d995bc32ea28.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -279,11 +279,11 @@
         "nixpkgs-regression": []
       },
       "locked": {
-        "lastModified": 1792702967,
-        "narHash": "sha256-CSOZ98aNI8ojQtuVWhYmIUM+pg3FrxDuq+xgTbHdHNk=",
+        "lastModified": 1792757812,
+        "narHash": "sha256-Xhrp/wgMAkPkVwNoSrWzEFLyiRXGdH2yNJVjDMXwDWI=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "5695a4e66039c3a3eed27576571c9c323126b059",
+        "rev": "e4170181c144b6817b5bea0fabba3d20873b5b60",
         "type": "github"
       },
       "original": {
