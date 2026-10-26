@@ -57,12 +57,6 @@
       };
     };
 
-    # Use their robots.txt
-    codeberg-infra = {
-      url = "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz";
-      flake = false;
-    };
-
     getchpkgs = {
       url = "github:getchoo/getchpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -103,19 +97,6 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-src = {
-      url = "github:NixOS/nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-
-        flake-compat.follows = "";
-        flake-parts.follows = "";
-        git-hooks-nix.follows = "";
-        nixpkgs-23-11.follows = "";
-        nixpkgs-regression.follows = "";
-      };
     };
 
     nixos-wsl = {

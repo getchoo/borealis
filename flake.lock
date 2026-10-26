@@ -40,20 +40,6 @@
         "type": "github"
       }
     },
-    "codeberg-infra": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1743631180,
-        "narHash": "sha256-S3vrldnKA+cbacQ0nlFEjyylEwe5boSflWkCOyU07wU=",
-        "rev": "026b1b93491b1a3356a96c7b3fd85ea5a588fedd",
-        "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/Codeberg-Infrastructure/build-deploy-forgejo/archive/026b1b93491b1a3356a96c7b3fd85ea5a588fedd.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://codeberg.org/Codeberg-Infrastructure/build-deploy-forgejo/archive/codeberg-10.tar.gz"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1790899423,
@@ -154,11 +140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792896866,
-        "narHash": "sha256-/0tELNnhdSnP+bHSdWiEe6KpfSwi6WrTnT9cm/jNkjA=",
+        "lastModified": 1792818371,
+        "narHash": "sha256-yhEZAzZRNvzYpoAlyFY3wM75V9BmkIXJIueof8S5gOg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c216bf5a1f173b0481bd5c8c489ebe5595ecc68c",
+        "rev": "2cd3234928f60bbff695a7ee56115ef7799c47cd",
         "type": "github"
       },
       "original": {
@@ -193,11 +179,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1792808124,
-        "narHash": "sha256-OrvfBi44Z6hOOuw4EpbOi7iLsClgIYgvYFYlcM6EBSw=",
-        "rev": "7229002d4991d0c8c3301cae156d357492c7e246",
+        "lastModified": 1792716936,
+        "narHash": "sha256-EWt88eAeVixW1MB6OoJThr2fQ9z996poZvYwsNkN7t4=",
+        "rev": "a16e8511de98ad1b4d7ef73afd97d995bc32ea28",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/7229002d4991d0c8c3301cae156d357492c7e246.tar.gz"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/a16e8511de98ad1b4d7ef73afd97d995bc32ea28.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -254,41 +240,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1792915725,
-        "narHash": "sha256-v75hPw5NJ+mRRcwUzKi2OQtVSVv1hgq6ceAlPQB2kEE=",
+        "lastModified": 1792309949,
+        "narHash": "sha256-2DAEMk8YkV8OF6N2uw9jQ016cYoNkcgnq50AShwWxNw=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "93696586f3463024cceb089353539be95a38ae2b",
+        "rev": "1b4d1758fa6053c5d6284254a793134fa602fbff",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "type": "github"
-      }
-    },
-    "nix-src": {
-      "inputs": {
-        "flake-compat": [],
-        "flake-parts": [],
-        "git-hooks-nix": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-23-11": [],
-        "nixpkgs-regression": []
-      },
-      "locked": {
-        "lastModified": 1792953301,
-        "narHash": "sha256-HFtdvS9tAas0xfqA/rgfmVC5aeuB/Ynsw6+Bgtykil4=",
-        "owner": "NixOS",
-        "repo": "nix",
-        "rev": "d99b75169782dcdc79825db6edc2fc8d5424ff7f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nix",
         "type": "github"
       }
     },
@@ -300,11 +261,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792979637,
-        "narHash": "sha256-pa9rRcxMoT4yaam4fz1BDUWyp9G0YesoqL5NdkAvC6E=",
+        "lastModified": 1789164534,
+        "narHash": "sha256-DoYGPM6QpnYBLWj9gGw6ZwAzIX+HrAVov1BoT+8Jixo=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "d78bd9ccf652120a7904919a3c7f40dc5292b01e",
+        "rev": "72c92b11bb8289e6651c7fef29cc0a885fd6a255",
         "type": "github"
       },
       "original": {
@@ -351,7 +312,6 @@
       "inputs": {
         "agenix": "agenix",
         "catppuccin": "catppuccin",
-        "codeberg-infra": "codeberg-infra",
         "flake-parts": "flake-parts",
         "getchpkgs": "getchpkgs",
         "getchvim": "getchvim",
@@ -361,7 +321,6 @@
         "lix-module": "lix-module",
         "moyai-bot": "moyai-bot",
         "nix-index-database": "nix-index-database",
-        "nix-src": "nix-src",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-tracker-bot": "nixpkgs-tracker-bot",
