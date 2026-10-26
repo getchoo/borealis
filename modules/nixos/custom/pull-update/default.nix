@@ -27,11 +27,6 @@ let
     ];
   };
 
-  flagsToPass = lib.foldlAttrs (
-    acc: setting: flags:
-    acc ++ lib.optionals (settings.${setting} != null) flags
-  ) [ ] flagsForSetting;
-
   timerSubmoduleType = options.systemd.timers.type.nestedTypes.elemType;
   timerConfigType = (timerSubmoduleType.getSubOptions [ ]).timerConfig.type;
 
@@ -103,7 +98,10 @@ in
   config = lib.mkMerge [
     {
       borealis.pull-update.settings = {
-        flags = [ settings.operation ] ++ flagsToPass;
+        flags = lib.foldlAttrs (
+          acc: setting: flags:
+          acc ++ lib.optionals (settings.${setting} != null) flags
+        ) [ ] flagsForSetting;
       };
     }
 
@@ -120,7 +118,10 @@ in
             restartIfChanged = false;
             startAt = cfg.timer.OnCalendar;
 
-            environment = nixEnvironment;
+            environment = nixEnvironment // {
+              REBUILD_OPERATION = settings.operation;
+            };
+
             path = [ nixos-rebuild ];
 
             enableStrictShellChecks = true;
