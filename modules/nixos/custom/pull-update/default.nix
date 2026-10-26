@@ -120,7 +120,6 @@ in
             wantedBy = [ "multi-user.target" ];
 
             restartIfChanged = false;
-            startAt = cfg.timer.OnCalendar;
 
             environment = sharedEnv;
             path = [ nixos-rebuild ];
@@ -163,6 +162,7 @@ in
         };
 
         timers.nixos-pull-update = {
+          wantedBy = [ "timers.target" ];
           timerConfig = cfg.timer;
         };
       };
