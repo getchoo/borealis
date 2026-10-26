@@ -30,7 +30,6 @@ in
 
     (lib.mkIf cfg.enable {
       boot = {
-        initrd.systemd.enable = true; # For unlocking LUKS root with TPM2
         loader.systemd-boot.enable = lib.mkForce false; # Lanzaboote replaces this
       };
 
