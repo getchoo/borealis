@@ -40,8 +40,20 @@ in
 
     boot.tmp.cleanOnBoot = lib.mkDefault true;
 
-    borealis.users = {
-      system.enable = true;
+    borealis = {
+      pull-update = {
+        enable = true;
+
+        timer = {
+          OnCalendar = "minutely";
+        };
+
+        settings = {
+          flakeref = "github:getchoo/borealis";
+        };
+      };
+
+      users.system.enable = true;
     };
 
     # We don't need it here
@@ -94,14 +106,6 @@ in
 
         webhookURLFile = config.age.secrets.discordWebhookURL.path;
       };
-    };
-
-    system.autoUpgrade = {
-      enable = true;
-
-      dates = "minutely";
-      flake = "github:getchoo/borealis";
-      flags = [ "--refresh" ];
     };
 
     # I use exclusively Tailscale auth on some machines
