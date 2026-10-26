@@ -143,6 +143,7 @@ in
             environment = nixEnvironment;
             inherit (config.systemd.services.nixos-pull-update)
               enableStrictShellChecks
+              restartIfChanged
               ;
 
             serviceConfig = {
