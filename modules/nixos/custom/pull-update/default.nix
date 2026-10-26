@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   options,
   ...
 }:
@@ -30,12 +31,15 @@ let
   timerSubmoduleType = options.systemd.timers.type.nestedTypes.elemType;
   timerConfigType = (timerSubmoduleType.getSubOptions [ ]).timerConfig.type;
 
-  nixEnvironment =
+  sharedEnv =
     config.nix.envVars
     // config.networking.proxy.envVars
     // {
       inherit (config.environment.sessionVariables) NIX_PATH;
       HOME = "/root";
+
+      REBUILD_OPERATION = settings.operation;
+      STATE_FILE = "/var/lib/nixos-update.state";
     };
 in
 
@@ -118,10 +122,7 @@ in
             restartIfChanged = false;
             startAt = cfg.timer.OnCalendar;
 
-            environment = nixEnvironment // {
-              REBUILD_OPERATION = settings.operation;
-            };
-
+            environment = sharedEnv;
             path = [ nixos-rebuild ];
 
             enableStrictShellChecks = true;
@@ -141,15 +142,21 @@ in
           nixos-pull-update-rollback = {
             description = "Rollback a NixOS configuration update";
 
-            environment = nixEnvironment;
             inherit (config.systemd.services.nixos-pull-update)
               enableStrictShellChecks
               restartIfChanged
               ;
 
+            environment = sharedEnv;
+            path = [
+              nixos-rebuild
+              pkgs.moreutils
+            ];
+
+            script = lib.readFile ./rollback.sh;
+
             serviceConfig = {
               Type = "oneshot";
-              ExecStart = "${lib.getExe nixos-rebuild} ${settings.operation} --rollback";
             };
           };
         };
