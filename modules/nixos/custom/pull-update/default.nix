@@ -136,6 +136,7 @@ in
             unitConfig = {
               OnSuccess = lib.mkIf settings.runGC "nix-gc.service";
               OnFailure = "nixos-pull-update-rollback.service";
+              X-StopOnRemoval = false;
             };
           };
 
