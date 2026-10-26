@@ -16,26 +16,7 @@ in
   config = lib.mkMerge [
     {
       programs.ssh = {
-        package =
-          if (!isWsl) then
-            options.programs.ssh.package.default
-          else
-            pkgs.runCommand "openssh-wsl"
-              {
-                env = {
-                  toLink = toString [
-                    "ssh.exe"
-                    "ssh-add.exe"
-                  ];
-                  system32 = "/mnt/c/Windows/System32/OpenSSH";
-                };
-              }
-              ''
-                mkdir -p $out/bin
-                for sshBin in $toLink; do
-                  ln -s $system32/$sshBin $out/bin/$sshBin
-                done
-              '';
+        package = osConfig.programs.ssh.package or options.programs.ssh.package.default;
 
         enableDefaultConfig = false;
 
