@@ -46,6 +46,7 @@ in
 
         timer = {
           OnCalendar = "minutely";
+          RandomizedDelaySec = "30";
         };
 
         settings = {

@@ -49,11 +49,13 @@ in
 
     timer = lib.mkOption {
       type = timerConfigType;
-      default = {
-        OnCalendar = "03:00";
-        RandomizedDelaySec = "5min";
-        Persistent = true;
-      };
+      defaultText = ''
+        {
+          OnCalendar = "03:00";
+          RandomizedDelaySec = "5min";
+          Persistent = true;
+        }
+      '';
       description = "Attribute set of {manpage}`systemd.time(7)` options to configure the service timer.";
       example = {
         OnCalendar = "daily";
@@ -101,8 +103,14 @@ in
 
   config = lib.mkMerge [
     {
-      borealis.pull-update.settings = {
-        flags = lib.foldlAttrs (
+      borealis.pull-update = {
+        timer = {
+          OnCalendar = lib.mkDefault "03:00";
+          RandomizedDelaySec = lib.mkDefault "5min";
+          Persistent = lib.mkDefault true;
+        };
+
+        settings.flags = lib.foldlAttrs (
           acc: setting: flags:
           acc ++ lib.optionals (settings.${setting} != null) flags
         ) [ ] flagsForSetting;
