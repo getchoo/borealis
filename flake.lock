@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793368344,
-        "narHash": "sha256-ojN7KpXLYv6NgJ2OMn7cPioc46g7UB1pd4tBf//3S1U=",
+        "lastModified": 1794001184,
+        "narHash": "sha256-i2+b4Rdp7/yIcVESrp0tzS97FkTuTJxIlqNOTjoswfk=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "feac189528d08ca7c46bf1605d84b78ea5fe8263",
+        "rev": "5a735352cd3535d43109415bcbb512a72304226a",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793416927,
-        "narHash": "sha256-SOgrKf8bQ/+b7UkI4Hl7EL3Oa/YzCNgb7FM8G5Q9010=",
+        "lastModified": 1794023090,
+        "narHash": "sha256-/D29DKWTT3cxoAKOu6pXL98LkgavwlGfhJFdBX7PyIw=",
         "owner": "getchoo",
         "repo": "getchpkgs",
-        "rev": "b15cbfdbdf0136d26595cd0d1a5698d2f5d28d33",
+        "rev": "ba1f93662cda8b5c00e111a623b9d7665d8e7076",
         "type": "github"
       },
       "original": {
@@ -140,11 +140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793757180,
-        "narHash": "sha256-gyV7AtCwLnOImcrfSETP4J3Ie96bz19DY47B7m7Y3HM=",
+        "lastModified": 1793979366,
+        "narHash": "sha256-7OoWDsYO9teiPxl0QdlS5lYE20Pue8/5mpscSL32FUA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b787c48e2ec57a9d098f5c2721882a3bc1e16f97",
+        "rev": "2c0c1f01521469cf0271180c453c79782d53c2f6",
         "type": "github"
       },
       "original": {
@@ -179,11 +179,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1793817706,
-        "narHash": "sha256-G/yURBA5cXtLn47hEsHSX3+QQRJiQ5T1XnW+8r6lmwc=",
-        "rev": "e3aada3cbac5b2a1453536258222716193ced361",
+        "lastModified": 1793986817,
+        "narHash": "sha256-Mtem/KxbTPGFKps3w6+CmoG9Cm6kJBORUBX6qyonuPA=",
+        "rev": "d11b8ef914f7692e56cd01661bab3f965513c365",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/e3aada3cbac5b2a1453536258222716193ced361.tar.gz"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/d11b8ef914f7692e56cd01661bab3f965513c365.tar.gz"
       },
       "original": {
         "type": "tarball",
