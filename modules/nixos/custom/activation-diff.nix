@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  unstable,
   ...
 }:
 
@@ -20,7 +19,7 @@ in
       supportsDryActivation = true;
 
       text = ''
-        ${lib.getExe pkgs.dix or unstable.dix} /run/current-system "$systemConfig"
+        ${lib.getExe pkgs.dix} diff /run/current-system "$systemConfig"
       '';
     };
   };
